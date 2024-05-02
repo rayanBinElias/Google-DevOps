@@ -1,0 +1,118 @@
+Developing a Google SRE culture
+
+  Learning Objectives
+    - Define Site Reliability Engineering
+
+  What is Site Reliability Engineering (SRE)?
+    - a practice and a job role, where engineering directly supports software operations.
+    - design an operations team
+  
+  Quiz
+    1. What is Site Reliability Engineering (SRE)?
+      - Practices that balance the velocity of development features with the risk to reliability.
+
+  KeyPoints and Reflection Activity
+    Key KeyPoints
+      - Customer's experience w/ your service tell you how reliable it is
+      - in it org, dev and op teams have conflicting priorities
+      - SRE is the practice of balancing velocity of development features w/ the risk to reliability
+      - SRE can benefit IT teams, rergardles of whether they are using cloud or on-premise tech, for both large projects and daily work
+  
+DevOps, SRE, and Why they exist
+  This module explains the components of DevOps philosophy, 
+  why Site Reliability Engineering came to exist, 
+  and who in an organization can and should practice SRE.
+
+  Learning Objectives
+    - DevOps movement
+    - Origin of SRE
+    - WHo practices SRE
+    - Distinguish between DevOps and SRE
+    - Articulate the pillars of DevOps
+    - Explain how SRE practices align to DevOps pillars
+
+    DevOps and SRE
+      Origin of SRE 
+        - how to think about, measure, and incentivize reliability
+        - shared standard comm between business and IT
+        - 2003 by Benjamin Treynor Sloss
+        - is a concrete way to solve problems that the DevOps philosophy addresses
+        - a practice and a role
+        - goal of SRE is to serve the business and the user, not the other way round.
+
+      DevOps movement
+        - strives to align principles, practices and incentives across dev and operations teams
+        - aims to close the gap between software development and software operations
+        
+        Why it exists?
+          - a culture/philosphy and not practices bet dev and Operators
+            - culture means sustain
+
+          Developers
+            - responsible for writing code for systems
+            - expected to be agile and often pushed to write and deploy new code as quickly as possible
+            - want to work faster, innovating, and succeding or failing quickly
+
+          Operators
+            - responsible for ensuring that those sys operate reliably so customers are happy
+            - expected to keep sys stable would prefer to work slower
+            - focusing on reliability and consistency
+
+        5 pillars of DevOps
+          1. Reduce Organization Silos
+            - increase collaboration by breaking down barriers across teams
+            - SRE
+              - Share Ownership
+
+          2. Accept failure is normal
+            - computers are inherently unreliable and human error
+             - SRE
+              - Blamelessness
+                - Implement blameless postmortems.
+
+          3. Implement Gradual Change
+            - small incremental changes are easier to review
+            - allows you to reduce the time to recover making it simple to roll back
+            - SRE
+              - Reduce cost of failure
+                - Design thinking
+              
+          4. Leverage tooling and automation
+            - key to helping your IT team work efficiently and focus on the tasks that matter
+            - automate manual nonvolatile work
+            - SRE
+              - Toil automation
+
+          5. Measure everything
+            - critical gauge for success.
+            - SRE
+              - Measure toil and reliability
+
+    Quiz
+      1. Which philosophy closes the gap between development and operations?
+        - DevOps
+
+      2. How do DevOps and SRE relate to each other?
+        - SRE is a way to implement DevOps. 
+
+      3. Which is a key pillar of DevOps philosophy?
+        - Accept failure as normal.
+
+      4. Which is an SRE practice that promotes sharing ownership in IT?
+        - Error budgets 
+          - created shared incentive and ownership between developers and SREs.
+
+
+    Exercise
+      Key KeyPoints
+        ● DevOps emerged to help close gaps and break down silos between
+development and operations teams.
+        ● DevOps is a philosophy, not a development methodology or
+        technology.
+        ● SRE is a practical way to implement DevOps philosophy.
+        ● Developers focus on feature velocity and innovation; operators focus
+        on reliability and consistency.
+        ● SRE consists of both technical and cultural practices.
+
+
+SLOs with Consequences
