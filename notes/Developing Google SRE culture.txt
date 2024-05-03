@@ -116,3 +116,78 @@ development and operations teams.
 
 
 SLOs with Consequences
+  - This module covers the value of SRE to an organization, 
+  as well as the technical and cultural fundamentals related to reducing organizational silos and accepting failure as normal. \
+  Topics include the SRE technical practices of blameless postmortems,...
+
+  Learning Objectives
+    - Understand the value SRE can provide to an organization.
+    - Describe the technical fundamentals of SRE: SLOs, error budgets, and blameless postmortems.
+    - Describe the cultural fundamentals of SRE: Blamelessness, psychological safety, unified vision, collaboration and communication, and knowledge sharing.
+
+  SRE value
+    Mission
+      - to protect, provide for and progress software and systems w/ consitent focus
+      of availability, latency, performance and capacity
+
+    Practices/Norms
+      1. Incentivize automation w/ time for creativity
+        - lessen human error and more time for other creative projects
+
+      2. Launching and iterating allows teams to fail fast
+        - learn from failure and try again
+
+    Note
+      - need cultural amd org support for long term to be successful
+  Postmortems
+
+  Blamelessness and Psych Safely
+
+  SLOs and error budgets
+
+  Share vision and knowledge
+
+  Quiz 
+    1. What is one value SRE provides to an IT team?
+      - Developers are enabled to work at a higher velocity while maintaining reliability.
+        - 
+    2. What are Site Reliability Engineers comfortable with?
+      - Failure
+    
+    3. What is a reasonable degree of target reliability for an SLO?
+      - 99.9%
+        - 99.9% is a reasonable target for reliability as it is just short of 100% and still leaves room to focus on feature development.
+
+    4. What can happen when team members don't feel psychologically safe?
+      - Moments of learning are lost.
+        - ple don’t speak up or ask questions in work environments with low psychological safety, therefore moments of learning are inevitably lost.
+
+    5. What is your team's clear and compelling goal that it strives to achieve?
+      - Mission
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
