@@ -1,4 +1,4 @@
-Developing a Google SRE culture
+Module 1: Developing a Google SRE culture
 
   Learning Objectives
     - Define Site Reliability Engineering
@@ -18,7 +18,7 @@ Developing a Google SRE culture
       - SRE is the practice of balancing velocity of development features w/ the risk to reliability
       - SRE can benefit IT teams, rergardles of whether they are using cloud or on-premise tech, for both large projects and daily work
   
-DevOps, SRE, and Why they exist
+Module 2: DevOps, SRE, and Why they exist
   This module explains the components of DevOps philosophy, 
   why Site Reliability Engineering came to exist, 
   and who in an organization can and should practice SRE.
@@ -115,7 +115,7 @@ development and operations teams.
         ● SRE consists of both technical and cultural practices.
 
 
-SLOs with Consequences
+Module 3: SLOs with Consequences
   - This module covers the value of SRE to an organization, 
   as well as the technical and cultural fundamentals related to reducing organizational silos and accepting failure as normal. \
   Topics include the SRE technical practices of blameless postmortems,...
@@ -138,14 +138,262 @@ SLOs with Consequences
         - learn from failure and try again
 
     Note
-      - need cultural amd org support for long term to be successful
-  Postmortems
+      - need cultural and org support for long term to be successful
+ 
+  Blameless Postmortems/Retrospective
+    - only focuses on the root causes of an incident.
+    - incident is looked at objectively w/o designing a person or team as the root cause
+    Exprerienced SREs 
+      - are comfortable w/ failure
+      - eliminate ambiguity w/ monitoring
+      - establish and document processes.
 
-  Blamelessness and Psych Safely
+    Components of a postmortem
+      - details of the incident and its timeline
+      - the actions taken to mitifate or resolve the incident
+      - the incident's impact
+      - Its trigger and root cause or causes
+      - the follow-up actions to prevent its recurrence
+
+    Goals
+      - ensure that all the root casues are properly understood by the team
+      - define or take effective actions to prevent the issue from occuring again
+      - reduce the likelihood of stressful outages
+      - avoid multiplying complexity
+      - learn from your mistakes and thos of others
+      - writing RCA provides additional vlue to your org
+      - blamessness increase effectiveness of teams so 
+      they can 100% focused on preventing from occuring instead of worrying about being blamed if something goes wrong
+
+    RCA
+      - root cause analysis
+      - 5 whys minimum to find the culprit
+
+  Blamelessness and Psych Safety
+    Psychological safety
+      - the belief that a person will not be punished or humiliated for speaking up 
+      w/ ideas, questions, concerns, or mistakes
+
+      Signs of low psychological safety
+        - people  keep concerns or ideas to themselves
+        - people are afraid of looking incompetent or ignorant
+
+        Effect
+          1. Prevents team members of small moments of learning
+          2. Asking questions is key to brainstorming for leading to an out of the box or simple idea to solve the incident
+          3. stifled learning and innovation
+
+      How to build high psych safety?
+        1. Frame work as a learning problem and not an execution problem
+        2. Acknowledge your own fallibility
+        3. Model curiosity
+
+        Effects
+          - bridging is encouraged
+          - high cooperation
+          - messengers are not punished when delivering bad news
+          - failure is treated as opportunity for improvement
+          - new ideas are welcomed
+            - lead time,deployment frequency and time to restore
+   
+    Blamessness
+      - fosters psych safety 
+
+      Why do people blame?
+        1. Hindsight Bias
+          - is the tendency of people to overestimate their ability to have predicted an unpredictable outcome
+          - can lead to blaming the person in charge
+
+          Sample
+            - Insisting that you knew that the losing team was goin to lose because you originally said you predicted it
+        
+        2. Discomfort discahrge
+          - is when people blame others to discharge discomfort and pain at a neurobiological level
+
+      How to not blame?
+        1. Assume good intentions.
+        2. Focus on systems and processesm not people
+        3. Innovation requires ome degree of risk taking
 
   SLOs and error budgets
+    - reduces org silos w/ SLOs and error budgets
 
-  Share vision and knowledge
+    Notes
+      - Software Engineering focuses on desgining and building
+      - operating and maintaing estimated that 40-90% of total cost of ownership
+
+    Shared responsibility
+      Reliability/Availability (simple approach)
+        - equals your service 'good' time divided by it's total time
+        
+        Advanced approach
+        - equals to good interactions divided by total interactions
+
+        Service reliability 
+          - is about determining the amount of reliability you are trying to reach
+          and the amount of downtime you are willing to tolerate.
+
+
+      1. Error budgets
+        - amount of downtime you are willing to tolerate
+        - creates a common incentive for dev and SREs to find the right balance bet innovation and reliability
+
+
+      2. Service-level objectives(SLOs)
+        - precise numerical target for system reliability
+        - targets that are agreed upon between stakeholders 
+        - SLIs aggregated over time
+        - short of 100%
+          - 99.9
+        - a promise about the health of your service to your customers
+
+        How do you define SLOs?
+          - Service-level indicators(SLIs)
+            - measurable that answers
+              - how well your service is doing at any moment in time?
+            - expresed as a ratio of good events to valid events times 100%
+            - map to user expecations
+              - latency
+              - throughput
+              
+  Share vision and knowledge  
+    How to create SRE culture?
+      1. Create a unified vision
+        - team vision statement
+        - support the company's vision
+          - give sense of direction
+        - drives' its work and includes
+          - values
+            - refers to how you can achieve your vision
+            - guides your behaviors
+            - response to others
+            - commitment to Goals
+            - way you spend your time
+            - way you operate as a team
+
+            Core values help teams to:
+              - build trust psch safety w/ each other
+              - be more willing to take risks
+              - more open to learning and growing
+              - feel a greater sense of inclusion and commitment
+
+          - purpose
+            - explains why your team exists
+            - improves life and work satisfaction
+            - creates stronger connections
+            - helps reduce conflict
+
+          - mission
+            - a clear and compelling goal the team wants to achieve.
+
+            Sample:
+              - Google Mission
+                - To organize the world's information and make it universally accessible and useful
+
+          - strategy
+            - how it'll realize its mission
+            - can be a single initiative
+            - can be leveraged
+            - requires change
+        
+            Strategy building blocks
+              - look outside: to identify threats and opportunities
+              - look inside:to understand resource, capabilities and practices
+              - consider strategies for addressing threats and opportunities
+              - create alignment on communicating and coordinating work processes
+                    
+          - Goals
+            - aligns your team to what you strive to attain
+
+            Samples:
+              Google:
+                - OKRs
+                  - objectives
+                  - key results
+                  - idea of OKRs is to set very ambitious goals
+                    - enable you to accombplish more than the team thought was possible
+                    - encourage to try new things
+                    - prioritize work
+                    - learn from both successes and failures
+
+      2. Determine what collaboration/Communication looks like
+        - high priority for SREs
+        - common approaches to platforms
+        - focus on problem-solving
+
+        Practices
+          1. Service-oriented meetings(Comm)
+            - team review the state of service 
+              - to increase awarenes, involvement and and improve operations
+            - weekly 30-60 minutes
+            - designated lead
+            - compulsory attendance
+            - set agenda
+
+          2. Have a good team composition roles(Comm)
+            - Tech lead
+              - who sets the technical direction of the team
+            - Manager
+              - who runs performance management
+            - Project Manager
+              - who comments on a design doc and writes code
+
+          Notes:
+            SREs
+              - make recommendation about architecture and software behaviors
+              - adept at performing more than one job function and have the skills to step into another is needed
+              
+      3. Share knowledge among teams/Knowdlege sharing
+          - cultivates knowledge sharing among its team members
+
+          Ways/Practices
+            1. Cross-training
+              - a key competency when hiring SRE
+              - involves training employee for flexible response to chaning production schedules
+              - trains team memebers to be flexible
+                - train employee other job role other than his hired role scope
+              - helps reduce costs
+              - improves morale
+              - reduces turnover
+              - boosts productivity
+              - enhances scheduling flexibility
+              - increases job satisfaction
+
+            2. Employee-to-employee network
+              - employees can develop adn grow by teaching others
+
+              Sample
+                - Google does this with g2g
+                  - volunteer teaching network
+                    - teaching courses
+                    - 1 to 1 mentoring
+                    - designing learning materials
+
+              3. Job shadowing
+                - expose new hires to what others in the team do every daily
+                - expert knowledge and exposure to teammates
+                - hands-on experience
+                - opportunity to ask questions
+                - introduction to the concept of gradual change
+                - way to spot opportunity for cross-functional collaboration
+                - way to understand the nuances of a particular job role
+                - psychologically sage environments
+                - way to pair up your team memebers to scale and retain knowledge
+
+    Notes
+      - Postmortems are SRE practice to help you learn from mistakes
+      - Collaboration and knowledge sharing fosters delivering postmortems
+
+    Benefits of collaboration technology
+      - Real-time collaboration
+      - open commenting system
+      - email notifications
+
+    Germany Online Solutions Provider
+      - reduce number of comm channels
+      - descibe channles used for what purpose
+      - tech that collaborate in real-time directly via comments or chat
+      - use collaborative tools to creat SRE knowledge repo
 
   Quiz 
     1. What is one value SRE provides to an IT team?
@@ -164,6 +412,516 @@ SLOs with Consequences
 
     5. What is your team's clear and compelling goal that it strives to achieve?
       - Mission
+
+    Key Points
+      - DevOps emerged to help close gaps and break down silos bet development and operations teams
+      - DevOps is a philosopy, not a development methodology or technology
+      - SRE is a practical way to implement DevOps philosophy
+      - Developers focus on feature vlocity and innovation; operators focus on reliability and consistency
+      - SRE consists of both technical and cultural Practices
+      - SRE practices align to DevOps pillars:
+        1. Reduce Organizational silos
+          - Share ownership
+        2. Accept failure as normal
+          - Blamelessness
+        3. Implement gradual changes
+          - Reduce cost of failure
+        4. Leverage tooling and automation
+          - Toil Automation
+        5. Measure everything
+          - Measure toil and reliability
+
+
+Module 4: Make Tomorrow Better than today
+  - Continuous, gradual testing as well as automation are very important in SRE culture. 
+  This module covers the SRE technical concepts of continuous integration, continuous delivery, 
+  and canarying as they relate to the DevOps pillar of implementing...
+
+  Learning Objectives
+    1. Describe the technical fundamentals of SRE: 
+      - CI/CD, 
+      - canarying, and 
+      - toil automation
+    2. Describe the cultural fundamentals of SRE: 
+      - Design thinking
+      - prototyping
+      - psychology of change, and 
+      - resistance to change
+
+  Continuous integration, delivery and canarying
+    Developers
+      - moonshot thinking
+        - implment massive software changes that have a high likelihood of failing
+
+    SRE 
+      - gradual change
+        - smalle changes that have less impact on users if they fail
+
+    CI/CD
+      CI
+        - building, integrating and testing code w/in dev environment
+      
+      CD
+        - deploying to production frequently, 
+        or at the rate the business chooses
+
+      Processes
+        1. Code
+        2. build
+        3. Integrate
+        4. Test
+        5. Release
+        6. deploy
+        7. operate
+
+      Benefits
+        1. Helps to overcome agile transformation challenges
+        2. can min code integrations headaches
+        3. reduces human error
+        4. promotes higher code quality
+        5. easier to "recover" after soemthing goes wrong
+        6. can automate everything, which saves time and money
+        7. provides visibility on project completion
+        8. time to market is shorter
+        9. provides you w/ more metrics to review and act on
+
+    Canarying
+      - advance warning of danger
+        - small thing detects danger as we go into the unknown
+      - deploying change in service to a group of users who don't know they are 
+      receiving the cahnge, evaluating the impact to that group,
+      then deciding how to proceed.
+
+      Canarying requirements
+        1. Canary population should be large enough to be a rep subset of the control
+        The only diff should be the production change.
+
+        2. Canary population should be small enough not to endanger the whole service if broken
+        
+        3. Canary should not be overly complicated for those who monitor it
+
+  Design Thinking and prototyping
+    Design Thinking
+      - combines creativity and structure to solve complex problems
+      - teach teams and individuals to thingking creatively for innovation
+
+      5 phases
+        1. Emphatize
+          - observe and engae w/ intended users
+          - immerse in their environments
+        
+        2. Define the problem you are attempting to solve
+          - express the problem in the point of view of the users
+
+        3. Ideate    
+          - generate ideas for Solutions
+
+        4. Time prototype
+          - ideas into real world
+            - identify best possible solution before communicating
+        
+        5. Test
+          - test prototype in real world setting w/ your intended users
+
+      Software Dev approach
+        1. focus on user
+        
+        2. 10x thinking
+
+        3. prototype to test your solution
+
+    Prototyping 
+      Benefits
+        - more ideas are tested
+        - faster failures means more successes
+
+      Ways to prototype
+        1. physical prototypinh
+        2. paper and drawing
+        3. clickable
+        4. Role play
+        5. video
+
+      Sample  
+        - video panel of discussion
+        - heat map
+        - banner w/ posted Notes
+
+      Real life Sample
+        - use design thinking methodology
+          - branstorm about changes to their production processes
+          
+        prototype
+          - use diff color of cups rep each step in teh process needed to be improved or depracted
+
+  Toil Automation
+    - if  a human operator need to touch your machine system during normal operations
+    means you have a bug. The definiotion of normal changes as your sys grows
+    - focus on development rather than operational work/toil
+      - SREs eliminate toil by automating it.
+     
+    Notes
+      - DevOps philosophy
+        - leverage tooling and automation
+
+    Toil
+      - work I don't like to do
+      - manual
+      - repetitive
+      - automatable
+      - tactical
+      - w/o enduring enduring value
+      - scales linearly as the service grows
+      - admin work that is not necessary or volatile
+
+    Excessive toil
+      1. Career stagnation
+
+      2. Low morale
+
+      3. Confusion
+
+      4. Slow progress
+
+      5. Sets Precedence
+
+      6. Promotes attrition
+
+      7. Breach of faith
+
+    Value of automation
+      1. Consistency
+
+      2. A platform
+        - provides a way to centralize mistakes so bug is fixed once in one place
+
+      3. Quicker resolutions
+        - automated syst looks for problems as soon as they arise
+
+      4. Faster action
+
+      5. Time saved 
+        - no need for continual trainin of humnas in maintenance of process
+
+  Psychology of change
+    Four Categories
+      1. Navigators
+        - make teams and business successful
+          - help you succeed
+       
+        - as leaders
+          - celebrate their behaviors
+          - use them as champions for the change
+
+      2. Critics
+        - have passion and energy
+        - have valid fears
+
+        - as leaders
+          - spend time w/ them
+            - powerful advocates if you can persuade them
+
+      3. Victims
+        - need to express emotions
+        - take change personally
+
+        - as leaders
+          - listen to and empathize w/ them
+            - they will start to listen once they feel heard
+
+      4. bystanders
+        - are difficult to understand
+        - do not know what's going on
+        - continue w/ normal routine
+
+        - as leaders
+          - communicate w/ them
+          - ascertain their feelings
+
+    How brain response?
+      1. Anterior Cingulate
+        - exclusion
+        - physical pain
+
+        Soln:
+          - involve poeple in the change
+
+      2. Prefrontanal cortex
+        - realization
+        - deception
+        - heightened anxiety
+
+        Soln:
+          - set realistic expectaations
+
+      3. Rush of adrenaline
+        - problem-solving
+        - positivity
+
+        Soln:
+          Identify opportunities for co-creation and provide coaching instead of soln
+
+      4. amygdala
+        - unfamiliar concepts
+        - anxiety
+        - depression
+        - fatigue
+        - anger
+
+        Soln:
+          - simplify messaging and focus on key concepts per user group
+
+      5. Greater attention density
+        - adaptation
+
+        Soln:
+          - ensure that comm are engaing and training is interactive
+
+      6. Basal ganglia 
+        - Habitual tasks
+        - comfort
+        - hard-wired
+
+        Soln:
+          - allow people time to build new habits
+
+    Emotional respionse to change
+  Quiz
+    1. What is a benefit of continuous integration and continuous delivery (CI/CD)?
+      - It is less disruptive for customers.
+        - CI/CD is a way to implement gradual change so it is less disruptive to customers.
+
+    2. What would be the best way to practice canarying?
+      - Deploy a small feature change to users that are a representative subset of your typical customers.
+
+    3. Why is toil a problem?
+      - It becomes toxic in large quantities.
+        - Toil becomes a problem and is toxic when it occurs in large quantities, as it takes SRE’s time away from real project work.
+
+    4. Which is the third phase of design thinking?
+      - Ideate
+
+    5. What should you present change to your team members as?
+      -  An opportunity
+        - Since resistance to change is usually a fear of loss, presenting change as an opportunity helps motivate employees to embrace and accept it.
+
+  Glossary
+    1.Continuous integration
+      - Building, integrating, and testing code within the development environment.
+    
+    2. Continuous delivery
+      - Deploying to production frequently, or at the rate the business chooses.
+    
+    3. Canarying
+      - Deploying a change in service to a group of users who don’t know they are receiving the change, evaluating the impact to
+        that group, and then deciding how to proceed.
+    
+    4. Toil
+      - Work directly tied to a service that is manual, repetitive, 
+      automatable, tactical, or without enduring value, or that scales
+      linearly as the service grows. 
+
+  Key Points
+    - change is best when small and frequent
+    - design thinking methodology 5 phases:
+      - Emphatize
+      - define
+      - Ideate
+      - prototype
+      - test
+    - prototyping culture
+      - encourages teams to try more ideas
+      - leading to increase faster failures
+        - more successes
+    - excessive toil is toxic to the SRE role
+    - eliminating Toil  
+      - SRE can focus on work that either:
+        - reduce future toil
+        - add service feautures
+    - resistance to change is usually a fear of loss
+    - present change as an oppportunity, not a threat
+    - people react to change in many ways
+      - IT leaders need to understand how to communicate w/ and support each group
+
+Regulate Workload
+  - In this module, you'll learn about SRE practices around measuring everything,
+   specifically reliability and toil, and the concept of monitoring. 
+   We’ll also cover the cultural fundamentals of goal-setting, transparency, 
+   and data-driven decision making.
+
+  Learning Objectives
+    1. Describe the technical fundamentals of SRE: Measure toil and reliability, and monitoring
+    2. Describe the cultural fundamentals of SRE: Goal setting, tansparency, and data-based decision making
+
+  Toil and reliability
+
+  Goal setting
+
+  Quiz  
+    1. SLIs need to provide a clear definition of what? 
+      - Good and bad events
+        - SLIs need to provide a clear definition of good and bad events that will correlate with your users’ experience with the service.
+
+      - Total user interactions
+        - factor when quantifying SLOs.
+
+    2. What does monitoring allow for?
+      - Visibility into a system
+
+    3. What does Google use OKRs as?
+      - KPIs
+
+    4. Which bias is the tendency to find information, input, or data that supports your preconceived notions?
+      - Confirmation bias
+
+  Glossary  
+    1. Affinity bias
+      - Tendency to gravitate toward those who are similar to you, 
+      such as with race, gender, socioeconomic background, or education level.
+
+    2. Confirmation bias
+      - Tendency to find information, input, or data that supports 
+      your preconceived notions.
+      
+    3. Selective attention bias
+      - Tendency to pay attention to things, ideas, and 
+      input from people whom you tend to gravitate toward.
+
+    4. Labeling bias
+      -Tendency to form opinions based on how people look,  
+      dress, or appear externally
+  
+  Key Points
+    1. measure reliability w/ good service level indicators(SLIs)
+    
+    2. a good SLi correlates w/ user exp w/ your service; that is good SLi
+    tells you when users are happy or unhappy
+
+    3. measure toil by indetifiying it, selecting and appropriate unit of
+    measure, and tracking the measurements continuously
+
+    4. Goal-setting, transparency, and data-driven decision making are key components
+    of SRE measurement culture
+
+    5. To make truly data-driven decisions, you need to remove any unconscious biases
+
+
+Apply SRE on your organization
+  - In this module, we will talk about ways you can assess and understand your organization’s maturity and readiness for adopting SRE principles, practices, and culture
+  We’ll also discuss the types of skills to look for in hiring new SREs and how to...
+
+  Learning Objectives
+    1. Assess organizational maturity for SRE
+    2. Identify where SRE can be applied within a business
+    3. Recognize the skills an SRE needs
+    4. Articulate the different types of SRE team implementations
+    5. Advocate for SRE culture adoption across the organization
+
+  Organizational maturity
+
+  Skills and training
+
+  SRE teams
+
+  Getting started
+
+  Quiz
+    1. What practice does Google recommend that you establish before forming your first SRE team?
+      - Blameless postmortem culture
+        - one practice that Google recommends your organization establishes before forming your first SRE team.
+
+      - Continuous integration/continuous delivery
+        - CI/CD does not need to be established before forming your first SRE team.
+
+    2. Which type of IT role does Google recommend as a possible new SRE hire?
+      - Systems administrator
+        - Google recommends systems administrators as good first new SRE hires because of their experience 
+          - working IT operations 
+          - and managing production systems.
+
+    3. Scope is generally unbounded for which type of SRE implementation?
+      - Kitchen Sink
+        - Scope is usually unbounded for Kitchen Sink/”Everything SRE” teams.
+    
+    4. Which Google team can support you in jumpstarting your SRE implementation?
+      - Google Cloud Professional Services team
+        - can help customers jumpstart their SRE implementations.
+
+  Key Points
+    1. Kitchen Sink/"Everything SRE" team
+      - recommended for org that have few app and user journeys
+      - scope is mall enough that one team is necessary
+      - dedicated SRE tram i needed in order to implement practices
+
+    2. Infrastructure team
+      - focuses on maintaining shared services and components related to Infrastructure
+      - versus SRE team dedicated to working on services related to products like customer-facing code
+
+    3. Tools team
+      - focus on building software to help their dev counterparts:
+        - measure
+        - maintaing
+        - improve sys reliability or other aspects of SRE work such as capacity/planning
+
+    4. Product/App team
+      - works to improve reliability of critical app or business area
+      - recommended for org that already have kictchen sink, infra, tools-focused SRE team
+        - have key iser-facing app w/ high reliability needs
+
+    5. Embedded team
+      - has SREs embedded w/ their developer counterparts
+        - usually one per developer team in scope
+      - work relationship bet embedded SREs and dev tend s to be project or time-bounded
+      - usually very hands-on
+        - perform work like 
+          - changing code
+          - configuration of the services in scope
+
+    6. Consulting team
+      - similar to Embedded
+      - except SRE are usually hands-on
+      - recommended staffing one or two-part-time consultants before you
+      staff your first SRE team.
+
+    7. org w/ high SRE maturity have:
+      - well-documented
+      - user-centril SLOs,
+      - error budgets
+      - blameless postmortem culture
+      - low tolerance for toil
+
+    8. Engineers w/ operations exp and sys admin w/ scripting exp
+      - good first SREs to hire
+
+    9. Upskill current team members w/ necessary SRE skills such as:
+      - operations and software engineering
+      - monitoring sys
+      - production automation
+      - sys architecture
+      - troubleshooting
+      - culture of trust
+      - incident mngmt
+
+    10. COnduct your acct exec or acct dir to learn:
+      - how the google cloud prof services team can support org adoption of SRE
+
+
+
+Final Assessment
+  - Test your overall knowledge of Google SRE technical and cultural practices with this summative quiz. You must score an 80% to pass. 
+  This assessment is required in order to receive your course completion certificate.
+
+  Learning Objectives
+    1. Assess SRE technical and cultural fundamentals knowledge
+
+  Final Assessment
+
+  Learner Workbook
+
+  Resources
+
+
+
 
 
 
