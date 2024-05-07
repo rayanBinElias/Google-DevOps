@@ -686,6 +686,68 @@ Module 4: Make Tomorrow Better than today
           - allow people time to build new habits
 
     Emotional respionse to change
+      1. Denial
+        - indifferent
+        - passive
+        - guarded
+
+      2. resistance
+        - angry
+        - hostile
+        - disagrees w/ feedback
+        - withdrawn
+
+      3. acceptance
+        - conscious incompentence
+        - aware
+        - confused
+        - guilty
+        - worried
+
+      4. exploration
+        - conscious competence
+        - open
+        - questioning
+        - accepts feedback
+
+      5. commitment
+        - unconscious competence
+        - energized
+        - confident
+        - takes ownership
+
+      6. Growth
+        - self evaluates
+        - take risks
+        - seeks feedback
+        - experiments
+
+    Connect w/ individuals on 3 levels
+      1. head
+        - rational
+          - talk about why the change is happening
+            - strategic mission, vision and raionlae behind it.
+
+      2. heart
+        - emotional
+          - why people should care
+          - remember people can be ego and self motivated
+          - address how the change will affect them personally in their day to day role
+          - how it will impact them positively
+          - make them feel inclusive for a bigger picture
+
+      3. feet
+        - behavioral
+        - talk anbout knowledge, skills and resources you will provide to make sure they're successful in this change
+        - Teams need support to make sure they are and feel competent when asked to change what they know.
+    
+    Handling Resistance to Change
+      - Are all your leaders and managers role modeling the new processes and behaviors?
+      - Do people understand the reason for the change?
+      - Do people care about the change being successful?
+      - Do people have the knowledge and ability to be successful in your new world?
+      - Are the right reinforcement and recognition programs in place?
+  
   Quiz
     1. What is a benefit of continuous integration and continuous delivery (CI/CD)?
       - It is less disruptive for customers.
@@ -754,8 +816,116 @@ Regulate Workload
     2. Describe the cultural fundamentals of SRE: Goal setting, tansparency, and data-based decision making
 
   Toil and reliability
+    DevOps Last pillar
+      - Measure Everything
 
-  Goal setting
+      Goal of measuring everything:
+        - IT and the business can understand the current status of the service
+        - IT can analyze the data and identify necessary actions to improve the status
+        - IT can make better decisions and impact across the organization
+
+      Notes
+        - You can't improve what you don't measure
+
+    SRE counterparts
+      1. Measure Everything
+        1. Measuring reliability
+           - Error budget 
+              - is what you deem an acceptable level of unreliability that you can allocate other engineering work to. 
+              Product and engineering teams decide what the reliability target is together. 
+              Engineering teams inform the target, 
+              while product management defines it. 
+              This is not really a technical decision, but instead is defined by customer expectations, the competitive landscape, and the position you have in the market. 
+
+            - An SLI 
+              - is a quantifiable measure of a single aspect of service reliability that ideally has a close linear relationship with your users’ experience with your service. 
+
+            - An SLO 
+              - combines an SLI with a target reliability—that is, it’s the threshold that, if crossed, turns happy customers into unhappy customers.
+  
+        2. Measuring toil
+          1. Identify it
+            -  by stakeholders
+          2. Select an appropriate unit of measure
+            - minutes and hours
+          3. Track the measurements continuously
+            - before, during and after toil reduction efforts
+
+          Notes
+            - streamline with tools or scripts
+            - start simple
+              - count tickets
+              - count alerts
+              - collect statistics
+
+          Benefits of measuring toil
+            - Triggers a toil reduction efforts
+            - Empowers teams to think about toil
+            - growth in engineering project work over time, some of which will further reduce toil
+            - increased team morale and decreased team attrition and burnout
+            - less context switching for interruptions, which raises team productivity
+            - increased process clarity and standardization
+            - enhanced technical skills and career growth for team members
+            - reduced training time
+            - fewer outages attributable to human errors
+            - imporved security
+            - shorter response times for user requests
+
+        3. Monitoring
+          - allows visibility into a system
+
+          What to monitor>
+            - symptoms, rather than causes
+            - error budget burn
+            - capacity alerts are an exception
+            - Four golden signals
+              1. Latency
+              2. Traffics
+              3. Error
+              4. Saturation
+
+          Notes:
+            - escalate if risk dropping below SLO for the month
+
+  2. Goal setting
+    - look for KPIs
+      - who
+      - what to measure
+      - how to measure
+    
+    Sample
+      - Google uses OKRs as KPIs graded from 0.0 to 1.0
+
+      OKR grading considerations
+        - 60-70% is a good score.
+        - OKRs are not synonymous with performance
+        - Organizational OKRs are graded publicly
+        - Frequent check-ins throuput the quarter help maintain progress
+
+  3. Transparency
+    - only way to demonstrate to your employees that you beleive they are trustworthy adults
+    and have good judgement
+    and giving them more context about what is happening(and how, and why)
+    will enable them to do their jovs more effectively.
+    - demonstrate trustworthy good judgement about what is happening effectively.
+    
+    How>
+      1. Sharing Monitoring tools
+          - Buganizer
+      2. Sharing Communications
+      3. Feedback loop
+        - measure
+        - improve
+        - produce
+
+4. Data-Driven Decision Making
+  - Remove unconscious bias
+  - refer to glossary for four bias meanings
+
+  How?
+    - Question your first impressions.
+    - Justify decisions.
+    - Make decisions collectively.
 
   Quiz  
     1. SLIs need to provide a clear definition of what? 
@@ -788,7 +958,7 @@ Regulate Workload
       input from people whom you tend to gravitate toward.
 
     4. Labeling bias
-      -Tendency to form opinions based on how people look,  
+      - Tendency to form opinions based on how people look,  
       dress, or appear externally
   
   Key Points
@@ -816,14 +986,176 @@ Apply SRE on your organization
     3. Recognize the skills an SRE needs
     4. Articulate the different types of SRE team implementations
     5. Advocate for SRE culture adoption across the organization
+    6. Necessary SRE skills
+    7. How to train your workforce
+    8. SRE team implementations
+    9. How Google Clou can support your organization
+
+  SRE Steps
+    1. SLOs w/ Consequences
+    2. Make tomorrow better than today
+    3. Regulate workload
 
   Organizational maturity
+    Low
+      - no adopted SRE
+        - principles
+        - practices
+        - culture
+
+    High
+      - well established SRE team
+      - widely embraced principles, practices and culture
+
+    Signals/Principles
+      1. well-documented and user-centric SLOs
+      2. Error budgets
+      3. blameless postmortem culture
+      4. low toleraance for toil
+
+    technical
+      1. Blameless postmortems
+        SLOs
+        Error Budgets
+      2. CI/CD
+        Canarying
+        Toil Automation
+      3. Reliability measurement
+        Toil measurement
+        Monitoring
+
+    Cultural
+      1. Psychological safety 
+        Share vision and knowledge
+        Foster collaboration
+
+      2. Design thinking
+        Prototyping
+        Change management
+
+      3. Goal-setting
+        Transparency
+        Data-driven decision making
+
+    DORA DevOps Quick Check tool
+      - five question assessment about your current engineering practices
 
   Skills and training
+    What skills to train and hire?
+      - operations software engineering
+      - monitoring systems
+      - production automation
+      - system architecture
+      - troubleshooting
+      - culture of trust
+      - incident management
+        - technical troubleshooting
+        - communication framework
+      - Character traits
+        - resilience 
+        - flexibility
 
-  SRE teams
+      Notes
+        - SREs
+          - provide right balance between enabling product dev and doing what's
+          right for your customers.
 
+  SRE teams implementations
+    1. Kitchen Sink/Everything SRE
+      - scope is unbounded
+      - good starting point for first SRE team
+      - recommended for org w/ few app and user journeys
+      - useful when dedicated SRE team is needed
+
+      Benefits
+        - there are no coverage gaps
+        - it is easy to spot patterns and similarities bet services and projects
+        - acts as glue bet teams
+      
+      Disadvatages
+        - lacks a team charter
+        - risks overloading the team
+        - can run the risk of shallow contributions
+        - team issues can have a negative impact on the business
+
+    2. Infrastructure
+      - focus on behind the scenes tasks
+      - helps make other team's jobs easier
+      - maintains shared services related to infra
+      - recommended for org w/ multiple dev teams
+      - defines common standards for the IT team
+      
+      Benefits
+        - allows dev to use devops practices w/o divergence across business
+        - keeps its focus on highly reliable infra
+        - defines production standards
+
+      Disadvantages
+        - possible neg impact to business folowwing team issues
+        - improvement the team makes may not be tied to customer experience
+        - may require teams to be split, which can lead to duplication or divergence of practices   
+
+    3. Tools
+      - focuses on building software to help dev w/ aspects of SRE work
+        - capacity planning
+      - recommended for org that need highly specialized reliability-related tooling
+
+      Benefits
+        - allows dev to use devops practices w/o divergence across business
+        - keeps its focus on highly specialized reliability-related tooling
+        - defines production standards
+
+       Disadvantages
+        - could unintentionalluy turn into an infra team
+        - risk of increased toil and overall worload on the team
+
+    4. Product/Application
+      - improves the reliability of critical app/business area
+      - recommended for org that have kitchen sink, infra or tools SRE team
+      and app w/ high reliability needs
+
+      Benefits
+        - provides clear focus
+        - creates clear link bet business priorities and team effort expenditure
+
+      Disadvantages
+        - require establishing new teams as business and complexity grow
+        - lead to duplication of infra dn divergence of practices
+
+    5. Embedded
+      - SREs embedded w/ developers
+      - SREs and dev have a project or time-bounded relationship
+      - hands-on, changing code and config of services
+      - recommended for org to start a team or scale another implementation
+      - can augment the impact of a tools or infra team
+
+      Benefits
+        - focused expertise directed to specific problems or teams
+        - allows side-by-side demo of SRE practices
+
+      Disadvantages
+        - can cause a lack of standardization bet teams
+        - can lead to divergence in practice
+        - less time for mentoring
+
+    6. Consulting
+      - similar to embedded team
+      - less hands-on
+      - may write code and maintain tools for themselves and dev
+      - not recommended untul org complexity is large
+      - recommends one to two part-time consulting SREs before the first SRE team
+
+      Benefits
+        - help w/ scaling of an existing SRE team's positive impact
+        - decoupled from directly changing code and config
+
+      Disadvantages
+        - may lack sufficient context to offer useful advice
+        - can be perceived as hands-off
+    
   Getting started
+    Request Google Cloud's Professional Services Consultation
+      - reach out to your Account Director/Executive to request a Google Professional Services consultaion.
 
   Quiz
     1. What practice does Google recommend that you establish before forming your first SRE team?
@@ -885,7 +1217,7 @@ Apply SRE on your organization
 
     7. org w/ high SRE maturity have:
       - well-documented
-      - user-centril SLOs,
+      - user-centric SLOs,
       - error budgets
       - blameless postmortem culture
       - low tolerance for toil
@@ -902,9 +1234,8 @@ Apply SRE on your organization
       - culture of trust
       - incident mngmt
 
-    10. COnduct your acct exec or acct dir to learn:
+    10. Conduct your acct exec or acct dir to learn:
       - how the google cloud prof services team can support org adoption of SRE
-
 
 
 Final Assessment
@@ -915,11 +1246,121 @@ Final Assessment
     1. Assess SRE technical and cultural fundamentals knowledge
 
   Final Assessment
+    1.Generally, whose experience with a production service determines its availability?
+      - The customer’s
+      
+      - The SRE's
+
+      - The operator’s
+    
+    2.Which is the term that describes breaking down the silos and closing gaps between development and operations teams?
+      - DevOps
+
+      - Site Reliability Engineering
+   
+    3.Which DevOps pillar led to Google SRE practices, such as SLOs and error budgets, that promote shared 
+ownership between developers and SREs?
+      - Reduce organizational silos
+        - is the DevOps pillar that led to SRE practices like SLOs and error budgets which promote shared ownership between developers and SREs.
+
+    4.Your developers have felt inundated with too many manual and repetitive tasks that are tied to the production service. What is this called?
+      - Toil
+        - Toil is work that is mundane, repetitive, without enduring value, automatable, and scales linearly as the service grows.
+
+    5.What does a blameless postmortem not help with?
+      - Decreasing engineering costs incurred after launch
+        - Blameless postmortems and its culture do not correlate with decrease in engineering costs incurred after launch.
+
+      - Ensuring that all the root causes are properly understood by the team
+      - Avoiding multiplying complexity
+      - Reducing the likelihood of stressful outages
+
+    6.What can you build with your team by acknowledging your own fallibility as a leader?
+      - Psychological safety
+        - Acknowledging your own fallibility is one way to build psychological safety with your teams.
+
+    7.What is a service-level objective (SLO)?
+      - A precise numerical target for system reliability.
+        - An SLO is a precise numerical target for system reliability.
+
+    8.What often accompanies toil automation that leaders should be prepared for?
+      - Resistance to change
+
+      - Linear scaling of work with complexity
+
+    9.Your team members are unsure what goals they are trying to achieve within the team. 
+    What part of your team vision should you work to clarify?
+      - The mission
+        - Your team’s mission is the goals it strives to achieve.
+
+    10.SREs believe that change is best when what?
+      - Small and frequent
+
+      - Small and dispersed
+
+    11.What is continuous delivery?
+      - Deploying to production frequently, or at the rate the business chooses.
+
+      - Building, integrating, and testing code within the development environment.
+
+    12.What are the five steps in design thinking methodology?
+      - Empathize, Define, Ideate, Prototype, Test
+        - The five phases of design thinking are Empathize, Define, Ideate, Prototype, and Test.
+
+      - Define, Ideate, Prototype, Test, Resolve
+
+    13.Why should toil be limited to a bounded part of the SRE role?
+      - It prevents SREs from doing only sysadmin work.
+        - Keeping toil limited to a bounded part of the SRE role prevents SREs from solely doing system admin work.
+
+      - It frees SREs to completely focus on reliability work.
+
+    14.You've decided to adopt SRE practices and culture in your company. 
+    As change begins to happen, you notice that Naveen, 
+    one of your operations managers is avoiding new protocols and 
+    continuing with his normal work routine. 
+    In which group of people would you categorize Naveen?
+      - Bystander
+        -  tend to ignore change and continue on with their normal routine as though change is not happening.
+
+    15.What is one benefit of measuring toil?
+      - It triggers a reduction effort.
+        - When teams are able to see how much toil they have, they focus on reducing it.
+
+    16.What does Google recommend you do with the four golden signals?
+      - Monitor the system
+        - Google recommends you monitor the system using the four golden signals—latency, traffic, errors, and saturation,
+
+    17.What do OKRs primarily help an organization do?
+      - Set goals
+        - are KPIs that help organizations set goals.
+
+    18.Which phase of the SRE journey includes automating toil?
+      - Make Tomorrow Better than Today
+        - includes toil automation.
+
+    19.SREs are regularly on-call and required to solve problems fast. What is a primary skill SREs need for this?
+      - Troubleshooting
+        - SREs are regularly on-call, they require excellent troubleshooting skills in order to diagnose and solve problems fast.
+
+    20. Which type of SRE team implementation does Google recommend for an organization's first SRE team?
+      - Kitchen Sink
 
   Learner Workbook
 
   Resources
+    
+    Site Reliability Engineering: Measuring and Managing Reliability coursera lessons
+      https://www.coursera.org/learn/site-reliability-engineering-slos
 
+    Google cloud consulting services
+      https://cloud.google.com/consulting/?utm_source=google&utm_medium=cpc&utm_campaign=emea-gb-all-en-dr-bkws-all-solutions-trial-e-gcp-1008073&utm_content=text-ad-none-any-DEV_c-CRE_340468586137-ADGP_Hybrid+%7C+AW+SEM+%7C+BKWS+~+EXA_1:1_EMEA_EN_VM+migration_gcp+professional+services-KWID_43700042357065337-kwd-380758056939-userloc_1006886&utm_term=KW_gcp+professional+servicesg&ds_rl=1242853&ds_rl=1245734&ds_rl=1245734&gclid=Cj0KCQjw9ZzzBRCKARIsANwXaeIPLV6niFcKgzkeOSZH5z6fj95vu61t48KjkwKY_Q1gXJY7_mUVCXcaAvN9EALw_wcB&hl=en
+    
+    SRE workbook
+      https://sre.google/workbook/table-of-contents/
+    
+    SRE table of contents
+      https://sre.google/sre-book/table-of-contents/
 
 
 
