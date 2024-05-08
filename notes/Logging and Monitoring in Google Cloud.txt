@@ -75,14 +75,189 @@ Module 1PIntroduction to Google CLoud's Operations Suite
         - indicate service level objective violations
         - error might mean it's time to send out an alert
 
+        How?
+         - number of 400/500 HTTP codes
+         - number of failed requests
+         - number of exceptions 
 
+    Observability steps
+      1. Capture signals
+        - metrics
+        - Logs
+        - Trace
+      
+      1.1 Manage Incidents
+        - alerts
+        - error reporting
+        - SLO
+      
+      2. Visualze and Analyze
+        - Dashboards
+        - metrics Explorer
+        - logs Explorer
+        - service monitoring
+        - log analytics
+        - health checks
+
+      3. Troubleshoot
+    
   Cloud Monitoring
+    - rovides visibility into the performance, uptime, and overall health of cloud-powered applications. 
+    - It collects metrics, events, and metadata from projects, logs, services, systems, agents, custom code, and various common application components, including 
+      - Cassandra
+      - Nginx
+      - Apache Web Server
+      - Elasticsearch
+    - Monitoring ingests that data and generates insights via dashboards, Metrics Explorer charts, and automated alerts
 
-  CLoud Logging
+    Feautures
+      - Many free metrics
+      - Open source standards
+      - customization for key workloads
+      - in-context visualizations & alerts
+
+  Cloud  Logging
+    - allows users to collect, store, search, analyze, monitor, and alert on log entries and events. 
+    - It provides automatic ingestion with simple controls for routing, storing, and displaying your log data. 
+    - It leverages tools like Log Analytics to view trends, or Error Reporting and Log Explorer to quickly examine problems
+
+    Multiple aspects
+      - collect
+        - cloud events
+        - config changes
+        - customer services
+        - logs at various level of the resource hierarchy
+     
+     - analyze
+        - log data in real time w/ integrated logs Explorer
+        - run queries and analyze w/ log analytics
+        - exported logs from 
+          - GCS
+          - bigquery
+      
+      - export
+        - export to 
+          - GCS
+          - bigquery
+          - pub/sub messages
+            - can be anlayzed in near-real time using custom code or stream processing like dataflow
+        - log-based metrics fro augemented monitoring
+
+      - retain
+        - data access and service logs for 30 days (configurble upto 3650 days)
+        - admin logs for 400 days by default
+        - longer term in GCS/bq
+
+    Use case
+      1. Developers
+        - troubleshooting
+        - debugging
+       
+        - Integration into popular SDKs
+          - get started quickly w/ a large collection of sys metrics and logs
+        
+        - real time log analysis
+          - analyze log data in real time, devug code, troubleshoot your apps
+        
+        - quick error detection
+          - find errors via stack traces automatically w/ error reporting
+
+      2. Operator
+        - SLO/alerting
+        - log Management
+        - workload Management
+        - cost Management
+        
+        - Collect the right telemetry
+          - instrumentation for GCE, on-prem and other cloud providers
+
+        - Centralize logs
+          - centralize logs for specific users, teams and/or org
+
+        - Manage logs
+          - set retention periods, select supported regions for regional data storage
+
+        - Set alerts
+          - understand log volume/cost, set alerts on important app metrics
+
+        - Export logs
+          - export to Google CLoud for storage, analysis and integration w/ 3rd parties
+
+      3. SecOps Analyst
+        - Secops of google cloud fleet of resources
+        - uses platform features to meet org sec requirements
+
+        - collect auidt logs
+          - collect google cloud audit logs by default, advanced sec logs such as data access logs
+
+        - collect network telemetry data
+          - collect and analyze VPC flow logs, GKE network, firewall, load balancer logs
+
+        - analyze logs for security events
+          - view audit logs and other events to investigate possible sec events
 
   Error Reporting
+    - identifies, counts, analyzes and aggregates the crashes in your running cloud services
+
+    features
+      - real-time processing
+        - app arrors are processed and displayed w/in seconds
+
+      - quickly view and understand errors
+        - dedicated page displays the details of the error
+
+      - instant notification
+        - notified when events occur
+
+      - dedicated view
+        - time charts
+        - occurences
+        - affected user counts
+        - first and last seen dates
+        - cleaned exception stack trace
+
+      - alerting policy
 
   Application Performance Management Tools
+    1. Cloud Trace
+      - collects latency data from distributed app and displays it in the GC console
+      - captures traces from app deployed
+        - App engine flexible and standard env
+        - GCE VMs
+        - GKE containers
+        - Cloud run
+        - non GC env
+
+      Latency Reports
+        - provide performance insights in near-real time
+        - generate in-depth latency reports to surface performance degradations
+        - identify recent changes to app performance
+
+    2. Cloud Profiler
+      - uses statistical tech and extremely low-impact instrumentation to provide complete picture of app
+      - allows dev to analyze app running anywhere
+      - presents call hierarchy and resource consumption of relevant function in an interactive flame graph
+
+  Google Cloud's Operation suite
+    - helps you explore the known and unknown issues
+    
+    - user-focused products
+      - SLO monitoring, uptime checks, tracing
+
+    - open,flexible foundations
+      - prometheus
+      - opentelemetry
+      - fluentbit
+
+    - integrated for ease
+      - auto 
+        -ingest log
+        - connect sets
+        - collect in-context telemetry across GC services
+
+    - meaningful analysis and alerting
+      - use powerful analysis tools
+      - leverage alerting for both automated and human-led resolutions
 
   Quiz
     1. You want a simple way to see the latency of requests for a web application you deployed to Cloud Run. What Google Cloud tool should you use?
@@ -101,8 +276,146 @@ Module 1PIntroduction to Google CLoud's Operations Suite
 
       - Profiler
 
+Module 2: Monitoring Critical systems
+  - Monitoring is all about keeping track of exactly what's happening with the resources we've spun up inside of Google's Cloud. 
+  In this module, we'll take a look at options and best practices as they relate to monitoring project architectures. We'll...
 
+  Learning Objectives
+    1. Use Cloud Monitoring to view metrics for multiple cloud projects.
+    2. Explain the different types of dashboards and charts that can be built.
+    3. Create an uptime check.
+    4. Explain the cloud operations architecture.
+    5. Explain and demonstrate the purpose of using Monitoring Query Language (MQL) for monitoring.
 
+  Cloud Monitoring architecture patterns
+    Three layers
+      1. Data collection layers
+        - collects  
+          - metrics
+          - logs
+          - traces
+      
+      2. Data storage layer
+        - stores the collected data
+        - routes to the configured visualization and analysis layer
+        - includes the cloud monitoring API
+          - helps triage the metrics collected to be stored for future analysis
+      
+      3. data analysis and visualization layer
+        - analyzes the collected data to identify
+          - problems
+          - trends 
+          - presents the analyzed data in a way that is easy to understand
+          - dashboards
+            - visualize data
+          - uptime checks
+            - monitor app
+          - alerting policies
+            - config alerts
+            - notify events or email
+
+        Notes
+          Platform monitoring/Cloud Monitoring
+            - no copst for all system metrics
+
+          Application monitoring - GKE
+            - integrates w/:
+              - cloud logging
+              - cloud monitoring
+              - google cloud managed service for prometheus
+                - collects data
+
+              Google Managed Prometheus(GMP)
+                - part of cloud monitoring as aprometheus data
+                - promql compatible query language
+
+          Application monitoring - GCE
+            - ops agents to collect data
+            - partner with 
+              - Datadog/NewRelic
+              - BindPlane by Blue Medora for logs collection
+  
+  Monitoring multiple projects
+    - only one single project in metric scope by default
+
+    Scoping project
+      - hosts a metrics scope
+      - stores
+        - alerts
+        - uptime checks
+        - dashboards
+        - monitoring groups
+
+  Data model and dashboards
+
+  Query metrics
+
+  Uptime checks
+
+  Qwiklabs: Monitoring and Dashboarding Multiple Projects from a Single Workspace
+    - Google Cloud Monitoring empowers users with the ability to monitor multiple projects from a single metrics scope.
+    In this exercise, you start with three Google Cloud projects, two with monitorable resources, and the third you use to host a metrics scope.
+    You attach the two resource projects to the metrics scope, build uptime checks, and construct a centralized dashboard.
+
+    - Monitoring and Dashboarding Multiple Projects
+    - https://www.coursera.org/learn/logging-monitoring-observability-google-cloud/gradedLti/yxggp/lab-monitoring-and-dashboarding-multiple-projects-from-a-single-workspace
+
+    Objectives
+      - Configure a Worker project.
+      - Create a metrics scope and link the two worker projects into it.
+      - Create and configure Monitoring Groups.
+      - Create and test an uptime check.
+
+    Task 1: Configure the resource projects
+      Install Nginx
+        sudo apt-get update
+
+        sudo apt-get install -y nginx
+
+        ps auwx | grep nginx
+        
+
+    Task 2: Create a metrics scope and link the two worker projects into it
+      ADD GCP PROJECTS.
+
+Click Select Project and select the Worker 1 and Worker 2 projects.
+
+    Task 3: Create and configure Monitoring groups
+
+    Task 4: Create and test an uptime check
+
+    Task 5: Create a custom dashboard
+      sudo apt-get update
+      sudo apt-get install apache2-utils
+
+      curl 100,000
+        ab -s 120 -n 100000 -c 100 $URL/
+
+      curl 500,000
+        ab -s 120 -n 500000 -c 500 $URL/
+    
+  Summary
+    1. use cloud monitoring to view metrics for multiple cloud projects
+
+    2. explain the different types of dashboards and charts that can be built
+
+    3. create an uptime check
+
+    4. explain the purpose of using MQL for monitoring
+
+  Quiz
+    1. You want to analyze the error rate in your load balancing environment. Which interface helps you view a chart with a ratio of 500 responses to all responses
+      - MQL
+
+      - Metrics Explorer
+
+    2. You want to be notified if your application is down. What Google Cloud tool makes this easy?
+      - Uptime check
+
+    3. What is the name of the project that hosts a metrics scope?
+      - Scoping project
+
+      - Hosting project
 
 
 
