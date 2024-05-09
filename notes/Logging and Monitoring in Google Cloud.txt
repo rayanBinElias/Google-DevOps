@@ -1,4 +1,4 @@
-Module 1PIntroduction to Google CLoud's Operations Suite
+Module 1:Introduction to Google CLoud's Operations Suite
   - In this module, we will take some time to do a high-level overview of the various products which comprise Google Cloud’s logging, 
   monitoring, and observability suite.
 
@@ -346,12 +346,65 @@ Module 2: Monitoring Critical systems
         - dashboards
         - monitoring groups
 
-  Data model and dashboards
+    Notes
+      - Production deployment
+        - create a separate projects for monitoring
 
-  Query metrics
+        Why?
+          - single pane of glass that provides visibility into the enire group of related projects
+            - monitoring config for other project is retain if fe/be/db are deleted
+
+      monitoring.viewer
+        - access to dashboards and access to all data by default
+          - including all other projects that are monitored by that metrics scope
+
+  Data model and dashboards
+    Data model
+      time-series data
+        - metric
+          - metric label
+          - metric type
+          - desicribes the metric
+        - resource
+          - resopurce-label
+          - resource info
+        - metricKind and valueType
+          - how to interpret the values
+        - points
+          - values of the metrics
+
+  Query metrics 
+    - using MQL and promql
+
+    MQL
+      - query cloud monitoring time-series data by using text-based interface
+      - manipulate, retrieve and perform complex operations on time-series data
+    
+    PromQL
+      - query metrics from Google Cloud Managed Service for Prometheus
+      - Query system metrics from GKE and Compute engine
+      -Integra
 
   Uptime checks
+    - test availability of your public services from locations around the world
+    - can help us ensure that external facing services are running 
+    and we aren't burning our error budgets
+    - can be set to
+      - HTTP
+      - https
+      - TCP
+    - can check 
+      - app engine app
+      - GCE instance
+      - URL of a host
+      - AWS instance
+      - load balancer
+    - can create alerting policy and budget alert
 
+Budgets & alerts
+  - Select a billing account to go to the budgets & alerts page, 
+  where you can create budgets to monitor all of your Google Cloud charges in one place.
+    
   Qwiklabs: Monitoring and Dashboarding Multiple Projects from a Single Workspace
     - Google Cloud Monitoring empowers users with the ability to monitor multiple projects from a single metrics scope.
     In this exercise, you start with three Google Cloud projects, two with monitorable resources, and the third you use to host a metrics scope.
@@ -417,11 +470,168 @@ Click Select Project and select the Worker 1 and Worker 2 projects.
 
       - Hosting project
 
+Module 3: Alerting policies
+  - Alerting gives timely awareness to problems in your cloud applications so you can resolve the problems quickly. 
+  In this module, you will learn how to develop alerting strategies, define alerting policies, add notification channels, identify types of...
+
+  Learning Objectives
+    - Explain alerting strategies.
+    - Explain alerting policies.
+    - Explain error budget.
+    - Explain why server-level indicators (SLIs), service-level objectives (SLOs), and service-level agreements (SLAs) are important.
+    - Identify types of alerts and common uses for each.
+    - Use Cloud Monitoring to manage services.
+
+  SLI, SLO and SLAs
+    SLIs
+      - must be a number or a delta, something we can measure and place in a mathematical equation
+        - Error rate
+
+    SLOs
+      - 99.5 or 99.9%
+
+      Criteria
+        - S: specific
+        - M: measurable
+        - A: achievable
+        - R: relevant
+        - T: time-bound
+
+    SLAs
+      - commitments made to your customers
+        - that sys and app will have only a certain amt of downtime
+
+    Deciding SLA, SLO and SLI
+      Indicators
+        http get / latency
+
+      Objectives
+        200ms
+
+      Agreement 
+        300ms
+
+  Developing an alerting strategy
+
+  Creating alerts
+
+  Qwiklab: Alerting in Google Cloud
+    - In this lab, you deploy an application to App Engine 
+    and then create alerting policies to notify you 
+    if the application is not accessible or is generating errors.
+
+    - https://googlecoursera.qwiklabs.com/focuses/35934121?parent=lti_session
+
+    Objectives
+      In this lab, you learn how to perform the following tasks:
+
+      - Download a sample app from GitHub.
+      - Deploy an application to App Engine.
+      - Create uptime checks and alerts.
+      - Optionally, create an alerting policy with the CLI.
+
+    Task 1 Download and test a sample app from GitHub
+      //create app engine region
+      gcloud app create --region=us-east4
+
+      // deploy in app engine
+      gcloud app deploy --version=one --quiet
+   
+    Task 2: Deplpy an app to app engine
+    
+    Task 3. Examine the App Engine logs  
+
+    Task 4. Create an App Engine latency alert
+      //redeploy new version GAE
+      gcloud app deploy --version=two --quiet
+
+      //generate some consistent load, in Cloud Shell, enter the following command:
+      while true; do curl -s https://$DEVSHELL_PROJECT_ID.appspot.com/ | grep -e "<title>" -e "error";sleep .$[( $RANDOM % 10 )]s;done
+
+      - This command makes requests to the App Engine app continuously in a loop. The grep command will display the title of the page when the request works. It also displays the error, if it doesn’t work. Every iteration, the thread sleeps a random amount of time less than a second, but with the 10s response time delay it will seem much longer.
+
+    Task 5. (Optional) Creating an Alerting Policy with the CLI
+      //app-engine-error-percent-policy.json.
+        https://googlecoursera.qwiklabs.com/focuses/35934121?parent=lti_session
+
+      //Deploy alerting policy w/ gcloud
+        gcloud alpha monitoring policies create --policy-from-file="app-engine-error-percent-policy.json"
+ 
+  Service Monitoring
+
+  Qwiklab: Service Monitoring
+    - Google Cloud's Service Monitoring streamlines the creation of microservice Service Level Objectives (SLOs) 
+    based on availability, latency, or custom Service Level Indicators (SLIs). 
+    In this lab, you use Service Monitoring to create a 99.5% availability SLO 
+    and corresponding alert.
+
+    Objectives
+      - In this lab, you learn how to perform the following tasks:
+
+      - Deploy a test application.
+      - Use Service Monitoring to create an SLO.
+      - Tie an alert to the SLO.
+
+    Task 1. Deploy a test application
+
+    Task 2. Use Service Monitoring to create an availability SLO
+      In this task, you:
+        - Use Service Monitoring to create an availability SLO.
+        - Create an alert tied to your SLO.
+        - Trigger the alert.
 
 
+  Quiz
+    1. In evaluating your alerting policies, which below best describes precision? 
+      - The proportion of events detected that were significant.
 
+    2. Explain error budget.
+      - The proportion of alerts detected that were relevant to the sum of relevant alerts and missed alerts.
 
+      - How long alerts fire after an issue is resolved.
 
+    3. In the statement “Maintain an error rate of less than 0.3% for the billing system”, what is an SLI?
+      - Error rate
+      
+      - 0.3%
+
+      - Less than 0.3%
+
+Module 4: Advanaced logging and analysis
+  - In this module, we will examine some of Google Cloud's advanced logging and analysis capabilities.
+  Specifically, in this module you will learn to identify and choose among resource tagging approaches, define log sinks, create monitoring metrics...
+
+  Learning Objectives
+    - Use Log Explorer features.
+    - Explain the features and benefits of logs-based metrics.
+    - Define log sinks (inclusion filters) and exclusion filters.
+    - Explain how BigQuery can be used to analyze logs.
+    - Export logs to BigQuery for analysis.
+    - Use log analytics on Google Cloud.
+
+  Cloud Logging overview and architecture
+
+  Log types and collection
+
+  Storing, routing and exporting the logs
+
+  Query and view logs
+
+  Using log-based metrics
+
+  Log analytics
+
+  Qwiklab: Log analytics
+
+  Quiz
+    1. You want to compare resource utilization for VMs used for production, development, and testing. What should you do?
+      - Add a label called “state” to your VMs with the values “dev”, “test”, and “prod” and group by that label in your monitoring chart.
+
+    2. Your manager wants a daily report of resource utilization by application. Where would the best export sink be?
+      - GCS
+
+      - pub/sub
+      - bq
 
 
 
