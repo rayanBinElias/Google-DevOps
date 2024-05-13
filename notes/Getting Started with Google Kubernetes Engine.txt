@@ -1,0 +1,437 @@
+Module 1: Introcution to Google Cloud
+  - The first section of this course introduces cloud computing concepts. 
+  Learners explore fundamental terminology, the Google Cloud network, 
+  how Google Cloud resources are organized in an hierarchy for management, 
+  and the tools available to connect to Google Cloud for allocating, changing, and releasing resources.
+
+  Learning Objectives
+    - Identify Google Cloud services and their function.
+    - Choose the right Google Cloud services to create your own cloud solution.
+    - Define the purpose of and use cases for Identity and Access Management (IAM).
+    - Identify how costs can be managed in the resource hierarchy.
+    - Use the Google Cloud console and Cloud Shell to create VMs, service accounts, and buckets.
+
+  Introduction
+    GKE
+      - managed service for kb8s
+
+    kb8s
+      - orchestration framework for running containerized app in production at scale
+
+    containers
+      - way to package and run code that's more efficient than VM
+
+  Cloud computing and Google Cloud
+    Cloud computing 
+      - a way of using IT that has these 5 equally improtant traits:
+      
+      1. On-demand Self-service
+        - no human intervention needed to get resources
+        - You can quickly get more resources when you need them.
+      2. Broad network access
+        - access from anywhere
+        - Resources can be allocated automatically.
+      3. Resource Pooling
+        - provider shares resources to customers
+        -  You share resources from a large pool that enables economies of scale.
+      4. Rapid elasticity
+        - get more resources quickly as needed
+        - When customers need more resources, they can get more. When they need less, they can scale back.
+      5. Measured service
+        - pay only for what you consume
+
+  Google cloud compute offerings
+     Compute services
+      1. Compute Engine
+        - a managed environment for deploying VM instance
+        - infra as a service solution
+        6- provides max flex for people who prefer to manage server instance themselves
+        - IaaS offerings
+        - predefined and customized VMs
+        - persistent disks and local SSDs
+        - managed instance groups
+        - per second billing
+
+      2. Google kubernetes Engine(GKE)
+        - a managed environment for deploying containerized applications
+        - built ontop of compute engine
+        - way to orchestrate code in containers.
+        - lets you run containerized app on cloud envi that google manages for you under your admin control
+    
+      3. App Engine
+        - a fully managed serverless platform for deploying applications
+        - platform as a service framework(PaaS)
+        - a managed compute platform that enables you to deploy and scale stateless containers on google cloud scalable infra.
+        - bind code to libraries
+        - focused on app logic/code
+        - deploys required infrastructure
+          - JAVA
+          - Node.json
+          - python
+          - php
+          - c#
+          - .net
+          - ruby
+          - go
+        - version control + traffic splitting
+        - Usecases:
+          - want to focus on writing code
+          - want to focus on building app instead of deploying and managing the env
+          - don't need to build a highly reliable and scalable infra
+
+          1. website
+          2. mobile and gaming backends
+          3. restful API
+
+      5. Cloud Functions
+        - a fully managed serverless platform for deploying event-driven functions
+        - function as a service
+        - event-based, asynch compute solution
+        - exec code in response to events
+        - deploys the computing capacity to run code
+        - can connect and extend cloud services
+        - bills to nearest 100 ms
+
+        Common Usecases
+          1. part of microservices app architecture
+          2. used to build simple, serverless mobile or IoT backends or Integrate w/ third-party services and apis
+          3. can be part of intelligent app such as VA, video or image analysis, and sentiment analysis
+      
+      6. Cloud Run
+        - a managed compute platform
+        - runs statless containers
+        - serverless
+        - built on knative
+        - it's fast
+        - charges only for resources used
+        - bills to nearest 100 ms
+
+  The google network
+    - 40% world internet market share
+
+    Notes
+      - highest possible throughput
+      - lowest possible latencies
+      - 100+ CDN nodes worldwide
+      - high demand content is cached for quicker access
+
+    Five Major Geographic Locations
+      1. North America
+      2. South America
+      3. Asia
+      5. Australia
+
+    App location affects:
+      1. availability
+      2. durability
+      3. latency
+
+  Resource management
+    Latency under 1ms
+      Regiona, Zone, Network Edge Locations
+    
+    1. Zonal resources operate exclusively in a single zone
+      - compute engine
+      - persistent disk
+      - gke node
+
+    2. Regional resources span multiple zones
+      - regional GKE cluster
+      - firestore
+
+    3. Global resources can be managed across multiple regions
+      - http(s) load balancer
+      - VPC
+
+    4. Project
+      - base-level organizing entity for creating and using resources, services, managing billing, APIs and permissions.
+        - any resources must reside/belong to a project
+      - project logically organize resources while zones and regions physically organize them
+      - can be recovered from accidental deletions
+      - identified by unique project ID, name and number
+        - project ID
+          - globally unique
+          - immutable
+          - assigned by GC byt mutable during creation
+
+        - project name
+          - need not be unique
+          - chosen by you
+          - mutable
+
+        - project number
+          - globally unique
+          - assigned by google cloud
+          - immutable
+
+      - billing is at project level and managed separately
+      - projects can have diff owners and users
+      - projects hold resources, each of which belongs to just one project
+      - projects are separate entities under the org node
+
+    5. Use folders to reflect hierarchy like dept -> team and apply policies
+      - can nest folders
+    
+    6. Organization
+      - root node of google cloud resource hierarchy
+      - fix org ID
+      - changeable display name
+
+    7. IAM
+      - fine-tune access control to all the Google Cloud Resources
+      - Admin can applu policies that define who can do whatt on which resources
+        - who(google acount, service acount, google group, cloud identity domain)
+          - principal
+        - can do what
+          - IAM role to IAM group
+        - on which resources
+
+      - Shared Resoponsibility
+        - "If you can configure or store it, you're responsible for securing it."
+
+        1. cloud provider
+          - hardware
+          - networks
+          - physical security
+
+        2. customer
+          - configurations
+          - access policies
+          - user data
+
+    8. Policies inhireted from root to downward level
+
+    9. Resource hierarchy matters because Google Cloud shared security model
+      - google is responsible for manging its infra security
+      - your are responsible for securing your Data
+      - google helps with best practices, templates, products and solutions
+
+      Resoponsibility Components
+        Content
+        Usage
+        deployment
+        Web application security
+        Identity
+        Operations
+        Access and authentication
+        network security
+        OS, data and Content
+        audit logging
+        network
+        storage and encryption
+        hardware
+
+    Note
+
+  Billing
+    - project level
+
+    How billing works?
+      - billing account pays for project resources
+      - billing account is linked to zero or more projects
+      - billing acct can be charged automatically 
+      or invoiced every month or at threshold limit
+      - subaccounts can be used for separate billing for projects
+
+    How to keep your billing under control
+      1. budgets 
+        - billing account or project level
+      2. alerts
+        - notify when costs approach your budget limit
+        
+      3. reports
+        - visual tool to monitor expenditure based on project or services
+
+        billing export
+        - BigQuery
+        - cloud looker studio
+          - visualize data
+
+      4. quotas
+        -  designed to prevent the over-consumption of resources because of an error or a malicious attack
+
+      Cloud implements quotas
+        - limits unforeseen extra billing charges
+        - prevent overconsumption of resources because of an error/malicious attack
+        - project level 
+      
+        Types 
+          1. Rate quotas
+            - resets after specif time
+            - not limit rate of calls to app running in GKE but calls to admin config of GKE clusters
+            
+            sample:
+              GKE API: 3000 req per min 
+          
+          2. Allocation quotas
+            - govern number of resources you can have in your projects
+            - doesn't reset at intervals
+            
+            sample:
+              - 15 networks per project
+        
+      Note:
+        - quouta may increase automatically based on Usage
+        - can lower quotas
+        - some quyoutas are fixed fo all customers
+
+  Interacting with Google Cloud
+    Ways to interact w/ google cloud
+      1. Google cloud console
+        - web user interface to manage all google cloud resources
+      
+      2. Cloud SDK and Cloud Shell
+        - CLI access to your cloud resources directly from your browser
+          - gcloud
+            - main cli for google cloud products and services
+          - kubectl
+          - gsutil
+            - provides access to GCS from command line
+          - bq
+            - cli for bq
+        
+        Cloud shell
+          - ephmeral GCE VM instance
+          - built-in authorization fro access to cloud console projects and resources
+          - debian VM
+          - persistent 5 gb home dir
+
+          Cloud shell code Editor
+            - a tool for editing files inside of your cloud shell env in real-time w/in web browser
+      
+      3. Cloud Console mobile app
+        - for iOS and Android
+        - start, stop and use ssh to connect to GCE instances
+        - get up-to-date billing infor and alerts
+        - set up customizable grapsh that show key metrics
+        - no additional charge
+
+      4. Rest-based API
+        - for customer app so that code you write can control them(google api explorer)
+
+  Qwiklab: accessing the cloud console and cloud Shell
+     In this lab, you become familiar with Google Cloud's web-based interface. Two integrated environments are available:
+      - A GUI environment called the Google Cloud console
+      - A command-line interface called Cloud Shell, which has the commands from the Cloud SDK pre-installed
+
+    Objectives
+      In this lab, you learn how to perform the following tasks:
+
+        1. Learn how to access the Google Cloud console and Cloud Shell
+        2. Become familiar with the Google Cloud console
+        3. Become familiar with Cloud Shell features, including the Cloud Shell Editor
+        4. Use the Google Cloud console and Cloud Shell to create buckets and VMs and service accounts
+        5. Perform other commands in Cloud Shell
+
+    Cloud Shell provides the following features and capabilities:
+      - Temporary Compute Engine VM
+      - Command-line access to the instance through a browser
+      - 5 GB of persistent disk storage ($HOME dir)
+      - Preinstalled Cloud SDK and other tools
+      - gcloud: for working with Compute Engine, Google Kubernetes Engine (GKE), and many Google Cloud services
+      - gcloud storage and gsutil: for working with Cloud Storage
+      - kubectl: for working with GKE and Kubernetes
+      - bq: for working with BigQuery
+      - Language support for Java, Go, Python, Node.js, PHP, and Ruby
+      - Web preview functionality
+      - Built-in authorization for access to resources and instances
+
+      Note:
+        - After one hour of inactivity, the Cloud Shell instance is recycled. Only the /home directory persists. Any changes made to the system configuration, including environment variables, are lost between sessions.
+        - When you are working in the Cloud Shell or writing scripts, creating environment variables is a good practice. You can easily and consistently reuse these environment variables, which makes your work less error-prone.
+
+      //create a bucket
+        gcloud storage buckets create gs://$MY_BUCKET_NAME_2 --location=us-central1
+
+      //set gcloud zone configuration
+        gcloud config set compute/zone $MY_ZONE
+
+      // verify config
+        gcloud config list
+
+      //create second VM
+        gcloud compute instances create $MY_VMNAME \
+        --machine-type "e2-standard-2" \
+        --image-project "debian-cloud" \
+        --image-family "debian-11" \
+        --subnet "default"
+
+      //verify list all VMs
+        gcloud compute instances list
+
+      //create second service accounts
+        gcloud iam service-accounts create test-service-account2 --display-name "test-service-account2"
+
+      //grant the second service account the viewer role
+        gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member serviceAccount:test-service-account2@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --role roles/viewer
+      
+      //Copy a picture of a cat from a Google-provided Cloud Storage bucket to your Cloud Shell:
+        gcloud storage cp gs://cloud-training/ak8s/cat.jpg cat.jpg
+
+      //upload image to bucket 1
+        gcloud storage cp cat.jpg gs://$MY_BUCKET_NAME_1
+
+      // upload image from bucket 1 to bucket 2
+        gcloud storage cp gs://$MY_BUCKET_NAME_1/cat.jpg gs://$MY_BUCKET_NAME_2/cat.jpg
+
+      //Set the access control list for a Cloud Storage object
+        // view acl current
+          gsutil acl get gs://$MY_BUCKET_NAME_1/cat.jpg  > acl.txt cat acl.txt
+
+        // set to private
+          gsutil acl set private gs://$MY_BUCKET_NAME_1/cat.jpg
+
+        //verify
+          gsutil acl get gs://$MY_BUCKET_NAME_1/cat.jpg  > acl-2.txt cat acl-2.txt
+
+      // Authenticate as a service account in Cloud Shell
+        gcloud auth activate-service-account --key-file credentials.json
+
+        //verify
+          gcloud config list
+        
+        //list auth list
+          gcloud auth list
+
+        // verify test-service-account cannot access the cat.jpg file i
+      
+      //switch back
+        gcloud config set account $USERNAME
+
+        //verify
+          gcloud storage cp gs://$MY_BUCKET_NAME_1/cat.jpg ./copy2-of-cat.jpg
+          
+      //Make the first Cloud Storage bucket readable by everyone, including unauthenticated users:
+        gsutil iam ch allUsers:objectViewer gs://$MY_BUCKET_NAME_1
+  
+      // install nginx
+        sudo apt-get remove -y --purge man-db
+        sudo touch /var/lib/man-db/auto-update
+        sudo apt-get update
+        sudo apt-get install nginx
+
+      //copy the HTML file you created using the Cloud Shell Editor to your virtual machine
+        gcloud compute scp index.html first-vm:index.nginx-debian.html --zone=us-central1-b
+
+      //copy the HTML file from your home directory to the document root of the nginx web server:
+        sudo cp index.nginx-debian.html /var/www/html
+  
+  Notes:
+    - You can't convert a non-preemptible instance into a preemptible one. This choice must be made at VM creation.
+
+  Quiz
+    1. You are considering deploying a solution by using containers on Google Cloud. What Google Cloud solution provides a managed compute platform with native support for containers?
+      - Google Kubernetes Engine clusters
+
+    2. You are developing a new product for a customer and need to be mindful of cost and resources. What Google Cloud tools can be used to ensure costs stay manageable before consumption gets too high?
+      - Create a new folder inside your organization node, then create projects inside that folder for the resources.
+
+    3. You are developing a new product for a customer and need to be mindful of cost and resources. What Google Cloud tools can be used to ensure costs stay manageable before consumption gets too high?
+      - Set up budgets and alerts at the project level.
+
+      - Configure quotas and limits for each product folder.
+
+    4. One of the main characteristics of cloud computing is that resources are elastic. What does that mean?
+      - When customers need more resources, they can get more. When they need less, they can scale back.
+
+Module 2:

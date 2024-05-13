@@ -558,6 +558,45 @@ Module 3: Alerting policies
         gcloud alpha monitoring policies create --policy-from-file="app-engine-error-percent-policy.json"
  
   Service Monitoring
+    - a sing pane summary of the health of your various services.
+    
+    Service Monitoring answers the following:
+      What are the commitments regarding the availability of those services?
+
+      Are your service meeting them?
+
+      For microservices-based apps,what are the inter-service dependencies?
+
+      How to double check new code rollouts and triage problems if a service degradation occurences
+
+      Can you look at all the monitoring signals for a service holistically to reduce the MTTR(meant time to repair)?
+
+    SLO compliance Calculation approaches
+      1. Windows-based
+          - each window represents a data point, instead of all the data points that comprise the windo
+      2. Request-based
+
+    Windows-based Vs Request-based SLOs
+      Windows-based
+        = total number of good reuqest : total number of bad requests
+
+        Example
+          1. 95 percentile SLO = latency lesss than 100ms for 99% of 10 min Windows
+          2. 99.9% request-based SLO can allow 1,000 bad requests every 30 days
+          3. 99.9% windows-based SLO based on a 1-minute window can allow a total of 43 bad windows.
+            - 43,200 total windows * 99.9% = 43,157 good windows
+          4. Windows-based SLOs can be tricky, because they can hide burst-related failures 
+      Request-based
+        = good request : total requests
+
+        Example
+          request based SLO = latency below 100ms for 95% of requests
+
+    availability
+      - ratio of number of successful responses to the number of all responses
+
+    Latency
+      - ratio of number of callss that are below the specified latency threshold to the number of all calls
 
   Qwiklab: Service Monitoring
     - Google Cloud's Service Monitoring streamlines the creation of microservice Service Level Objectives (SLOs) 
@@ -597,7 +636,7 @@ Module 3: Alerting policies
 
       - Less than 0.3%
 
-Module 4: Advanaced logging and analysis
+Module 4: Advanced logging and analysis
   - In this module, we will examine some of Google Cloud's advanced logging and analysis capabilities.
   Specifically, in this module you will learn to identify and choose among resource tagging approaches, define log sinks, create monitoring metrics...
 
@@ -610,16 +649,436 @@ Module 4: Advanaced logging and analysis
     - Use log analytics on Google Cloud.
 
   Cloud Logging overview and architecture
+    - allows you to sore, search, analyze, monitor and alert on log data and envents from Google CLoud
+    - a fully managed service that performs at scale and can ingest app and sys log data from thousands of VMs
+
+    Logs
+      - pulse of your workloads and app
+
+    - helps you with the following:
+      1. Gather data from various workloads
+        - gathers the info req to troubleshoot and understand the workload and app needs
+      2. Analyze large volumes of data
+        - tools like:
+          - error reporting
+          - log Explorer
+          - log analytics
+        - let you drive insights from large sets of data
+      3. Route and store logs
+        - route your logs to the region or service of your choice for add compliance or business benefits
+      4. Get compliance insights
+        - leverage audit and app logs for compliance patterns
+      
+      Cloud logging architecture
+        1. Log collection
+           - log data originates
+            - GCE
+              - ops agent
+            - App engine
+            - GKE logs
+              - fluentbit-based collector
+            - GC services
+        2. Log Route
+          - determines which log data is routed to each destination
+
+          Logging API
+
+          Cloud Logging Router
+
+          Log sinks
+            - destinations where log data is stored
+
+          Pub/sub topics
+            - used to route log data to other sercices such as bq
+
+          bq
+            - fully managed petabyte scale analytics data warehouse that can be used
+            to store and analyze log data
+
+        3. Log store
+            - GCS buckets
+              - provides storage of log data in GCS
+
+            - cloud logging log buckets
+              - sotrage buckets designed for storing log data
+            
+            Log entries
+              - stored as JSON filters
+
+        4. Log Visualize and Analyze
+          Log Explorer
+            - optimized for troubleshooting uses cases w/ features like:
+              - log streaming
+              - log resource Explorer
+              - histogram for visualization
+          
+          Error Reporting
+            - help users react to critical app errors through automated error grouping and notifications
+
+          Log-based metrics
+            - dashboards and alerting provide other ways to understand and make logs actionable
+
+          Log Analytics
+            - Expands the toolset to include ad hoc log analysis capabilities
+
+          Dashboards
+
+          Notifications
+
 
   Log types and collection
+    Log types:
+      1. platform logs
+        - logs written by GC services
+        - help you debug and troubleshoot issues
+        - help you better understand GC services
+        
+        VPC flow logs
+          - record sample of network flows sent from and received by VM instances
+      
+      2. component logs
+        - same as platform but generated by google-privided softtware components runniung on your sys
+
+      3. security logs
+        - can answer "who did what, where and when"
+
+        Cloud Audit logs
+          - provide infor about admin act and acesses w/in google cloud services
+
+        Acct transparency
+          - provides you w/ logs of actions taken by google staff when accessing your google cloud content
+          
+      4. user-written logs
+        - logs written by custom app and services
+          - Ops Agent
+          - Cloud Logging API
+          - CLoud logging client libraries
+        
+        Cloud run/functionalities
+          - simple runtime logging by diffault
+      
+      5. multi/hybrid cloud logs
+        GKE
+          - agents auto collect logs from stdout and stderr
+
+          logs written to stdout or stderr
+            - appear automatically in the google cloud console
+
+        GCE
+          - agents collect logs from known locations or logging services like 
+            - windows event log
+            - journald
+            - syslogd
 
   Storing, routing and exporting the logs
+    Process steps:
+      1. Centralized logging apis
+        - cloud logging receives log entries through here
 
-  Query and view logs
+      2. Log sinks
+        - det log destination with config like retention
+
+        types
+          - _required
+            - routes admin activity, sys event and access transparency logs automatically
+            - no charges
+            - retention period: 400 days non configuratable
+            - can't be deleted or modified
+
+          - _default
+            - logs not ingested by _required bucket are routed here
+            - no cost charges
+            - configurable retention period
+            - cannot be deleted but can be disabled
+          
+          - _user-defined
+
+      3. Storage
+          - GCS
+            - diff thatn cloud logging buckets
+          - bq
+          - pub/sub
+            - to third party app
+
+    Log storage page
+      - summary of statistics fo the ffg:
+        - current toal volume
+          - amt of logs your project has received since the first date of the current month
+        - prev month volume
+          - amt of logs your project received in the last calendar month
+        - projected volume by EOM
+          - estimated amt of logs your project will receive by the end of the current month based on current usage
+        - metrics Explorer
+          - build charts for any metric collected by your project
+
+      Cloud logging bucket
+        - works well to help pre-separate log entries into a distinct log storage bucket
+
+      BQ dataset
+        - allows the SQL query power of BQ to be brought to bear on large and complex log entries
+
+      Cloud Sotage bucket
+        - for long term storage processing w/ other sys
+
+      Pub/sub topics
+        - can export log entries to msg handling third party app/sys like  dataflow/cloud function
+
+      Splunk
+        - used to integrate logs into existing splunk based sys
+        - is a tool for collecting, monitoring, visualizing and analyzing machine data from any source. You may receive faster responses at answers.splunk.com which is actively monitored by Splunk employees
+
+      Other project
+        - useful to help control access to a subset of log entries
+
+      Log sink creation lifecycle
+        - sink destination
+        - logs filter
+  
+    Log Explorer
+      - use to build aquery that selects the logs you want to exclude unwatend entries out of the sink
+
+    Example Pipeline
+      Real-time Log archiving and analysis
+        1. events
+        2. logging
+        3. pub/sub
+        4. dataflow
+          - real time log processing at scale
+          - react to realtime issues while streaming it to bigquery for longer-term analysis
+        5. bigquery
+
+      archive logs for long-term storage
+        1. events
+        2. logging
+        3. cloud storage
+
+      Exporting back to splunk
+        1. events
+        2. logging
+        3. pub/sub
+        4. splunk
+
+    Notes
+      - Centralized Log aggregation for:
+        - auditing
+        - retention
+        - non repudiation
+
+      - Aggregation levels
+        - Project
+          - exports all logs for specified project
+          - log filter for choosing log types
+        - folder
+          - inclludes logs from folders, subfolders/projects
+        - organization
+          - inclludes logs from folders, subfolders/projects
+
+    Security log analytics workflow recommends aggregated sinks
+      1. Collect
+        - cloud logging
+      2. Route
+        - aggregated sink
+          - pub/sub
+          - cloud storage
+      3. Analyze
+        - log analytics
+        - bigquery
+        - third party SIEM
+        - Chronicle SIEM
+
+  Query and view log
+    Log Explorer
+      - lets you retrieve logs, parse and analyze log data
+      - refine your query parameters
+
+      1. Action toolbar
+        - refine logs to projects or storage views
+        - share a link and learn about logs explorer
+        
+      2. Query pane 
+        - you can build queries
+        - view recently viewed and saved queries 
+
+      3. Results toolbar
+        - used to quickly show or hide logs and histogram pane
+        - create a log based metric or alert
+        - now options
+          - helps query and view the current time results
+
+      4. query results
+        - used to quickly show or hide logs and histogram pane and create a log based metric or alert
+
+      5. log fields
+        - used to filter your options based on various factors such as resource type, log name, project ID, etc. 
+        - refine query
+        - shows the count of log entries
+
+      6. histogram
+        - where the query result is visualized as histogram bars
+        - each bar is a time range and is color coded based on severity
+        - lets you visualize the distribution of logs over time
+          - makes it easier to see trends in your logs data and torubleshoot problems
+
+      Log query language(LQL)
+        - used to create queries
+  
+      Log comparison operators 
+        =
+          equals
+        !=
+          does not equal
+        ><>=<=
+          numeric ordering
+        :
+          has
+        :*
+          presence
+          
+        =~
+          search for a pattern
+        !~
+          search not for pattern
+
+      The recipe for finding entries
+        1. What do you know about the log entry?
+          - log filename
+          - resource
+          - some text
+        2. full text searches are slow but may be effective:
+          - /score called
+        3. use indexed SEARCH function fro complete text matches, because they perform a case-insensitive match
+          - SEARCH(textPayload, "hellow world")
+        4. if possible, restrict text searches to a log field
+          - jsonPayload:"/score called"
+          - jsonPayload.message="/score called"
+
+      Finding entries quickly
+        1. Search on an indexed field
+          - httpRequest.status 
+          - logName
+          - operation.id
+          - resource.type
+          - timestamp
+          - severity
+        
+        2. Apply constrains on resource.type and resource.labels field
+          - resource.type = "gke_cluster"
+          - resource.labels.namespace = "my-cool-namespace"
+
+        3. Be specific on which logs you're searching
+          - logName = "projects/benkelly-test/logs/apache-access"
+
+        4. limit the time range that you're searching
+          - timestamp >= "2018-08-08T10:00:00Z" AND timestmap <= "2018-08-08T10:10:00Z"
 
   Using log-based metrics
+    - derive metric data from the content of log entries
+
+    Life cycle
+      1. log entries
+      2. cloud logging
+      3. filter
+      4.1 count
+      4.2 extract
+      5. log based metric
+      6. cloud monitoring
+
+    Use cases:
+      1. Count the occurrences
+        - count the occurrences of a message like:
+          - warning or error
+          - logs
+          - receive a notification when number of occurences crosses a threshold
+
+      2. Observe trends in your data
+        - observe trends in your data like:
+          - latency values in your logs
+          - receive notification if the values change in an unacceptable way
+
+      3. Visualize extracted data
+        - create charts to display the numeric data extracted from your logs
+
+    Key access control roles
+      1. logs configuration writer
+        - list
+        - create
+        - get
+        - update
+        - delete log-based metrics
+      
+      2. logs viewer
+        - view existing logs
+
+      3. monitoing viewer
+        - read the time series in log based metrics
+
+      4. logging admin, editor and owner
+        - broad-level roels that can create log-based metrics
+
+    Log based metrics types
+      1. counter metrics
+        - count the number of matched log entries
+
+      2. distribution metrics
+        - record the statistical distinution of the extracted log values
+
+      3. boolean metrics
+        - record where a log entry matches a specified filter
+
+    Scope of log-based metrics
+      - sys-defined log-based metrics apply at the project level
+      - user-defined log based metrics apply either at project or bucket level
+
+    basic lifecycle flow of log based metrics
+      1. find the log w/ requisite data
+      2. filter tot he required entries
+      3. actions | create metric
+      4. pick a metric type(counter or distribution)
+      5. if distribution, set configuration
+      6. you can also add labels
+        - labels cannot be deleted once created
+        - upto 10 user defined labels - ametric cannot be removed
+        - 30,000 active time series
+        - each level upto 2000 per metrics
+    
+    Note  
+      field name
+        - enter the name of the log entry field that contains value of the label
 
   Log analytics
+    - gives you the analytical power of BQ w/in cloud logging console
+
+    Use cases
+      1. Troubleshooting
+        - get to the root cause w/ search filtering, histogram and suggested searches
+
+      2. Log analysis
+        - analyze app performance, data access and anetwork access patterns
+
+      3. Reporting
+        - use the logs data in Log analytics directly from BQ to report on aggregated app
+
+    analytics-enabled bucket log data VS log routed to bigquery
+      - log data in bq is managed by cloud logging
+      - bq ingestion and storage costs are included in your logging costs.
+      - data residency and lifecycle are managed by cloud logging
+
+    Notes:
+      - you can't downgrade the log bucket to remove the use of log analytics
+
+    Usecases by role
+      1. DevOps 
+        - reduce MTTR by using advanced analtyical capabilities to diagnose issues
+        - help me quickly troubleshoot an issue by looking at the top count of requests grouped by response type and severity
+
+      2. Security
+        - investigate security-related attacks w/ queries over large volumes of security logs
+        - help me find all the audit logs associated w/ specific user over the past month
+         
+      3. IT or Network Operations
+        - provide better network insight and management through advanced log aggregation capabilities
+        - help me identify network issues for GKE instances using VPC and firewall rules
+
 
   Qwiklab: Log analytics on Google Cloud
     - In this lab you will learn about the features and tools provided by Cloud Logging to gain insight of your applications.
