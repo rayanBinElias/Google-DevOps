@@ -434,4 +434,762 @@ Module 1: Introcution to Google Cloud
     4. One of the main characteristics of cloud computing is that resources are elastic. What does that mean?
       - When customers need more resources, they can get more. When they need less, they can scale back.
 
-Module 2:
+Module 2: Introduction to Containers and Kubernetes
+  - The second section of this course examines software containers and the benefit they bring to application deployment.
+  - Learners explore containers and container images, Cloud Build, Kubernetes, and Google Kubernetes Engine.
+
+  Learning Objectives
+    - Define the concept of a container and identify uses for containers.
+    - Identify the purpose of and use cases for Kubernetes.
+    - Outline the concept of Google Kubernetes Engine.
+    - Create a container using Cloud Build.
+
+  Containers
+    - simply a running instance of an image.
+    - isolate workloads is derived from the composition of several technologies
+    - containers use a varied set of linux tech:
+      - processes
+        - containes own virtual memory address space
+      - linux namespaces
+        - control  what an app can see: process ID num, direcotry trees, IP addr and more
+      - cgroups
+        - control what an app can use: max cpu time consumption, memory, I/O BW and etc.
+      - union file sys
+        - efficiently encapsulate applications and their dependencies into a set of clean, minimal layers
+
+    Indiv servers build apps
+      Dedicated server:
+        App code
+        dependencies
+        kernel
+        hardware
+      
+      Cons:
+        - deploment is in months
+        - low utilization
+        - not portable
+
+    Hypervisors create and manage VM
+      VM:
+        App code
+        dependencies
+        kernel
+        hardware + hypervisors
+
+      Cons:
+        deployment in mins
+        hypervisor/ specification
+        not isolated tied to OS
+
+      Fix:
+        1. Software engineering policies
+          - need to be updated occasionally
+
+        2. Integration tests
+          - can cause novel failure modes that are hard to troubleshoot
+          - slows down development
+
+    VM-centric way:
+      VM:     VM:
+      App code  App code
+      dep       dep
+      kernel    kernel
+        Hardware + hypervisor
+
+      Cons:
+        - kernel update is slow    
+        - redundant OS
+
+    User space abstraction and containers
+      VM
+        App         App
+        User space  User space
+        dep         dep
+        
+        container runtime
+          - a software that knows how to launch a container from a container Images
+
+          container layer
+            - adds a new writable layer on top of the underlying layers 
+            - all changes made to running container are written to this thin writable layer
+
+        
+        kernel
+        
+        hardware + hypervisor
+
+    Containers
+      - lightweight sys. in user space.
+        - don't carry full OS
+      - can be sched or integrated tightly w/ underlying sys
+      - can be created and shut down quickly
+      - don't boot an entrie VM
+      - initialize an OS for each app
+      - delivery vehicles for app code
+      - stand-alone/resource eff/portable exec packages
+      - app centric way to deliver high performance and scalable app
+        - container the same and run the same anywhere
+
+
+    Advantage
+      1. They're code-centric way to deliver high-performing, scalable app
+      2. They provide access to reliable underlying hardware and software
+      3. code will run successfully regardless if it is on a local machine or in production
+      4. they make it easier to build app that use the microservices design pattern
+
+    Quiz: Introduction to containers
+      1. Which of these problems are containers intended to solve? Mark all that are correct (3 correct answers),
+        - Packaging applications in virtual machines can be wasteful.
+        - It's difficult to troubleshoot applications when they work on a developer's laptop but fail in production.
+        - Applications need a way to isolate their dependencies from one another.
+
+  Container Images
+    - ephemeral
+
+    docker
+      - an open-source technology that allows you to create and run applications in containers, but it doesn’t offer a way to orchestrate those containers at scale as Kubernetes does
+      - no way to orchestrate app at scale
+    
+    image
+      - An application and its dependencies
+      - dev can package and ship an app w/o worrying about the sys it will run on
+
+  Qwiklab: Working with Cloud build
+  - In this lab you will build a Docker container image from provided code and a Dockerfile using Cloud Build. 
+  - You will then upload the container to the Artifact Registry.
+
+  Objectives
+    In this lab, you learn how to perform the following tasks:
+
+    1. Use Cloud Build to build and push containers
+    2. Use Artifact Registry to store and deploy containers
+
+ Task 1. Confirm that needed APIs are enabled
+
+    Task 2. Building containers with DockerFile and Cloud Build
+      //In the Google Cloud Console, click the Details tab for the nginx-1 workload. The Details tab shows more details about the workload including the Pod specification, number and status of Pod replicas and details about the horizontal Pod autoscaler.
+          gcloud artifacts repositories create quickstart-docker-repo --repository-format=docker \
+    --location=us-east4 --description="Docker repository"
+      - Click the Revision History tab. This displays a list of the revisions that have been made to this workload.
+
+      // build the Docker container image in Cloud Build:
+        gcloud builds submit --tag us-east4-docker.pkg.dev/${DEVSHELL_PROJECT_ID}/quickstart-docker-repo/quickstart-image:tag1
+
+    Task 3. Building containers with a build configuration file and Cloud Build
+      //start a Cloud Build using cloudbuild.yaml as the build configuration file:
+        gcloud builds submit --config cloudbuild.yaml
+
+    Task 4. Building and testing containers with a build configuration file and Cloud Build
+      //Insert our region value into the yaml file.
+        sed -i "s/YourRegionHere/$REGION/g" cloudbuild2.yaml
+
+      //Confirm that your command shell knows that the build failed:
+        echo $?
+
+        note:
+          The command will reply with a non-zero value. If you had embedded this build in a script, your script would be able to act up on the build's failure.
+
+  Kubernetes
+    - an open source platform that helps you orchestrate and manage your cotnainer infra on-premise or in the cloud
+      - concetainer-centric management environment
+      - automate deployment,scaling, lb, logging, monitoring and other mngmt feautures of containerized app
+      - supports declarative configuration
+        - deploy desired state when administer infrastructure in spite of success/failures
+        - sys desired state is always documented
+        - ability to automatically keep sys in a state that you declare
+      - allows imperative configuration
+        - issue command to change the sys state.
+        - use only for quick temp fixes
+
+        Features:
+        1. Supports both 
+          - stateful(user and session data can be stored persistently) 
+          - and stateless(nginx/apache web server) applications
+        2. Supports batched jobs and daemon tasks
+        3. autoscaling containerized apps
+        4. Allows resource limits
+          - secify resource request levels and resourve limits for workloads
+            - improve overall performance w/in cluster
+        5. Extensibility
+          - plugins and add-ons
+        6. is open source and portable
+
+      Note:
+        - allows moving kubernetes workloads freely w/o vendor lock-in
+
+  Google Kubernetes Engine
+    - solve "kubernetes is powerful but managing the infra is a full time job"
+    - a managed kubernetes service on google infra.
+      - helps you deploy, manage and scale kubernetes environments for your containerized app on Google Cloud
+      - make it easy to bring kubernetes workload to google cloud
+    
+    Features
+      1. fully managed
+      2. container optimized OS
+      3. autopilot
+        - node
+          -  M that host gke clusters
+        - mode of operation in GKE which google manages your 
+          - cluster config
+          - nodes
+          - scaling
+          - security
+          - other preconfig settings
+      4. auto repair
+        - periodic health check
+        - reparirs unhealthy nodes
+      5. auto upgrade
+        - ensures clusters have the latest stable version of kb8s
+        - cluster
+          - instatatiate kb8 sys
+        - clusters automatically upgraded w/ latest stable ver of kb8s
+      6. cluster scaling
+        - scale by demand
+      7. identity and access mngmt
+      8. integrated logging and monitoring
+        - how an application is performing
+      9. integrated networking(VPC)
+        -  load balancers and ingress access for your cluster.
+      10. seamless build integration
+        - Cloud Build and Artifact Registry
+      qq.  google cloud console
+        - provides insights into GKE clusters
+          - view
+          - inspect
+          - delete resource
+        - dashboard for gke cluster and workloads that you don't have to manage
+  
+  Quiz:
+    1. What is significant about the topmost layer in a container? Choose two options.
+      - An application running in a container can only modify the topmost layer.
+      - The topmost layer's contents are ephemeral. When the container is deleted, the contents are lost.
+      
+      - Reading from or writing to the topmost layer requires special software libraries.
+      - Reading from or writing to the topmost layer requires special privileges.
+
+    2. When using Kubernetes, you must describe the desired state you want, and Kubernetes's job is to make the deployed system conform to that desired state and keep it there despite failures. What is the name of this management approach?
+      - Declarative configuration
+      
+    3. What is the name for the computers in a Google Kubernetes Engine cluster that run workloads?
+      - Nodes
+    
+Module 3: Kubernetes architecture
+  - In this module you’ll learn the components of a Kubernetes cluster and how they work together. You'll deploy a Kubernetes cluster using Google Kubernetes Engine and deploy Pods to a GKE cluster. You'll also view and manage several very useful kinds of Kubernetes objects.
+
+  Introduction
+    Learning Objectives
+      - Understand kb8s objects and kb8s control plane
+      - Conceptualize the Kubernetes architecture
+      - Deploy a Kubernetes cluster using Google Kubernetes Engine (GKE)
+      - Deploy Pods to a GKE cluster
+      - View and manage Kubernetes objects
+
+  Kubernetes concepts
+   Two Fundamental components of kb8s operating philosophy:
+    1. Kubernetes Object model
+      - Object
+        - persistent entities of representing the state of the cluster
+          - Desired state/Object spec
+          - Current state/Object status
+        - represents every thing kubernetes manage
+        - can view and change attributes and state
+
+    2. Principle Declarament Management
+      - dictates state of the object and bring that state even if it's failure/success
+
+      Watch loop
+        - keeping the state you declared
+
+    Two elements to kubernetes objects
+      1. Object spec
+        - desired state described by us
+      2. Object status
+        - current state described by kb8s control plane
+
+        kb8s control plane  
+          - various sys processes that collaborate to make kb8s cluster work
+    
+    Kinds of kb8s objects
+      1. Pods(Containers in a Pod share resources)
+        - basic building block of the standard kubernetes module and they are the 
+        - smallest deployable kb8s object 
+        - every running container in a kb8s sys is a Pod
+        - contains one or more containers 
+          - tightly coupled and share resources including networking and storage
+          - shares network namespace including IP addr and network products
+          - can communicate throug local host IP(127.0.0.1)
+        - group of VM instance that share resources contains group containers
+        - each pod has a unique IP address
+        - pods are not self healing
+
+    Note:
+      - kb8s control plane continuouosly monitor state of the cluster, endlessly comparing real stat to what has benn decrlared and remedying state as needed
+  
+    Quiz
+      1. What is the difference between a pod and a container?
+        - A pod contains one or more containers.
+          - The containers within a pod are tightly coupled with one another and can communicate using the localhost IP address.
+
+  Kubernetes Control Plane/Components
+    Cooperating processes make a kubernetes cluster work
+      1. Control Plane/VM instances
+        - coordinate the entire cluster
+      2. Nodes/VM instances
+        - run pods
+
+    Control Plane Components
+      1. kube-apiserver
+        - single component that you/client interact w/ directly 
+        - accept commands that view/change the state of the cluster, including pods
+        - authenticates incoming req, det whether they are authorized and valid and manages admission control
+
+      2. kubectl
+        - commands to view/change state that connect to kube-apiserver w/ kubernetes API
+
+      3. etcd
+        - cluster's db
+        - reliably store the state of the cluster
+          - includes all of the cluster config data and more dynamic info
+            - what nodes are part of the cluster
+            - what pods should be running wand where they sjhould be running
+      
+      4. kube-scheduler
+        - responsible for scheduling pods onto nodes
+          - evaluates req of each indiv pod and selecting which node is most suitab;e2
+          - when pod object doesn't have an ass to a node
+            - it chooses a node and writes the name of that node into the pod objkect
+        - features
+          - can specify certain pod is only allowed to run on nodes w/ certain memory
+          - define affinity specifies
+          - define anti0affinity spec
+      5. kube-controller-manager
+        - continuously monitors the state of the cluster through kube-apo-server
+        - it will attempt make the current state equal to the desired state
+        - responsible for launching to the pods
+
+        Note:
+          - loops of code/controllers
+            - manges kb8s objects
+            - handle the process of remdiation
+
+        Sample:
+          How to keep 3 nginx pods always running
+            - gather them into a controller object called deployment
+
+          - Node Controllers
+            - montior and respond when a node is offline
+
+        6. kube cloud-manager
+          - manages controllers that interact w/ underlying cloud providers
+          - responsible for bringing in Google cloud features like LB and storage volumens when you needed them
+
+      Nodes Components
+        - runs small family of control plane components
+        
+        1. kubelet
+          - kubernetes agent on each node
+          - use by kube-apiserver when it wants to start a pod on a node
+          - uses the container runtime to start the pod and monitors its lifecycle, readiness liveliness proves and reports back to kube-api server
+
+          containerd
+            - runtime component of Docker
+        
+        2. kubeproxy
+          - maintain the network connectivity amont he pods in a cluster
+            - uses FW of iptables built into linux kernel
+      Quiz
+      1. Which control plane component is the only one with which clients interact directly?
+        - kube-apiserver
+      
+      2. Which control plane component is the cluster's database?
+        - etcd
+      
+      3. What is the role of the kubelet?
+        - serve as Kubernetes’s agent on each node
+
+        kube-proxy
+          - maintain network connectivity among the Pods in a cluster
+
+         kube cloud-manager 
+          - interact with underlying cloud providers
+  
+  Kubernetes Engine concepts
+    Comparison of tw modes of GKE
+      1. Autopilot mode
+        - manages the entire cluster's infra
+          - control plane
+          - node-pools
+          - nodes
+          - node configuration
+          - auto-upgrades
+          - baseline security config
+          - baseline networking config
+        - fully managed kb8s cluster bringing tohether the nest pf GKE advances in scaling, securiry and day 2 operations into a google SRE managed and optimized kb8s cluster
+        - optimized managed kubernetes w/ hands-off experience
+        - less mngmt overhead, but less configuration abilities
+        - only pay for what you use(Pod pricing)
+
+      2. Standard mode
+        - has all same functionality as Autopilot but your responsible for:
+          - configuration of indiv nodes
+          - management
+          - optimization of the cluster to your requirements
+        - managed kb8s w/ configuration flexibility
+        - more management overhead but fine grained configuration
+        - pay for all provisioned infra regardless of utilization
+
+    Notes
+      - In kb8s environment
+        - nodes are created externally by cluster admin not by kb8s itself
+
+      - In gke
+        - it launch GCE VM instances and register them as nodes automatically
+        - pay per hour of life of your nodes(not counting the control plane)
+        - By default node machine type
+          - e2-medium
+            - 2vCPU and 4 GB memory
+        - you choose machine type when creating cluster in standard mode
+        - max CPU: 416 vCPU cores
+
+        "GKE will never use platform that is older than CPU you specify, and if it picks a newer platform, cost will be the same"
+    
+      - By default:
+        Single zone
+          - a cluster launches in a single zone w/ 3 identical nodes all in one node pool
+
+        Regional clusters 
+          - single API endpoint for the cluster
+          - control planes and nodes are spread across multiple zones/all zones
+            - each zone containes control plane and 3 nodes
+            - increase one, automatically the same changes w/ other Zone
+
+      - can't convert zonal to regional cluster and vice versa
+      - private cluster
+        - control plane and nodes are hidden from public internet
+      - changes
+        - number of nodes can be changed during or after creation of cluster
+
+    GKE feautres:
+      1. Node pool
+        - is a subset of nodes w/in cluster that share config(amt memory, CPU generation)
+        - ensure that workloads run on the right hardware w/in your cluster
+        - GKE features
+      2. Automatic node upgrades
+      3. automatic node repairs
+      4. cluster autoscaling
+
+
+    Quiz  
+      1. In GKE clusters, how are nodes provisioned?
+        - As Compute Engine virtual machines
+      
+      2. In GKE, how are control planes provisioned?
+        - As abstract parts of the GKE service that are not exposed to Google Cloud customers
+
+      3. What is the purpose of configuring a regional cluster in GKE?
+        - To allow applications running in the cluster to withstand the loss of a zone
+
+  Kubernetes Object Management
+    Kubernetes Object management
+      All objects are identified by:
+        - unique name
+        - unique identifier
+
+      Manifest files
+        - yaml/json format
+        - where objects are defined
+        
+        Required fields:
+          1. apiVersion
+            - kb8s api version
+              - create the obkect
+              - maintain backewards compatibility
+          2. kind
+            - defines the object you want
+              - pod
+          3. metadata
+            - identify object name, unique id, optional namespace like label
+              - name is qunique
+              - label help you identify and organize objects and subsets of objects
+          4. spec
+
+        Best practices:
+          - one file to define several drelated objects
+          - save Yamls file sin version-controlled repositories
+            - easier to track and manage changes when necessary
+
+      Deployment object
+        - labeled w/ 3 different key values
+          - app, enviroment and stack  
+
+      admin command
+        - kubectl get pods --selector=app=nginx
+
+      Pods 
+        - are disgned to be ephemeral
+        - don't repair themselves and not meant to run forever
+
+      How to to tell kb8s to deploy 3 nginx containerized?
+        - declare controller object to mange state of te pods
+          - deployments
+          - statefulsets
+          - dameonsets
+          - jobs
+        - deployment controller
+          - monitor and maitain 3 nginx pods
+      
+      Resource management for Pods and Containers
+        - important that containers have enough resources to run
+        - app could use more resources than they should
+        - CPU and memory(RAM) resources are the most common resources specified
+        
+      Namespace
+        - allows you to abstract a single physical cluster into multiple clusters
+          - test
+          - stage
+          - prod
+        - lets you implemet resource quotas across the cluster
+
+        - 2 initial namespace in a cluster
+          1. default
+            - pods
+            - deployments    
+          2. kube-system 
+            - objects created by kb8s sys itself
+            - configMap
+            - secrets
+            - controllers
+            - deployments
+          3. kube-public
+            - objects that are publicly readabale to all users
+            - tool for disseminating info to everyhtin running in a cluster
+
+          Best practice:
+            1. apply namespace at CLI for most flexible
+              - kubectl -n demo apply -f mypod.yaml
+
+    A note about deployments and ReplicaSets
+      ReplicaSet Object
+        - created during rolling upgrade of deployment object
+          - increase number of pods in second replicaset while decreases number in first replicaset
+
+    Quiz: Kubernetes Object management
+      1. What is the purpose of a Service? Choose all that are true (2 correct answers)
+        - To provide a load-balancing network endpoint for Pods
+        - To allow you to choose how Pods are exposed
+
+      2. If you are deploying applications in your Pods that need persistent storage, which controller type should you use?
+        - StatefulSet
+
+    A note about services
+      services
+        - provide load balanced access to specified pods
+
+        1. clusterIP
+          - exposes the service on an IP address that is only accessible from w/in this cluster.
+          - default type.
+
+        2. NodePort
+          - exposes the service on the IP addr of each node in the cluster, at a specific port number.
+
+        3. LoadBalancer
+          - exposes the service externally, using load balancing service provided by a cloud provider
+          - give access to regional network load balancing config by default
+          - Ingress object
+            - get access to global HTTP(s) load balancing config 
+
+    Controller objects to know about
+      1. ReplicaSets
+        - ensures that population of pods all identical to one another and running the smae time.
+      
+      2. Deployments
+        - lets you create, update, rollback and scal pods using replicasets as needed to do so
+      
+      3. Replication Controllers
+        - similar to combination of RS and deployments
+        - no longer recommended because deployment provide helful frontend to replica
+
+      4. StatefulSets
+        - deploy app that maintain local state
+        - similar to deployment in that pod use the same container spec.
+          - deployment controller are not given persistent identites
+          - in statefulsets
+            - have unique persistent identities w/ stable network identity and persistent disk storage
+
+      5. DaemonSets
+        - if needed certain pods on all nodes
+        - ensure that specific pod is always running on all or some subset of the nodes
+        - ensure logging agent like fluentd is running on all nodes in the cluster
+
+        daemon
+          - non interactive process means running on background
+      6. Jobs
+        - creates one or more pods required to run a tasks
+        - when task is complete, job wil terminate all those pods
+        - cronjob
+          - runs pods on time based schedule
+
+
+    Quiz: kubernetes controller objects
+      1. In a manifest file for a Pod, in which field do you define a container image for the Pod?
+        - spec
+      
+      2. What are Kubernetes namespaces useful for? Choose all that are correct (2 correct answers).
+        - Namespaces let you implement resource quotas across your cluster.
+        - Namespaces allow you to use object names that would otherwise be duplicates of one another.
+
+      3. What is the purpose of the Deployment object?
+        - To ensure that a defined set of Pods is running at any given time.
+
+    Qwiklab: Deploying to Google Kubernetes Engine
+      https://googlecoursera.qwiklabs.com/focuses/35221997?parent=lti_session
+
+      Overview
+        In this lab, you use the Google Cloud Console to build GKE clusters and deploy a sample Pod.
+
+      Objectives
+        In this lab, you learn how to perform the following tasks:
+
+          1. Use the Google Cloud Console to build and manipulate GKE clusters
+          2. Use the Google Cloud Console to deploy a Pod
+          3. Use the Google Cloud Console to examine the cluster and Pods
+
+      Task 1. Deploy GKE clusters
+
+      Task 2. Modify GKE clusters
+
+      Task 3. Deploy a sample workload
+
+      Task 4. View details about workloads in the Google Cloud Console
+
+  Migrate for Anthos
+    - used for migrating not contianerized existing app
+
+    Anthos
+      - tool for getting workloads into containerized deployment son google cloud
+    Migrate for Anthos Introduction
+      - move existing app into kb8s environment
+      - move and convert workloads into containers
+      - workloads can start as physical servers or VMs
+      - moves workload compute to container  immediately(<10 min)
+      - data can be mirgrated all at onece or streamed to the cloud until the app is live in the cloud
+
+    Migrate for Anthos Architecture
+      Link to github:
+
+      Step 0: On-premises/cloud
+        - uncotainerized app
+
+      Step 1: Migrate for Compute Engine
+        - a tool that allows you to bring existing app into VMs on Google Cloud
+        - create piplen for streaming or migrating data from on premis or another cloud provider into Google Cloud  
+        
+        Components
+          1. Migrate manager(GCE)
+          2. Edge Nodes(GCE)
+          3. Cache(GCS)
+      
+      Step 2: Migrate for Anthos
+        - installed on a GKE processing cluster
+
+        Components
+          1. Processing Cluster(GKE)
+            - namespaces
+            - service accounts
+            - roles/clustroles
+            - rolebingds/clusterrolebindings
+            - configmaps
+            - services
+            - statefulsets
+            - dameonsets
+            - job
+            - storageclass
+            - CRD
+
+          2. Artifacts(GCS)
+
+          3. Images(Container Registry)
+
+      Step 3: Production Project
+        Components
+          1. prod cluster(GKE)
+            - app
+
+    Migration Path/steps
+      Step 1 - Configure processing cluster
+        - install migrate for anthos components inside it
+
+      Step 2 - add migration source
+        sources:
+          - VMware
+          - AWS
+          - Azure
+          - Google Cloud
+      
+      Step 3 - generate and review plan
+        - create migration object w/ details of the migration that is performed
+          - generate template in a yaml file
+            - cusotmize to your desire state
+
+      Step 4 - generate artifacts
+        - generate image from yaml then container
+      
+      Step 5 - test
+
+      Step 6 - deploy
+
+    Migrate for Anthos Installation
+      1. Procesing cluster
+        gcloud contianet --project $PROJECT_ID clusters create $CLUSTER_NAME --zone $CLUSTER_ZONE --username "admin: --cluster-version 1.14 -- machine-type "n1-standard-4 --image-type "UBUNTU" --num-nodes 1 --enable-stackdriver-kubernetes --copes "cloud-platform" --enable-ip-aias --tags="http-server"
+          - gke admin to set up the cluster
+          - FW rule in place to allow comm between migrate for anthos and migrate for compute engine
+        
+      1.2. Installing Migrate for Anthos uses migctl
+        - CLI
+          - migctl setup install
+
+      2. Adding source from compute engine to migrate for anthos
+        - migctl source create ce my-ce-src --project my-project --zone zone
+
+      3. Creating migration generates a migration plan
+        - migctl migration create test-migration --source my-ce-src --vm-id my-id --intent Image
+
+      4. Executing a migration generates resources and artifacts
+        - migctl migration generate-artifacts my-migration
+          - processing cluster(GKE) -> docker(GCS) -> yaml files(GCS) -> Container Images(Container Registry)
+            - create 2 image one for runnable image for deployment and non-runnable image forupdate contianer image in the future
+      
+      4.1 Deployment files typically need modification
+        - migctl migration get-artifacts test-migration
+
+      4.2 Apply the configuration to deploy the workload
+        - kubectl apply -f deployment_spec.yaml
+
+  Summary:
+    - object
+      - represent every item under kb8s control
+      
+    - kubernetes controllers keep the cluster state matching the desired state
+    - kubernetes consists of family of control plane components, running on the conrol plane and the nodes
+    - GKE abstracts away the control plane
+    - declare the state you want using manifest files
+
+  Quiz: Kubernetes Architecture
+    1. You are designing an application, and you want to ensure that the containers are located as close to each other as possible, in order to minimize latency. Which design decision helps meet this requirement?
+      - Place the containers in the same Pod.
+    
+    2. Which Kubernetes component does the kubectl command connect to in order to carry out operations on a cluster?
+      - kube-apiserver
+   
+    3. You have deployed a new Google Kubernetes Engine regional cluster with four machines in the default pool for the first zone and left the number of zones at the default. How many Compute Engine machines are deployed and billed against your account?
+      - Twelve. (Four nodes are deployed in each of three zones. A control plane node is deployed in each zone which is indirectly billed against your account through the cluster management fee.)
+   
+    4. You need to ensure that the production applications running on your Kubernetes cluster are not impacted by test and staging deployments. Which features should you implement and configure to ensure that the resources for your production applications can be prioritized?
+      - Configure Namespaces for Test, Staging and Production and configure specific Kubernetes resource quotas for the test and staging Namespaces.
+
+    5. When configuring storage for stateful applications, what steps must you take to provide file system storage inside your containers for data from your applications that will not be lost or deleted if your Pods fail or are deleted for any reason?
+      - You must create Volumes using network based storage to provide durable storage remote to the Pods and specify these in the Pods.
+
+    6. You want to deploy multiple copies of your application, so that you can load balance traffic across them. How should you deploy this application's Pods to the production Namespace in your cluster?
+      - Create a Deployment manifest that specifies the number of replicas that you want to run.
+

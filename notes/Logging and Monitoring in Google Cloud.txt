@@ -1213,13 +1213,137 @@ Module 5:  Working with Audit Logs
     - List the best practices to implement audit logs.
 
   Cloud Audit Logs
+    - answer "Who did what, where and when?"
 
+    Types:
+      1. Admin activity audit logs
+        - record modifications to config or metadata
+      2. Sys Event AL
+        - record google cloud non-human admin actions that modify config
+      3. Data access AL
+        - record calls that read metadata, config, or that create, modify, or read user-provided data
+      4. Policy Denied audit logs
+        - record a security policy violation
+
+    Access Transparency logs
+      - show how and why customer data is accessed after it is stored in Google Cloud
+      
+      - log access actions
+      - track actions by Google personnel
+      - support approval and events are surfaced through security command center and apps APIs and Using
+  
   Data Access audit logs
+    1. Data Access audit logs can be enabled at diff levels:
+      - org
+      - folder
+      - project
+      - resource
+      - billing Acct
+    2. You can even exempt principals from recording data access logs
+    3. Final scope is the union of the configurations
+
+    Access Approval log type
+      - admin read
+        - records operations that read metadata or configuration information
+        - records operations that read metadata or configuration information
+      - data read
+        - records operations that read user-provided data. 
+        - listed files and download from cloud storage
+      - data write
+        - records operations that write user-provided data.
+        - you created a new Cloud Storage file
 
   Audit logs entry format
+    1. Identify log type
+      - end of log name field value
+
+    2. Identify resource generating log
+      - end of operation->producer field value
+
+    3. Identify audit log entry
+      - end of protoPayload -> type field value
+
+    4. Identify principal/email generating log
+      - protoPayload -> authenticationInfo field value
+
+    5. serviceData
+      - what the query was
 
   Best practices
+    1. Create a plan for Data Access autid logs
+      - folder then project level
 
+    2. Create a test project and plan
+
+    3. Roll out the plan
+      - use IaC or automation tools
+
+    4. Det and set org level data access
+      - Advantage
+        - detailed infor on who accessed, edited or deleted what and when
+        - free tier
+        - some free logs
+
+      - Disadvantage
+        - logs can be large and the queries per second can be high based on the number of data access requests 
+
+    5. Use IaC
+      - run open source or pay for enterprise version
+      - state can be stored locally or remote in GCS or terraform cloud
+      - you can use terraform to enable audit logs
+      - audit logs keep you informed of the resources provisioned using an IaC tool
+
+    6. Aggregate and store your organization's logs
+      - centralize or subdivide log storage by creating user-defined buckets
+      - configure a default storage location at the org level to auto apply a region
+      - protect your audit logs storage by configuring CMEK
+
+    7. Plan and configure exports
+      - decide on logs
+      - decide on level
+      - decide on filters
+      - consider the exclusions
+
+    8. Principle of least privilege
+      - side-channel leakage of data through logs is a common issue
+      - plan the project to monitoring project relationships
+      - use appropriate IAM controls on both Google Cloud-based and exported logs
+      - data access audit logs contain personally identifiable information (PII)
+
+    9. Configure log views
+      - help control access to logs in a log bucket
+      - help control access specific to a project or a set of users
+      - help protect sensitive log data
+
+    10. Scenario: Operational monitoring
+      - CTO: resourcemanager.organizationAdmin
+        - Assigns permissions to security team and service account
+      - Security team: logging.viewer
+        - ability to view Admin activity
+      - Security team: loggin.privateLogViewer
+        - ability to view Data Access audit logs
+      - Assign all permissions at org level
+      - control exported data access through GCS and bigquery IAM roles
+      - use sensitive data protection to redact PII
+
+    11. Scenario: Development teams montiroing Audit Logs
+      - Security team remains the same:
+        - logging.viewer
+        - logging.privateLogViewer
+      - dev team: logging.viewer at folder level
+        - see admin activity audit logs by dev projects in folder
+      - dev team: logging.privateLogViwer at folder level
+        - see data access audit logs
+      - use cloud storage or bigquery IAM to control access to exported logs
+        - providing a dashboard might be helpful
+
+    12. Scenario: External auditors
+      - provide pre-created dashboards for auditor usage
+      - provide logs viewer at org level
+      - provide bigquery data viewer at exported dataset
+        - backend for dashboards
+      - use IAM and/or temporary access URLs for cloud storage
+      
   Qwiklab: Cloud Audit Logs
     - In this lab, you investigate Google Cloud Audit Logs. 
     - Cloud Audit Logging maintains multiple audit logs for each project, folder, and organization,
