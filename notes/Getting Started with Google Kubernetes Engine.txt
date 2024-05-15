@@ -674,15 +674,15 @@ Module 2: Introduction to Containers and Kubernetes
       - Nodes
     
 Module 3: Kubernetes architecture
-  - In this module you’ll learn the components of a Kubernetes cluster and how they work together. You'll deploy a Kubernetes cluster using Google Kubernetes Engine and deploy Pods to a GKE cluster. You'll also view and manage several very useful kinds of Kubernetes objects.
+  - In this module you’ll learn the components of a Kubernetes cluster and how they work together.
+  - Learners deploy a Kubernetes cluster by using Google Kubernetes Engine, deploy Pods to a GKE cluster, and view and manage different Kubernetes objects.
 
   Introduction
-    Learning Objectives
-      - Understand kb8s objects and kb8s control plane
-      - Conceptualize the Kubernetes architecture
-      - Deploy a Kubernetes cluster using Google Kubernetes Engine (GKE)
-      - Deploy Pods to a GKE cluster
-      - View and manage Kubernetes objects
+    Learning Objectives    
+      - Conceptualize the Kubernetes architecture.
+      - Identify how to view and manage Kubernetes objects.
+      - Distinguish between Google Kubernetes Engines modes of operation.
+      - Deploy a Kubernetes cluster by using GKE.
 
   Kubernetes concepts
    Two Fundamental components of kb8s operating philosophy:
@@ -690,7 +690,9 @@ Module 3: Kubernetes architecture
       - Object
         - persistent entities of representing the state of the cluster
           - Desired state/Object spec
+            - described  by you
           - Current state/Object status
+            - described by kb8s control plane
         - represents every thing kubernetes manage
         - can view and change attributes and state
 
@@ -731,6 +733,9 @@ Module 3: Kubernetes architecture
           - The containers within a pod are tightly coupled with one another and can communicate using the localhost IP address.
 
   Kubernetes Control Plane/Components
+    - a term to refer to the various system processes that collaborate to make a Kubernetes cluster work. 
+    - is the fleet of cooperating processes that make a Kubernetes cluster work
+
     Cooperating processes make a kubernetes cluster work
       1. Control Plane/VM instances
         - coordinate the entire cluster
@@ -740,18 +745,26 @@ Module 3: Kubernetes architecture
     Control Plane Components
       1. kube-apiserver
         - single component that you/client interact w/ directly 
-        - accept commands that view/change the state of the cluster, including pods
+        - accept commands that view/change the state of the cluster
+          - including launching pods
         - authenticates incoming req, det whether they are authorized and valid and manages admission control
 
       2. kubectl
-        - commands to view/change state that connect to kube-apiserver w/ kubernetes API
+        - commands to view/change state that 
+          - connect to kube-apiserve
+          - communicate w/ it using the kubernetes API
+          - authenticates incoming requests
+          - manages admission control
 
       3. etcd
         - cluster's db
         - reliably store the state of the cluster
-          - includes all of the cluster config data and more dynamic info
+          - includes 
+            - all of the cluster config data and more dynamic info
             - what nodes are part of the cluster
-            - what pods should be running wand where they sjhould be running
+            - what pods should be running
+            -  where they should be running
+        - you'll never directly interact w/ etcd
       
       4. kube-scheduler
         - responsible for scheduling pods onto nodes
@@ -1041,26 +1054,24 @@ Module 3: Kubernetes architecture
       3. What is the purpose of the Deployment object?
         - To ensure that a defined set of Pods is running at any given time.
 
-    Qwiklab: Deploying to Google Kubernetes Engine
-      https://googlecoursera.qwiklabs.com/focuses/35221997?parent=lti_session
-
+    Qwiklab: Deploying GKE Autopilot Clusters
       Overview
         In this lab, you use the Google Cloud Console to build GKE clusters and deploy a sample Pod.
 
       Objectives
         In this lab, you learn how to perform the following tasks:
 
-          1. Use the Google Cloud Console to build and manipulate GKE clusters
+          1. Use the Google Cloud Console to build and manipulate GKE Autopilot clusters
           2. Use the Google Cloud Console to deploy a Pod
           3. Use the Google Cloud Console to examine the cluster and Pods
 
       Task 1. Deploy GKE clusters
+        - Clusters can be created across a region or in a single zone. A single zone is the default. 
+        -  When you deploy across a region the nodes are deployed to three separate zones and the total number of nodes deployed will be three times higher.
 
-      Task 2. Modify GKE clusters
+      Task 2. Deploy a sample workload
 
-      Task 3. Deploy a sample workload
-
-      Task 4. View details about workloads in the Google Cloud Console
+      Task 3.. View details about workloads in the Google Cloud Console
 
   Migrate for Anthos
     - used for migrating not contianerized existing app
@@ -1178,18 +1189,146 @@ Module 3: Kubernetes architecture
     1. You are designing an application, and you want to ensure that the containers are located as close to each other as possible, in order to minimize latency. Which design decision helps meet this requirement?
       - Place the containers in the same Pod.
     
-    2. Which Kubernetes component does the kubectl command connect to in order to carry out operations on a cluster?
-      - kube-apiserver
-   
-    3. You have deployed a new Google Kubernetes Engine regional cluster with four machines in the default pool for the first zone and left the number of zones at the default. How many Compute Engine machines are deployed and billed against your account?
-      - Twelve. (Four nodes are deployed in each of three zones. A control plane node is deployed in each zone which is indirectly billed against your account through the cluster management fee.)
-   
-    4. You need to ensure that the production applications running on your Kubernetes cluster are not impacted by test and staging deployments. Which features should you implement and configure to ensure that the resources for your production applications can be prioritized?
-      - Configure Namespaces for Test, Staging and Production and configure specific Kubernetes resource quotas for the test and staging Namespaces.
+    2. Google Kubernetes Engine offers two modes of operation: Autopilot and Standard mode. Which one of the options below is a use case for using Standard mode.
+      - You require SSH access to nodes.
 
-    5. When configuring storage for stateful applications, what steps must you take to provide file system storage inside your containers for data from your applications that will not be lost or deleted if your Pods fail or are deleted for any reason?
-      - You must create Volumes using network based storage to provide durable storage remote to the Pods and specify these in the Pods.
-
-    6. You want to deploy multiple copies of your application, so that you can load balance traffic across them. How should you deploy this application's Pods to the production Namespace in your cluster?
+    3. You want to deploy multiple copies of your application, so that you can load balance traffic across them. How should you deploy this application's Pods to the production Namespace in your cluster?
       - Create a Deployment manifest that specifies the number of replicas that you want to run.
 
+Module 4: Kubernetes Operations
+  - The final section of this course introduces the kubectl command, which is the command line utility used to interact with and manage the resources inside Kubernetes clusters
+  - Learners are introduced to the concept of introspection, then get practice deploying Google Kubernetes Engine clusters from Cloud Shell.
+
+  Learning Objectives
+    - Work with the kubectl command.
+    - Inspect the cluster and Pods.
+    - View a Pod’s console output.
+    - Sign in interactively to a Pod.
+
+  The kubectl command
+
+  Introspection
+
+  Qwiklab: Deploying GKE Autopilot Clusters from Cloud Shell
+    - In this lab, you use the command line to build GKE clusters. 
+    - You inspect the kubeconfig file, and you use kubectl to manipulate the cluster.
+
+    Objectives
+      In this lab, you learn how to perform the following tasks:
+
+      - Use kubectl to build and manipulate GKE clusters
+      - Use kubectl and configuration files to deploy Pods
+      - Use Container Registry to store and deploy containers
+
+    Task 1: Deploy GKE Clusters
+      // set the environment variable for the zone and cluster name:
+        export my_region=us-central1
+        export my_cluster=autopilot-cluster-1
+
+      //create a Kubernetes cluster
+        gcloud container clusters create-auto $my_cluster --region $my_region
+
+    Task 2: Connect to a GKE cluster
+      In Kubernetes, authentication can take several forms. 
+      For GKE, authentication is typically handled with 
+        - OAuth2 tokens and can be managed through Cloud Identity
+        - Access Management across the project as a whole and, optionally, through role-based access control which can be defined and configured within each cluster.
+
+      // authenticate shell to allow communicating with that cluster through the kubectl command-line tool
+        gcloud container clusters get-credentials $my_cluster --region $my_region
+
+      .kube directory
+        - creates a file named config
+          - store the authentication and configuration information.
+          - config file is typically called the kubeconfig file.
+
+      // open config file
+        vi  ~/.kube/config
+        
+        - examine all of the authentication
+        - endpoint configuration data stored in the file. 
+        - Information for the cluster should appear. 
+        - The information was populated during cluster creation.
+
+      Note
+        - You don't have to run the gcloud container clusters get-credentials command to populate the kubeconfig file for clusters that you created in the same context (the same user in the same environment), because those clusters already have their details populated when the cluster is created.
+        - you do have to run the command to connect to a cluster created by another user or in another environment. The command is also an easy way to switch the active context to a different cluster.
+        - active context 
+          - (the cluster that kubectl commands manipulate) 
+
+    Task 3: Use kubectl to inspect a GKE cluster
+      // print content of kubeconfig file
+        kubectl config view
+
+      // print out active context cluster
+         kubectl cluster-info
+
+      //print out active context
+        kubectl config current-context
+
+      //details of cluster contexts
+        kubectl config get-contexts
+
+      // change active context
+        kubectl config use-context gke_${DEVSHELL_PROJECT_ID}_us-central1_autopilot-cluster-1
+
+      // enable bash autocompletion for kubectl
+        source <(kubectl completion bash)
+
+      // all possible command of kubectl
+        type kubectl followed by a space and press the Tab key twice
+
+      // outputs all commands starting with "co" or any other text you type
+        type kubectl co and press the Tab key twice.
+
+    Task 4: Deploy Pods to GKE clusters
+      // deploy nginx as a Pod named nginx-1:
+        kubectl create deployment --image nginx nginx-1
+
+      // view all the deployed Pods in the active context cluster:
+        kubectl get pods
+
+      // view the resource usage across the nodes of the cluster:
+        kubectl top nodes
+
+      // shows similar information across all the deployed Pods in the cluster.
+        kubectl top pods
+
+      // set env for pod name
+        export my_nginx_pod=nginx-1-695d6d476c-gs97k
+
+        echo $my_nginx_pod
+
+      // view the complete details of the Pod you just created
+        kubectl describe pod $my_nginx_pod
+
+      // Push a file into a container
+        nano ~/test.html
+           This is title
+           Hello world 
+
+      // place the file into the appropriate location within the nginx container in the nginx Pod to be served statically:
+        kubectl cp ~/test.html $my_nginx_pod:/usr/share/nginx/html/test.html
+
+        - this command copies the test.html file from the local home directory to the /usr/share/nginx/html directory of the first container in the nginx Pod. You can specify other containers in a multi-container Pod by using the -c option, followed by the name of the container.
+      
+      // Expose the Pod for testing
+      
+    Task 5: Introspect GKE Pods
+
+  Quiz
+    1. You want to use kubectl to configure your cluster, but first you must configure it. Where does the kubectl command store its configuration file?
+      -
+
+    2.You attempt to update a container image to a new version by using the “kubectl describe pod command,” but are not successful. The output of the command shows that the Pod status has changed to “Pending,”the state is shown as “Waiting,” and the reason shown is “ImagePullBackOff.” What is the most probable cause of this error?
+      - The container image failed to download.
+    
+    3.Which command can be used to display error messages from containers in a Pod that are failing to run successfully?
+      - kubectl logs 
+
+    4. What command can be used to identify which containers in a Pod are successfully running, and which are failing or having issues?
+      - kubectl describe pod 
+
+      - kubectl get pod 
+
+  
