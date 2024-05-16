@@ -1083,7 +1083,7 @@ Module 3: Kubernetes architecture
       - move and convert workloads into containers
       - workloads can start as physical servers or VMs
       - moves workload compute to container  immediately(<10 min)
-      - data can be mirgrated all at onece or streamed to the cloud until the app is live in the cloud
+      - data can be mirgrated all at once or streamed to the cloud until the app is live in the cloud
 
     Migrate for Anthos Architecture
       Link to github:
@@ -1206,8 +1206,177 @@ Module 4: Kubernetes Operations
     - Sign in interactively to a Pod.
 
   The kubectl command
+    - utiility command by admin to control kb8s clusters
+    - used to comm w. kube API server on control plane
+    - it allows them to make req to cluster
+    - det which part of control plane to comm
+
+    First steps
+      - kubectl must be configured w/:
+        - location
+        - credentials
+
+    $HOME/.kube/config
+      - config file of kubectl
+      - contains
+        - list of clusters
+        - credentials
+          - provided by gcloud command
+            //create a Kubernetes cluster
+              gcloud container clusters create-auto $my_cluster --region $my_region
+
+            // authenticate shell to allow communicating with that cluster through the kubectl command-line tool
+            // connect to kubectl GKE cluster
+              gcloud container clusters get-credentials $my_cluster --region $my_region
+                - after this command, kubectl auto ref and connect to the said clusters
+    Notes
+      - kubectl
+        - can't create new clusters
+          - gcloud can
+        - can't change the shape of existing clusters
+          - GKE control plane do
+
+        - Use case
+          - creating
+          - viewing
+          - deleting kb8s objects
+          - viewing or exporting config files
+
+        - remember to:
+          - config kubectkl to right clusters first
+          - use --kubeconfig orr --context parameters
+        
+    Common commands
+      //see list of pods in a cluster
+        kubetctl get pods
+
+      //get state of the pod in yaml format
+        kubectl get pod my-app -o=yaml
+
+      //display list of pods in wide format( displays which node each pod is running on)
+        kubectl get pods -o=wide
+
+      //format
+        kubectl [command] [Type] [Name] [Flags]
+
+        command
+          - what do you want to do
+            - get
+            - describe
+            - logs
+            - exec
+
+        Type
+          - which type of object
+            - pods
+            - deployments
+            - nodes
+
+        Name
+          - what is the object's name
+        Flags
+          - any special req
 
   Introspection
+    - act of gathering information about the 
+      - containers, 
+      - pods
+      - services, 
+      - and other engines that run within the cluster.
+
+    Common debug commands
+     1. kubectl get pods
+      - tells you whether your pod is running
+      - shows pod's phase status
+        - Pending
+          - accepted a pod but in process/scheduled
+            - container is still creating from defined container image 
+              - container runtime job
+        - running
+          - successfully attached to anode
+          - containers are created
+            - can be 
+              - starting
+              - restarting
+              - running 
+
+        - succeded
+          - all containers finished running successfully
+          - terminated successfully so they won't be restarting
+
+        - failed
+          - container terminated w/ failure and won't be restarting
+
+        - unknown
+          - state of the Pod cannot be retrieved
+            - comm error bet control plane and kubelet
+
+        - CrashLoopBackOff
+          - one of the contianers in the POd exited unexpectedly after restarted at least once
+          - pods not config correctly
+
+    2. kubectl describe pod [POD_NAME]
+      - investigate pod in detail
+      - provides info about a Pod and its containers such as
+        - labels
+        - resource requirements
+        - volumes
+        - staus info about pod and container
+
+      - Pod
+        - name
+        - namespace
+        - node name
+        - labels
+        - status
+        - IP addr
+
+      - Container
+        - State
+          - Waiting
+          - running
+          - terminated
+        
+        - images
+        - ports
+        - commands 
+        - restart counts
+
+    3. kubectl exec [POD_NAME] -- [command]
+      - run a single command inside a container and view results in your own command shell
+      - useful when you want to exec bash command inside your pod
+
+
+    4. kubectl logs [POD_Name]
+      - a way to see what is happening inside a Pod
+      - use for troubleshooting
+        - reveal errors or debugging messages written by app that run side Pods
+      - logs includes
+        - stdout
+          - standard output on the ocnsole
+        - stderr
+          - error messages
+      - Use cases
+        - find containers not running successfully
+          -c
+            -option for having multiple containers inside a pod
+        //Install package to connect to your container command shell
+          kubectl exec -it [POD_NAME] -- [command]
+          kubectl exec -it my-pod -- /bin/bash
+            -i
+              - tells kubectl to pass terminal's std input to the container
+            -t
+              - tells kubectl that input is a TTY
+
+    Best practices
+      1. not install software directly into a container
+        - changes made by containers to their fs are ephemeral/Temporary
+      
+      2. Consider building container images that have exactly the software you need
+      
+      3. The interactive shell will allow you to figure out what needs to be changed
+
+      4. integrate those chnges into container images and redeploy them
 
   Qwiklab: Deploying GKE Autopilot Clusters from Cloud Shell
     - In this lab, you use the command line to build GKE clusters. 
@@ -1318,7 +1487,7 @@ Module 4: Kubernetes Operations
 
   Quiz
     1. You want to use kubectl to configure your cluster, but first you must configure it. Where does the kubectl command store its configuration file?
-      -
+      - The configuration information is stored in the $HOME/.kube/config file.
 
     2.You attempt to update a container image to a new version by using the “kubectl describe pod command,” but are not successful. The output of the command shows that the Pod status has changed to “Pending,”the state is shown as “Waiting,” and the reason shown is “ImagePullBackOff.” What is the most probable cause of this error?
       - The container image failed to download.
