@@ -1,0 +1,3917 @@
+Developing Google SRE culture
+Module 1: Developing a Google SRE culture
+
+Learning Objectives - Define Site Reliability Engineering
+
+What is Site Reliability Engineering (SRE)? - a practice and a job role, where engineering directly supports software operations. - design an operations team
+
+Quiz 1. What is Site Reliability Engineering (SRE)? - Practices that balance the velocity of development features with the risk to reliability.
+
+KeyPoints and Reflection Activity
+Key KeyPoints - Customer's experience w/ your service tell you how reliable it is - in it org, dev and op teams have conflicting priorities - SRE is the practice of balancing velocity of development features w/ the risk to reliability - SRE can benefit IT teams, rergardles of whether they are using cloud or on-premise tech, for both large projects and daily work
+
+Module 2: DevOps, SRE, and Why they exist
+This module explains the components of DevOps philosophy,
+why Site Reliability Engineering came to exist,
+and who in an organization can and should practice SRE.
+
+Learning Objectives - DevOps movement - Origin of SRE - WHo practices SRE - Distinguish between DevOps and SRE - Articulate the pillars of DevOps - Explain how SRE practices align to DevOps pillars
+
+    DevOps and SRE
+      Origin of SRE
+        - how to think about, measure, and incentivize reliability
+        - shared standard comm between business and IT
+        - 2003 by Benjamin Treynor Sloss
+        - is a concrete way to solve problems that the DevOps philosophy addresses
+        - a practice and a role
+        - goal of SRE is to serve the business and the user, not the other way round.
+
+      DevOps movement
+        - strives to align principles, practices and incentives across dev and operations teams
+        - aims to close the gap between software development and software operations
+
+        Why it exists?
+          - a culture/philosphy and not practices bet dev and Operators
+            - culture means sustain
+
+          Developers
+            - responsible for writing code for systems
+            - expected to be agile and often pushed to write and deploy new code as quickly as possible
+            - want to work faster, innovating, and succeding or failing quickly
+
+          Operators
+            - responsible for ensuring that those sys operate reliably so customers are happy
+            - expected to keep sys stable would prefer to work slower
+            - focusing on reliability and consistency
+
+        5 pillars of DevOps
+          1. Reduce Organization Silos
+            - increase collaboration by breaking down barriers across teams
+            - SRE
+              - Share Ownership
+
+          2. Accept failure is normal
+            - computers are inherently unreliable and human error
+             - SRE
+              - Blamelessness
+                - Implement blameless postmortems.
+
+          3. Implement Gradual Change
+            - small incremental changes are easier to review
+            - allows you to reduce the time to recover making it simple to roll back
+            - SRE
+              - Reduce cost of failure
+                - Design thinking
+
+          4. Leverage tooling and automation
+            - key to helping your IT team work efficiently and focus on the tasks that matter
+            - automate manual nonvolatile work
+            - SRE
+              - Toil automation
+
+          5. Measure everything
+            - critical gauge for success.
+            - SRE
+              - Measure toil and reliability
+
+    Quiz
+      1. Which philosophy closes the gap between development and operations?
+        - DevOps
+
+      2. How do DevOps and SRE relate to each other?
+        - SRE is a way to implement DevOps.
+
+      3. Which is a key pillar of DevOps philosophy?
+        - Accept failure as normal.
+
+      4. Which is an SRE practice that promotes sharing ownership in IT?
+        - Error budgets
+          - created shared incentive and ownership between developers and SREs.
+
+
+    Exercise
+      Key KeyPoints
+        ● DevOps emerged to help close gaps and break down silos between
+
+development and operations teams.
+● DevOps is a philosophy, not a development methodology or
+technology.
+● SRE is a practical way to implement DevOps philosophy.
+● Developers focus on feature velocity and innovation; operators focus
+on reliability and consistency.
+● SRE consists of both technical and cultural practices.
+
+Module 3: SLOs with Consequences
+
+- This module covers the value of SRE to an organization,
+  as well as the technical and cultural fundamentals related to reducing organizational silos and accepting failure as normal. \
+  Topics include the SRE technical practices of blameless postmortems,...
+
+Learning Objectives - Understand the value SRE can provide to an organization. - Describe the technical fundamentals of SRE: SLOs, error budgets, and blameless postmortems. - Describe the cultural fundamentals of SRE: Blamelessness, psychological safety, unified vision, collaboration and communication, and knowledge sharing.
+
+SRE value
+Mission - to protect, provide for and progress software and systems w/ consitent focus
+of availability, latency, performance and capacity
+
+    Practices/Norms
+      1. Incentivize automation w/ time for creativity
+        - lessen human error and more time for other creative projects
+
+      2. Launching and iterating allows teams to fail fast
+        - learn from failure and try again
+
+    Note
+      - need cultural and org support for long term to be successful
+
+Blameless Postmortems/Retrospective - only focuses on the root causes of an incident. - incident is looked at objectively w/o designing a person or team as the root cause
+Exprerienced SREs - are comfortable w/ failure - eliminate ambiguity w/ monitoring - establish and document processes.
+
+    Components of a postmortem
+      - details of the incident and its timeline
+      - the actions taken to mitifate or resolve the incident
+      - the incident's impact
+      - Its trigger and root cause or causes
+      - the follow-up actions to prevent its recurrence
+
+    Goals
+      - ensure that all the root casues are properly understood by the team
+      - define or take effective actions to prevent the issue from occuring again
+      - reduce the likelihood of stressful outages
+      - avoid multiplying complexity
+      - learn from your mistakes and thos of others
+      - writing RCA provides additional vlue to your org
+      - blamessness increase effectiveness of teams so
+      they can 100% focused on preventing from occuring instead of worrying about being blamed if something goes wrong
+
+    RCA
+      - root cause analysis
+      - 5 whys minimum to find the culprit
+
+Blamelessness and Psych Safety
+Psychological safety - the belief that a person will not be punished or humiliated for speaking up
+w/ ideas, questions, concerns, or mistakes
+
+      Signs of low psychological safety
+        - people  keep concerns or ideas to themselves
+        - people are afraid of looking incompetent or ignorant
+
+        Effect
+          1. Prevents team members of small moments of learning
+          2. Asking questions is key to brainstorming for leading to an out of the box or simple idea to solve the incident
+          3. stifled learning and innovation
+
+      How to build high psych safety?
+        1. Frame work as a learning problem and not an execution problem
+        2. Acknowledge your own fallibility
+        3. Model curiosity
+
+        Effects
+          - bridging is encouraged
+          - high cooperation
+          - messengers are not punished when delivering bad news
+          - failure is treated as opportunity for improvement
+          - new ideas are welcomed
+            - lead time,deployment frequency and time to restore
+
+    Blamessness
+      - fosters psych safety
+
+      Why do people blame?
+        1. Hindsight Bias
+          - is the tendency of people to overestimate their ability to have predicted an unpredictable outcome
+          - can lead to blaming the person in charge
+
+          Sample
+            - Insisting that you knew that the losing team was goin to lose because you originally said you predicted it
+
+        2. Discomfort discahrge
+          - is when people blame others to discharge discomfort and pain at a neurobiological level
+
+      How to not blame?
+        1. Assume good intentions.
+        2. Focus on systems and processesm not people
+        3. Innovation requires ome degree of risk taking
+
+SLOs and error budgets - reduces org silos w/ SLOs and error budgets
+
+    Notes
+      - Software Engineering focuses on desgining and building
+      - operating and maintaing estimated that 40-90% of total cost of ownership
+
+    Shared responsibility
+      Reliability/Availability (simple approach)
+        - equals your service 'good' time divided by it's total time
+
+        Advanced approach
+        - equals to good interactions divided by total interactions
+
+        Service reliability
+          - is about determining the amount of reliability you are trying to reach
+          and the amount of downtime you are willing to tolerate.
+
+
+      1. Error budgets
+        - amount of downtime you are willing to tolerate
+        - creates a common incentive for dev and SREs to find the right balance bet innovation and reliability
+
+
+      2. Service-level objectives(SLOs)
+        - precise numerical target for system reliability
+        - targets that are agreed upon between stakeholders
+        - SLIs aggregated over time
+        - short of 100%
+          - 99.9
+        - a promise about the health of your service to your customers
+
+        How do you define SLOs?
+          - Service-level indicators(SLIs)
+            - measurable that answers
+              - how well your service is doing at any moment in time?
+            - expresed as a ratio of good events to valid events times 100%
+            - map to user expecations
+              - latency
+              - throughput
+
+
+Share vision and knowledge  
+ How to create SRE culture? 1. Create a unified vision - team vision statement - support the company's vision - give sense of direction - drives' its work and includes - values - refers to how you can achieve your vision - guides your behaviors - response to others - commitment to Goals - way you spend your time - way you operate as a team
+
+            Core values help teams to:
+              - build trust psch safety w/ each other
+              - be more willing to take risks
+              - more open to learning and growing
+              - feel a greater sense of inclusion and commitment
+
+          - purpose
+            - explains why your team exists
+            - improves life and work satisfaction
+            - creates stronger connections
+            - helps reduce conflict
+
+          - mission
+            - a clear and compelling goal the team wants to achieve.
+
+            Sample:
+              - Google Mission
+                - To organize the world's information and make it universally accessible and useful
+
+          - strategy
+            - how it'll realize its mission
+            - can be a single initiative
+            - can be leveraged
+            - requires change
+
+            Strategy building blocks
+              - look outside: to identify threats and opportunities
+              - look inside:to understand resource, capabilities and practices
+              - consider strategies for addressing threats and opportunities
+              - create alignment on communicating and coordinating work processes
+
+          - Goals
+            - aligns your team to what you strive to attain
+
+            Samples:
+              Google:
+                - OKRs
+                  - objectives
+                  - key results
+                  - idea of OKRs is to set very ambitious goals
+                    - enable you to accombplish more than the team thought was possible
+                    - encourage to try new things
+                    - prioritize work
+                    - learn from both successes and failures
+
+      2. Determine what collaboration/Communication looks like
+        - high priority for SREs
+        - common approaches to platforms
+        - focus on problem-solving
+
+        Practices
+          1. Service-oriented meetings(Comm)
+            - team review the state of service
+              - to increase awarenes, involvement and and improve operations
+            - weekly 30-60 minutes
+            - designated lead
+            - compulsory attendance
+            - set agenda
+
+          2. Have a good team composition roles(Comm)
+            - Tech lead
+              - who sets the technical direction of the team
+            - Manager
+              - who runs performance management
+            - Project Manager
+              - who comments on a design doc and writes code
+
+          Notes:
+            SREs
+              - make recommendation about architecture and software behaviors
+              - adept at performing more than one job function and have the skills to step into another is needed
+
+      3. Share knowledge among teams/Knowdlege sharing
+          - cultivates knowledge sharing among its team members
+
+          Ways/Practices
+            1. Cross-training
+              - a key competency when hiring SRE
+              - involves training employee for flexible response to chaning production schedules
+              - trains team memebers to be flexible
+                - train employee other job role other than his hired role scope
+              - helps reduce costs
+              - improves morale
+              - reduces turnover
+              - boosts productivity
+              - enhances scheduling flexibility
+              - increases job satisfaction
+
+            2. Employee-to-employee network
+              - employees can develop adn grow by teaching others
+
+              Sample
+                - Google does this with g2g
+                  - volunteer teaching network
+                    - teaching courses
+                    - 1 to 1 mentoring
+                    - designing learning materials
+
+              3. Job shadowing
+                - expose new hires to what others in the team do every daily
+                - expert knowledge and exposure to teammates
+                - hands-on experience
+                - opportunity to ask questions
+                - introduction to the concept of gradual change
+                - way to spot opportunity for cross-functional collaboration
+                - way to understand the nuances of a particular job role
+                - psychologically sage environments
+                - way to pair up your team memebers to scale and retain knowledge
+
+    Notes
+      - Postmortems are SRE practice to help you learn from mistakes
+      - Collaboration and knowledge sharing fosters delivering postmortems
+
+    Benefits of collaboration technology
+      - Real-time collaboration
+      - open commenting system
+      - email notifications
+
+    Germany Online Solutions Provider
+      - reduce number of comm channels
+      - descibe channles used for what purpose
+      - tech that collaborate in real-time directly via comments or chat
+      - use collaborative tools to creat SRE knowledge repo
+
+Quiz 1. What is one value SRE provides to an IT team? - Developers are enabled to work at a higher velocity while maintaining reliability. - 2. What are Site Reliability Engineers comfortable with? - Failure
+
+    3. What is a reasonable degree of target reliability for an SLO?
+      - 99.9%
+        - 99.9% is a reasonable target for reliability as it is just short of 100% and still leaves room to focus on feature development.
+
+    4. What can happen when team members don't feel psychologically safe?
+      - Moments of learning are lost.
+        - ple don’t speak up or ask questions in work environments with low psychological safety, therefore moments of learning are inevitably lost.
+
+    5. What is your team's clear and compelling goal that it strives to achieve?
+      - Mission
+
+    Key Points
+      - DevOps emerged to help close gaps and break down silos bet development and operations teams
+      - DevOps is a philosopy, not a development methodology or technology
+      - SRE is a practical way to implement DevOps philosophy
+      - Developers focus on feature vlocity and innovation; operators focus on reliability and consistency
+      - SRE consists of both technical and cultural Practices
+      - SRE practices align to DevOps pillars:
+        1. Reduce Organizational silos
+          - Share ownership
+        2. Accept failure as normal
+          - Blamelessness
+        3. Implement gradual changes
+          - Reduce cost of failure
+        4. Leverage tooling and automation
+          - Toil Automation
+        5. Measure everything
+          - Measure toil and reliability
+
+Module 4: Make Tomorrow Better than today
+
+- Continuous, gradual testing as well as automation are very important in SRE culture.
+  This module covers the SRE technical concepts of continuous integration, continuous delivery,
+  and canarying as they relate to the DevOps pillar of implementing...
+
+Learning Objectives 1. Describe the technical fundamentals of SRE: - CI/CD, - canarying, and - toil automation 2. Describe the cultural fundamentals of SRE: - Design thinking - prototyping - psychology of change, and - resistance to change
+
+Continuous integration, delivery and canarying
+Developers - moonshot thinking - implment massive software changes that have a high likelihood of failing
+
+    SRE
+      - gradual change
+        - smalle changes that have less impact on users if they fail
+
+    CI/CD
+      CI
+        - building, integrating and testing code w/in dev environment
+
+      CD
+        - deploying to production frequently,
+        or at the rate the business chooses
+
+      Processes
+        1. Code
+        2. build
+        3. Integrate
+        4. Test
+        5. Release
+        6. deploy
+        7. operate
+
+      Benefits
+        1. Helps to overcome agile transformation challenges
+        2. can min code integrations headaches
+        3. reduces human error
+        4. promotes higher code quality
+        5. easier to "recover" after soemthing goes wrong
+        6. can automate everything, which saves time and money
+        7. provides visibility on project completion
+        8. time to market is shorter
+        9. provides you w/ more metrics to review and act on
+
+    Canarying
+      - advance warning of danger
+        - small thing detects danger as we go into the unknown
+      - deploying change in service to a group of users who don't know they are
+      receiving the cahnge, evaluating the impact to that group,
+      then deciding how to proceed.
+
+      Canarying requirements
+        1. Canary population should be large enough to be a rep subset of the control
+        The only diff should be the production change.
+
+        2. Canary population should be small enough not to endanger the whole service if broken
+
+        3. Canary should not be overly complicated for those who monitor it
+
+Design Thinking and prototyping
+Design Thinking - combines creativity and structure to solve complex problems - teach teams and individuals to thingking creatively for innovation
+
+      5 phases
+        1. Emphatize
+          - observe and engae w/ intended users
+          - immerse in their environments
+
+        2. Define the problem you are attempting to solve
+          - express the problem in the point of view of the users
+
+        3. Ideate
+          - generate ideas for Solutions
+
+        4. Time prototype
+          - ideas into real world
+            - identify best possible solution before communicating
+
+        5. Test
+          - test prototype in real world setting w/ your intended users
+
+      Software Dev approach
+        1. focus on user
+
+        2. 10x thinking
+
+        3. prototype to test your solution
+
+    Prototyping
+      Benefits
+        - more ideas are tested
+        - faster failures means more successes
+
+      Ways to prototype
+        1. physical prototypinh
+        2. paper and drawing
+        3. clickable
+        4. Role play
+        5. video
+
+      Sample
+        - video panel of discussion
+        - heat map
+        - banner w/ posted Notes
+
+      Real life Sample
+        - use design thinking methodology
+          - branstorm about changes to their production processes
+
+        prototype
+          - use diff color of cups rep each step in teh process needed to be improved or depracted
+
+Toil Automation - if a human operator need to touch your machine system during normal operations
+means you have a bug. The definiotion of normal changes as your sys grows - focus on development rather than operational work/toil - SREs eliminate toil by automating it.
+
+    Notes
+      - DevOps philosophy
+        - leverage tooling and automation
+
+    Toil
+      - work I don't like to do
+      - manual
+      - repetitive
+      - automatable
+      - tactical
+      - w/o enduring enduring value
+      - scales linearly as the service grows
+      - admin work that is not necessary or volatile
+
+    Excessive toil
+      1. Career stagnation
+
+      2. Low morale
+
+      3. Confusion
+
+      4. Slow progress
+
+      5. Sets Precedence
+
+      6. Promotes attrition
+
+      7. Breach of faith
+
+    Value of automation
+      1. Consistency
+
+      2. A platform
+        - provides a way to centralize mistakes so bug is fixed once in one place
+
+      3. Quicker resolutions
+        - automated syst looks for problems as soon as they arise
+
+      4. Faster action
+
+      5. Time saved
+        - no need for continual trainin of humnas in maintenance of process
+
+Psychology of change
+Four Categories 1. Navigators - make teams and business successful - help you succeed
+
+        - as leaders
+          - celebrate their behaviors
+          - use them as champions for the change
+
+      2. Critics
+        - have passion and energy
+        - have valid fears
+
+        - as leaders
+          - spend time w/ them
+            - powerful advocates if you can persuade them
+
+      3. Victims
+        - need to express emotions
+        - take change personally
+
+        - as leaders
+          - listen to and empathize w/ them
+            - they will start to listen once they feel heard
+
+      4. bystanders
+        - are difficult to understand
+        - do not know what's going on
+        - continue w/ normal routine
+
+        - as leaders
+          - communicate w/ them
+          - ascertain their feelings
+
+    How brain response?
+      1. Anterior Cingulate
+        - exclusion
+        - physical pain
+
+        Soln:
+          - involve poeple in the change
+
+      2. Prefrontanal cortex
+        - realization
+        - deception
+        - heightened anxiety
+
+        Soln:
+          - set realistic expectaations
+
+      3. Rush of adrenaline
+        - problem-solving
+        - positivity
+
+        Soln:
+          Identify opportunities for co-creation and provide coaching instead of soln
+
+      4. amygdala
+        - unfamiliar concepts
+        - anxiety
+        - depression
+        - fatigue
+        - anger
+
+        Soln:
+          - simplify messaging and focus on key concepts per user group
+
+      5. Greater attention density
+        - adaptation
+
+        Soln:
+          - ensure that comm are engaing and training is interactive
+
+      6. Basal ganglia
+        - Habitual tasks
+        - comfort
+        - hard-wired
+
+        Soln:
+          - allow people time to build new habits
+
+    Emotional respionse to change
+      1. Denial
+        - indifferent
+        - passive
+        - guarded
+
+      2. resistance
+        - angry
+        - hostile
+        - disagrees w/ feedback
+        - withdrawn
+
+      3. acceptance
+        - conscious incompentence
+        - aware
+        - confused
+        - guilty
+        - worried
+
+      4. exploration
+        - conscious competence
+        - open
+        - questioning
+        - accepts feedback
+
+      5. commitment
+        - unconscious competence
+        - energized
+        - confident
+        - takes ownership
+
+      6. Growth
+        - self evaluates
+        - take risks
+        - seeks feedback
+        - experiments
+
+    Connect w/ individuals on 3 levels
+      1. head
+        - rational
+          - talk about why the change is happening
+            - strategic mission, vision and raionlae behind it.
+
+      2. heart
+        - emotional
+          - why people should care
+          - remember people can be ego and self motivated
+          - address how the change will affect them personally in their day to day role
+          - how it will impact them positively
+          - make them feel inclusive for a bigger picture
+
+      3. feet
+        - behavioral
+        - talk anbout knowledge, skills and resources you will provide to make sure they're successful in this change
+        - Teams need support to make sure they are and feel competent when asked to change what they know.
+
+    Handling Resistance to Change
+      - Are all your leaders and managers role modeling the new processes and behaviors?
+      - Do people understand the reason for the change?
+      - Do people care about the change being successful?
+      - Do people have the knowledge and ability to be successful in your new world?
+      - Are the right reinforcement and recognition programs in place?
+
+Quiz 1. What is a benefit of continuous integration and continuous delivery (CI/CD)? - It is less disruptive for customers. - CI/CD is a way to implement gradual change so it is less disruptive to customers.
+
+    2. What would be the best way to practice canarying?
+      - Deploy a small feature change to users that are a representative subset of your typical customers.
+
+    3. Why is toil a problem?
+      - It becomes toxic in large quantities.
+        - Toil becomes a problem and is toxic when it occurs in large quantities, as it takes SRE’s time away from real project work.
+
+    4. Which is the third phase of design thinking?
+      - Ideate
+
+    5. What should you present change to your team members as?
+      -  An opportunity
+        - Since resistance to change is usually a fear of loss, presenting change as an opportunity helps motivate employees to embrace and accept it.
+
+Glossary
+1.Continuous integration - Building, integrating, and testing code within the development environment.
+
+    2. Continuous delivery
+      - Deploying to production frequently, or at the rate the business chooses.
+
+    3. Canarying
+      - Deploying a change in service to a group of users who don’t know they are receiving the change, evaluating the impact to
+        that group, and then deciding how to proceed.
+
+    4. Toil
+      - Work directly tied to a service that is manual, repetitive,
+      automatable, tactical, or without enduring value, or that scales
+      linearly as the service grows.
+
+Key Points - change is best when small and frequent - design thinking methodology 5 phases: - Emphatize - define - Ideate - prototype - test - prototyping culture - encourages teams to try more ideas - leading to increase faster failures - more successes - excessive toil is toxic to the SRE role - eliminating Toil  
+ - SRE can focus on work that either: - reduce future toil - add service feautures - resistance to change is usually a fear of loss - present change as an oppportunity, not a threat - people react to change in many ways - IT leaders need to understand how to communicate w/ and support each group
+
+Regulate Workload
+
+- In this module, you'll learn about SRE practices around measuring everything,
+  specifically reliability and toil, and the concept of monitoring.
+  We’ll also cover the cultural fundamentals of goal-setting, transparency,
+  and data-driven decision making.
+
+Learning Objectives 1. Describe the technical fundamentals of SRE: Measure toil and reliability, and monitoring 2. Describe the cultural fundamentals of SRE: Goal setting, tansparency, and data-based decision making
+
+Toil and reliability
+DevOps Last pillar - Measure Everything
+
+      Goal of measuring everything:
+        - IT and the business can understand the current status of the service
+        - IT can analyze the data and identify necessary actions to improve the status
+        - IT can make better decisions and impact across the organization
+
+      Notes
+        - You can't improve what you don't measure
+
+    SRE counterparts
+      1. Measure Everything
+        1. Measuring reliability
+           - Error budget
+              - is what you deem an acceptable level of unreliability that you can allocate other engineering work to.
+              Product and engineering teams decide what the reliability target is together.
+              Engineering teams inform the target,
+              while product management defines it.
+              This is not really a technical decision, but instead is defined by customer expectations, the competitive landscape, and the position you have in the market.
+
+            - An SLI
+              - is a quantifiable measure of a single aspect of service reliability that ideally has a close linear relationship with your users’ experience with your service.
+
+            - An SLO
+              - combines an SLI with a target reliability—that is, it’s the threshold that, if crossed, turns happy customers into unhappy customers.
+
+        2. Measuring toil
+          1. Identify it
+            -  by stakeholders
+          2. Select an appropriate unit of measure
+            - minutes and hours
+          3. Track the measurements continuously
+            - before, during and after toil reduction efforts
+
+          Notes
+            - streamline with tools or scripts
+            - start simple
+              - count tickets
+              - count alerts
+              - collect statistics
+
+          Benefits of measuring toil
+            - Triggers a toil reduction efforts
+            - Empowers teams to think about toil
+            - growth in engineering project work over time, some of which will further reduce toil
+            - increased team morale and decreased team attrition and burnout
+            - less context switching for interruptions, which raises team productivity
+            - increased process clarity and standardization
+            - enhanced technical skills and career growth for team members
+            - reduced training time
+            - fewer outages attributable to human errors
+            - imporved security
+            - shorter response times for user requests
+
+        3. Monitoring
+          - allows visibility into a system
+
+          What to monitor>
+            - symptoms, rather than causes
+            - error budget burn
+            - capacity alerts are an exception
+            - Four golden signals
+              1. Latency
+              2. Traffics
+              3. Error
+              4. Saturation
+
+          Notes:
+            - escalate if risk dropping below SLO for the month
+
+2. Goal setting
+
+
+    - look for KPIs
+      - who
+      - what to measure
+      - how to measure
+
+    Sample
+      - Google uses OKRs as KPIs graded from 0.0 to 1.0
+
+      OKR grading considerations
+        - 60-70% is a good score.
+        - OKRs are not synonymous with performance
+        - Organizational OKRs are graded publicly
+        - Frequent check-ins throuput the quarter help maintain progress
+
+3. Transparency
+
+
+    - only way to demonstrate to your employees that you beleive they are trustworthy adults
+    and have good judgement
+    and giving them more context about what is happening(and how, and why)
+    will enable them to do their jovs more effectively.
+    - demonstrate trustworthy good judgement about what is happening effectively.
+
+    How>
+      1. Sharing Monitoring tools
+          - Buganizer
+      2. Sharing Communications
+      3. Feedback loop
+        - measure
+        - improve
+        - produce
+
+4. Data-Driven Decision Making
+
+- Remove unconscious bias
+- refer to glossary for four bias meanings
+
+How? - Question your first impressions. - Justify decisions. - Make decisions collectively.
+
+Quiz  
+ 1. SLIs need to provide a clear definition of what? - Good and bad events - SLIs need to provide a clear definition of good and bad events that will correlate with your users’ experience with the service.
+
+      - Total user interactions
+        - factor when quantifying SLOs.
+
+    2. What does monitoring allow for?
+      - Visibility into a system
+
+    3. What does Google use OKRs as?
+      - KPIs
+
+    4. Which bias is the tendency to find information, input, or data that supports your preconceived notions?
+      - Confirmation bias
+
+Glossary  
+ 1. Affinity bias - Tendency to gravitate toward those who are similar to you,
+such as with race, gender, socioeconomic background, or education level.
+
+    2. Confirmation bias
+      - Tendency to find information, input, or data that supports
+      your preconceived notions.
+
+    3. Selective attention bias
+      - Tendency to pay attention to things, ideas, and
+      input from people whom you tend to gravitate toward.
+
+    4. Labeling bias
+      - Tendency to form opinions based on how people look,
+      dress, or appear externally
+
+Key Points 1. measure reliability w/ good service level indicators(SLIs)
+
+    2. a good SLi correlates w/ user exp w/ your service; that is good SLi
+    tells you when users are happy or unhappy
+
+    3. measure toil by indetifiying it, selecting and appropriate unit of
+    measure, and tracking the measurements continuously
+
+    4. Goal-setting, transparency, and data-driven decision making are key components
+    of SRE measurement culture
+
+    5. To make truly data-driven decisions, you need to remove any unconscious biases
+
+Apply SRE on your organization
+
+- In this module, we will talk about ways you can assess and understand your organization’s maturity and readiness for adopting SRE principles, practices, and culture
+  We’ll also discuss the types of skills to look for in hiring new SREs and how to...
+
+Learning Objectives 1. Assess organizational maturity for SRE 2. Identify where SRE can be applied within a business 3. Recognize the skills an SRE needs 4. Articulate the different types of SRE team implementations 5. Advocate for SRE culture adoption across the organization 6. Necessary SRE skills 7. How to train your workforce 8. SRE team implementations 9. How Google Clou can support your organization
+
+SRE Steps 1. SLOs w/ Consequences 2. Make tomorrow better than today 3. Regulate workload
+
+Organizational maturity
+Low - no adopted SRE - principles - practices - culture
+
+    High
+      - well established SRE team
+      - widely embraced principles, practices and culture
+
+    Signals/Principles
+      1. well-documented and user-centric SLOs
+      2. Error budgets
+      3. blameless postmortem culture
+      4. low toleraance for toil
+
+    technical
+      1. Blameless postmortems
+        SLOs
+        Error Budgets
+      2. CI/CD
+        Canarying
+        Toil Automation
+      3. Reliability measurement
+        Toil measurement
+        Monitoring
+
+    Cultural
+      1. Psychological safety
+        Share vision and knowledge
+        Foster collaboration
+
+      2. Design thinking
+        Prototyping
+        Change management
+
+      3. Goal-setting
+        Transparency
+        Data-driven decision making
+
+    DORA DevOps Quick Check tool
+      - five question assessment about your current engineering practices
+
+Skills and training
+What skills to train and hire? - operations software engineering - monitoring systems - production automation - system architecture - troubleshooting - culture of trust - incident management - technical troubleshooting - communication framework - Character traits - resilience - flexibility
+
+      Notes
+        - SREs
+          - provide right balance between enabling product dev and doing what's
+          right for your customers.
+
+SRE teams implementations 1. Kitchen Sink/Everything SRE - scope is unbounded - good starting point for first SRE team - recommended for org w/ few app and user journeys - useful when dedicated SRE team is needed
+
+      Benefits
+        - there are no coverage gaps
+        - it is easy to spot patterns and similarities bet services and projects
+        - acts as glue bet teams
+
+      Disadvatages
+        - lacks a team charter
+        - risks overloading the team
+        - can run the risk of shallow contributions
+        - team issues can have a negative impact on the business
+
+    2. Infrastructure
+      - focus on behind the scenes tasks
+      - helps make other team's jobs easier
+      - maintains shared services related to infra
+      - recommended for org w/ multiple dev teams
+      - defines common standards for the IT team
+
+      Benefits
+        - allows dev to use devops practices w/o divergence across business
+        - keeps its focus on highly reliable infra
+        - defines production standards
+
+      Disadvantages
+        - possible neg impact to business folowwing team issues
+        - improvement the team makes may not be tied to customer experience
+        - may require teams to be split, which can lead to duplication or divergence of practices
+
+    3. Tools
+      - focuses on building software to help dev w/ aspects of SRE work
+        - capacity planning
+      - recommended for org that need highly specialized reliability-related tooling
+
+      Benefits
+        - allows dev to use devops practices w/o divergence across business
+        - keeps its focus on highly specialized reliability-related tooling
+        - defines production standards
+
+       Disadvantages
+        - could unintentionalluy turn into an infra team
+        - risk of increased toil and overall worload on the team
+
+    4. Product/Application
+      - improves the reliability of critical app/business area
+      - recommended for org that have kitchen sink, infra or tools SRE team
+      and app w/ high reliability needs
+
+      Benefits
+        - provides clear focus
+        - creates clear link bet business priorities and team effort expenditure
+
+      Disadvantages
+        - require establishing new teams as business and complexity grow
+        - lead to duplication of infra dn divergence of practices
+
+    5. Embedded
+      - SREs embedded w/ developers
+      - SREs and dev have a project or time-bounded relationship
+      - hands-on, changing code and config of services
+      - recommended for org to start a team or scale another implementation
+      - can augment the impact of a tools or infra team
+
+      Benefits
+        - focused expertise directed to specific problems or teams
+        - allows side-by-side demo of SRE practices
+
+      Disadvantages
+        - can cause a lack of standardization bet teams
+        - can lead to divergence in practice
+        - less time for mentoring
+
+    6. Consulting
+      - similar to embedded team
+      - less hands-on
+      - may write code and maintain tools for themselves and dev
+      - not recommended untul org complexity is large
+      - recommends one to two part-time consulting SREs before the first SRE team
+
+      Benefits
+        - help w/ scaling of an existing SRE team's positive impact
+        - decoupled from directly changing code and config
+
+      Disadvantages
+        - may lack sufficient context to offer useful advice
+        - can be perceived as hands-off
+
+Getting started
+Request Google Cloud's Professional Services Consultation - reach out to your Account Director/Executive to request a Google Professional Services consultaion.
+
+Quiz 1. What practice does Google recommend that you establish before forming your first SRE team? - Blameless postmortem culture - one practice that Google recommends your organization establishes before forming your first SRE team.
+
+      - Continuous integration/continuous delivery
+        - CI/CD does not need to be established before forming your first SRE team.
+
+    2. Which type of IT role does Google recommend as a possible new SRE hire?
+      - Systems administrator
+        - Google recommends systems administrators as good first new SRE hires because of their experience
+          - working IT operations
+          - and managing production systems.
+
+    3. Scope is generally unbounded for which type of SRE implementation?
+      - Kitchen Sink
+        - Scope is usually unbounded for Kitchen Sink/”Everything SRE” teams.
+
+    4. Which Google team can support you in jumpstarting your SRE implementation?
+      - Google Cloud Professional Services team
+        - can help customers jumpstart their SRE implementations.
+
+Key Points 1. Kitchen Sink/"Everything SRE" team - recommended for org that have few app and user journeys - scope is mall enough that one team is necessary - dedicated SRE tram i needed in order to implement practices
+
+    2. Infrastructure team
+      - focuses on maintaining shared services and components related to Infrastructure
+      - versus SRE team dedicated to working on services related to products like customer-facing code
+
+    3. Tools team
+      - focus on building software to help their dev counterparts:
+        - measure
+        - maintaing
+        - improve sys reliability or other aspects of SRE work such as capacity/planning
+
+    4. Product/App team
+      - works to improve reliability of critical app or business area
+      - recommended for org that already have kictchen sink, infra, tools-focused SRE team
+        - have key iser-facing app w/ high reliability needs
+
+    5. Embedded team
+      - has SREs embedded w/ their developer counterparts
+        - usually one per developer team in scope
+      - work relationship bet embedded SREs and dev tend s to be project or time-bounded
+      - usually very hands-on
+        - perform work like
+          - changing code
+          - configuration of the services in scope
+
+    6. Consulting team
+      - similar to Embedded
+      - except SRE are usually hands-on
+      - recommended staffing one or two-part-time consultants before you
+      staff your first SRE team.
+
+    7. org w/ high SRE maturity have:
+      - well-documented
+      - user-centric SLOs,
+      - error budgets
+      - blameless postmortem culture
+      - low tolerance for toil
+
+    8. Engineers w/ operations exp and sys admin w/ scripting exp
+      - good first SREs to hire
+
+    9. Upskill current team members w/ necessary SRE skills such as:
+      - operations and software engineering
+      - monitoring sys
+      - production automation
+      - sys architecture
+      - troubleshooting
+      - culture of trust
+      - incident mngmt
+
+    10. Conduct your acct exec or acct dir to learn:
+      - how the google cloud prof services team can support org adoption of SRE
+
+Final Assessment
+
+- Test your overall knowledge of Google SRE technical and cultural practices with this summative quiz. You must score an 80% to pass.
+  This assessment is required in order to receive your course completion certificate.
+
+Learning Objectives 1. Assess SRE technical and cultural fundamentals knowledge
+
+Final Assessment
+1.Generally, whose experience with a production service determines its availability? - The customer’s
+
+      - The SRE's
+
+      - The operator’s
+
+    2.Which is the term that describes breaking down the silos and closing gaps between development and operations teams?
+      - DevOps
+
+      - Site Reliability Engineering
+
+    3.Which DevOps pillar led to Google SRE practices, such as SLOs and error budgets, that promote shared
+
+ownership between developers and SREs? - Reduce organizational silos - is the DevOps pillar that led to SRE practices like SLOs and error budgets which promote shared ownership between developers and SREs.
+
+    4.Your developers have felt inundated with too many manual and repetitive tasks that are tied to the production service. What is this called?
+      - Toil
+        - Toil is work that is mundane, repetitive, without enduring value, automatable, and scales linearly as the service grows.
+
+    5.What does a blameless postmortem not help with?
+      - Decreasing engineering costs incurred after launch
+        - Blameless postmortems and its culture do not correlate with decrease in engineering costs incurred after launch.
+
+      - Ensuring that all the root causes are properly understood by the team
+      - Avoiding multiplying complexity
+      - Reducing the likelihood of stressful outages
+
+    6.What can you build with your team by acknowledging your own fallibility as a leader?
+      - Psychological safety
+        - Acknowledging your own fallibility is one way to build psychological safety with your teams.
+
+    7.What is a service-level objective (SLO)?
+      - A precise numerical target for system reliability.
+        - An SLO is a precise numerical target for system reliability.
+
+    8.What often accompanies toil automation that leaders should be prepared for?
+      - Resistance to change
+
+      - Linear scaling of work with complexity
+
+    9.Your team members are unsure what goals they are trying to achieve within the team.
+    What part of your team vision should you work to clarify?
+      - The mission
+        - Your team’s mission is the goals it strives to achieve.
+
+    10.SREs believe that change is best when what?
+      - Small and frequent
+
+      - Small and dispersed
+
+    11.What is continuous delivery?
+      - Deploying to production frequently, or at the rate the business chooses.
+
+      - Building, integrating, and testing code within the development environment.
+
+    12.What are the five steps in design thinking methodology?
+      - Empathize, Define, Ideate, Prototype, Test
+        - The five phases of design thinking are Empathize, Define, Ideate, Prototype, and Test.
+
+      - Define, Ideate, Prototype, Test, Resolve
+
+    13.Why should toil be limited to a bounded part of the SRE role?
+      - It prevents SREs from doing only sysadmin work.
+        - Keeping toil limited to a bounded part of the SRE role prevents SREs from solely doing system admin work.
+
+      - It frees SREs to completely focus on reliability work.
+
+    14.You've decided to adopt SRE practices and culture in your company.
+    As change begins to happen, you notice that Naveen,
+    one of your operations managers is avoiding new protocols and
+    continuing with his normal work routine.
+    In which group of people would you categorize Naveen?
+      - Bystander
+        -  tend to ignore change and continue on with their normal routine as though change is not happening.
+
+    15.What is one benefit of measuring toil?
+      - It triggers a reduction effort.
+        - When teams are able to see how much toil they have, they focus on reducing it.
+
+    16.What does Google recommend you do with the four golden signals?
+      - Monitor the system
+        - Google recommends you monitor the system using the four golden signals—latency, traffic, errors, and saturation,
+
+    17.What do OKRs primarily help an organization do?
+      - Set goals
+        - are KPIs that help organizations set goals.
+
+    18.Which phase of the SRE journey includes automating toil?
+      - Make Tomorrow Better than Today
+        - includes toil automation.
+
+    19.SREs are regularly on-call and required to solve problems fast. What is a primary skill SREs need for this?
+      - Troubleshooting
+        - SREs are regularly on-call, they require excellent troubleshooting skills in order to diagnose and solve problems fast.
+
+    20. Which type of SRE team implementation does Google recommend for an organization's first SRE team?
+      - Kitchen Sink
+
+Learner Workbook
+
+Resources
+
+    Site Reliability Engineering: Measuring and Managing Reliability coursera lessons
+      https://www.coursera.org/learn/site-reliability-engineering-slos
+
+    Google cloud consulting services
+      https://cloud.google.com/consulting/?utm_source=google&utm_medium=cpc&utm_campaign=emea-gb-all-en-dr-bkws-all-solutions-trial-e-gcp-1008073&utm_content=text-ad-none-any-DEV_c-CRE_340468586137-ADGP_Hybrid+%7C+AW+SEM+%7C+BKWS+~+EXA_1:1_EMEA_EN_VM+migration_gcp+professional+services-KWID_43700042357065337-kwd-380758056939-userloc_1006886&utm_term=KW_gcp+professional+servicesg&ds_rl=1242853&ds_rl=1245734&ds_rl=1245734&gclid=Cj0KCQjw9ZzzBRCKARIsANwXaeIPLV6niFcKgzkeOSZH5z6fj95vu61t48KjkwKY_Q1gXJY7_mUVCXcaAvN9EALw_wcB&hl=en
+
+    SRE workbook
+      https://sre.google/workbook/table-of-contents/
+
+    SRE table of contents
+      https://sre.google/sre-book/table-of-contents/
+
+Logging and Monitoring in Google Cloud
+Module 1:Introduction to Google CLoud's Operations Suite
+
+- In this module, we will take some time to do a high-level overview of the various products which comprise Google Cloud’s logging,
+  monitoring, and observability suite.
+
+Learning Objectives 1. Describe the purpose and capabilities of Google Cloud’s operations suite 2. Explain the purpose of the Cloud Monitoring tool. 3. Explain the purpose of Cloud Logging and Error Reporting tools. 4. Explain the purpose of Application Performance Management tools. 5. Explain the purpose of Cloud Trace
+
+Need for google Cloud observability 1. Visibility into system health - help me understand my app and tell if it's healthy
+
+    2. Error reporting and alerting
+      - bring problems directly to my attention
+
+    3. Efficient troubleshooting
+      - help me fix it if it's broken
+
+    4. Performance improvement
+
+    Monitoring
+      - gives you real-time sys information
+      - collecting, processing, aggregating and displaying real-time quanitative data about a sys such as:
+        - query counts and types
+        - error counts and types
+        - processing times
+        - server lifetimes
+      - foundation of product reliability
+
+    What's needed from products?
+      1. Continual improvement
+      2. Dashboards
+      3. Automated alerts
+      4. Incident response
+
+    Four golden signals
+      1. latency
+        - changes in latency could indicate emerging issues
+        - its values may be tied to capacity demands
+        - it can be used to measure sys improvements
+
+        How?
+          - page load latency
+          - number of req waiting for a thread
+          - service response time
+          - transaction duration
+          - time to first response
+          - and time to complete data return.
+
+      2. Traffic
+        - indicator of current sys demands
+        - historical trends are used for capacity planning
+        - core measure when calculating infra spend
+
+        How?
+          -  number of HTTP requests per second
+          - number of requests for static vs. dynamic content
+          - number of concurrent sessions
+
+      3. Saturation
+        - indicator of how full the service is
+        - focuses on the most constrained resources
+        - freqntly tied to degrading performance as capacity is reached
+
+        How?
+          - percentage memory utilization
+          - percentage of thread pool utilization
+          - percentage of cache utilization
+
+      4. errors
+        - indicate configuration or capacity issues
+        - indicate service level objective violations
+        - error might mean it's time to send out an alert
+
+        How?
+         - number of 400/500 HTTP codes
+         - number of failed requests
+         - number of exceptions
+
+    Observability steps
+      1. Capture signals
+        - metrics
+        - Logs
+        - Trace
+
+      1.1 Manage Incidents
+        - alerts
+        - error reporting
+        - SLO
+
+      2. Visualze and Analyze
+        - Dashboards
+        - metrics Explorer
+        - logs Explorer
+        - service monitoring
+        - log analytics
+        - health checks
+
+      3. Troubleshoot
+
+Cloud Monitoring - rovides visibility into the performance, uptime, and overall health of cloud-powered applications. - It collects metrics, events, and metadata from projects, logs, services, systems, agents, custom code, and various common application components, including - Cassandra - Nginx - Apache Web Server - Elasticsearch - Monitoring ingests that data and generates insights via dashboards, Metrics Explorer charts, and automated alerts
+
+    Feautures
+      - Many free metrics
+      - Open source standards
+      - customization for key workloads
+      - in-context visualizations & alerts
+
+Cloud Logging - allows users to collect, store, search, analyze, monitor, and alert on log entries and events. - It provides automatic ingestion with simple controls for routing, storing, and displaying your log data. - It leverages tools like Log Analytics to view trends, or Error Reporting and Log Explorer to quickly examine problems
+
+    Multiple aspects
+      - collect
+        - cloud events
+        - config changes
+        - customer services
+        - logs at various level of the resource hierarchy
+
+     - analyze
+        - log data in real time w/ integrated logs Explorer
+        - run queries and analyze w/ log analytics
+        - exported logs from
+          - GCS
+          - bigquery
+
+      - export
+        - export to
+          - GCS
+          - bigquery
+          - pub/sub messages
+            - can be anlayzed in near-real time using custom code or stream processing like dataflow
+        - log-based metrics fro augemented monitoring
+
+      - retain
+        - data access and service logs for 30 days (configurble upto 3650 days)
+        - admin logs for 400 days by default
+        - longer term in GCS/bq
+
+    Use case
+      1. Developers
+        - troubleshooting
+        - debugging
+
+        - Integration into popular SDKs
+          - get started quickly w/ a large collection of sys metrics and logs
+
+        - real time log analysis
+          - analyze log data in real time, devug code, troubleshoot your apps
+
+        - quick error detection
+          - find errors via stack traces automatically w/ error reporting
+
+      2. Operator
+        - SLO/alerting
+        - log Management
+        - workload Management
+        - cost Management
+
+        - Collect the right telemetry
+          - instrumentation for GCE, on-prem and other cloud providers
+
+        - Centralize logs
+          - centralize logs for specific users, teams and/or org
+
+        - Manage logs
+          - set retention periods, select supported regions for regional data storage
+
+        - Set alerts
+          - understand log volume/cost, set alerts on important app metrics
+
+        - Export logs
+          - export to Google CLoud for storage, analysis and integration w/ 3rd parties
+
+      3. SecOps Analyst
+        - Secops of google cloud fleet of resources
+        - uses platform features to meet org sec requirements
+
+        - collect auidt logs
+          - collect google cloud audit logs by default, advanced sec logs such as data access logs
+
+        - collect network telemetry data
+          - collect and analyze VPC flow logs, GKE network, firewall, load balancer logs
+
+        - analyze logs for security events
+          - view audit logs and other events to investigate possible sec events
+
+Error Reporting - identifies, counts, analyzes and aggregates the crashes in your running cloud services
+
+    features
+      - real-time processing
+        - app arrors are processed and displayed w/in seconds
+
+      - quickly view and understand errors
+        - dedicated page displays the details of the error
+
+      - instant notification
+        - notified when events occur
+
+      - dedicated view
+        - time charts
+        - occurences
+        - affected user counts
+        - first and last seen dates
+        - cleaned exception stack trace
+
+      - alerting policy
+
+Application Performance Management Tools 1. Cloud Trace - collects latency data from distributed app and displays it in the GC console - captures traces from app deployed - App engine flexible and standard env - GCE VMs - GKE containers - Cloud run - non GC env
+
+      Latency Reports
+        - provide performance insights in near-real time
+        - generate in-depth latency reports to surface performance degradations
+        - identify recent changes to app performance
+
+    2. Cloud Profiler
+      - uses statistical tech and extremely low-impact instrumentation to provide complete picture of app
+      - allows dev to analyze app running anywhere
+      - presents call hierarchy and resource consumption of relevant function in an interactive flame graph
+
+Google Cloud's Operation suite - helps you explore the known and unknown issues
+
+    - user-focused products
+      - SLO monitoring, uptime checks, tracing
+
+    - open,flexible foundations
+      - prometheus
+      - opentelemetry
+      - fluentbit
+
+    - integrated for ease
+      - auto
+        -ingest log
+        - connect sets
+        - collect in-context telemetry across GC services
+
+    - meaningful analysis and alerting
+      - use powerful analysis tools
+      - leverage alerting for both automated and human-led resolutions
+
+Quiz 1. You want a simple way to see the latency of requests for a web application you deployed to Cloud Run. What Google Cloud tool should you use? - Trace
+
+    2. You want to examine messages generated by running code. Which tool might be best for doing this?
+      - Logs Explorer
+
+    3. Users have reported that an application occasionally returns garbage data instead of the intended results, but you have been unable to reproduce this problem in your test environment. Which tool might be of best help?
+      - Error Reporting
+
+      - Logs Explorer
+
+    4. You want to calculate the uptime of a service and receive alerts if the uptime value falls below a certain threshold. Which tool will help you with this requirement?
+      - Cloud Monitoring
+
+      - Profiler
+
+Module 2: Monitoring Critical systems
+
+- Monitoring is all about keeping track of exactly what's happening with the resources we've spun up inside of Google's Cloud.
+  In this module, we'll take a look at options and best practices as they relate to monitoring project architectures. We'll...
+
+Learning Objectives 1. Use Cloud Monitoring to view metrics for multiple cloud projects. 2. Explain the different types of dashboards and charts that can be built. 3. Create an uptime check. 4. Explain the cloud operations architecture. 5. Explain and demonstrate the purpose of using Monitoring Query Language (MQL) for monitoring.
+
+Cloud Monitoring architecture patterns
+Three layers 1. Data collection layers - collects  
+ - metrics - logs - traces
+
+      2. Data storage layer
+        - stores the collected data
+        - routes to the configured visualization and analysis layer
+        - includes the cloud monitoring API
+          - helps triage the metrics collected to be stored for future analysis
+
+      3. data analysis and visualization layer
+        - analyzes the collected data to identify
+          - problems
+          - trends
+          - presents the analyzed data in a way that is easy to understand
+          - dashboards
+            - visualize data
+          - uptime checks
+            - monitor app
+          - alerting policies
+            - config alerts
+            - notify events or email
+
+        Notes
+          Platform monitoring/Cloud Monitoring
+            - no copst for all system metrics
+
+          Application monitoring - GKE
+            - integrates w/:
+              - cloud logging
+              - cloud monitoring
+              - google cloud managed service for prometheus
+                - collects data
+
+              Google Managed Prometheus(GMP)
+                - part of cloud monitoring as aprometheus data
+                - promql compatible query language
+
+          Application monitoring - GCE
+            - ops agents to collect data
+            - partner with
+              - Datadog/NewRelic
+              - BindPlane by Blue Medora for logs collection
+
+Monitoring multiple projects - only one single project in metric scope by default
+
+    Scoping project
+      - hosts a metrics scope
+      - stores
+        - alerts
+        - uptime checks
+        - dashboards
+        - monitoring groups
+
+    Notes
+      - Production deployment
+        - create a separate projects for monitoring
+
+        Why?
+          - single pane of glass that provides visibility into the enire group of related projects
+            - monitoring config for other project is retain if fe/be/db are deleted
+
+      monitoring.viewer
+        - access to dashboards and access to all data by default
+          - including all other projects that are monitored by that metrics scope
+
+Data model and dashboards
+Data model
+time-series data - metric - metric label - metric type - desicribes the metric - resource - resopurce-label - resource info - metricKind and valueType - how to interpret the values - points - values of the metrics
+
+Query metrics - using MQL and promql
+
+    MQL
+      - query cloud monitoring time-series data by using text-based interface
+      - manipulate, retrieve and perform complex operations on time-series data
+
+    PromQL
+      - query metrics from Google Cloud Managed Service for Prometheus
+      - Query system metrics from GKE and Compute engine
+      -Integra
+
+Uptime checks - test availability of your public services from locations around the world - can help us ensure that external facing services are running
+and we aren't burning our error budgets - can be set to - HTTP - https - TCP - can check - app engine app - GCE instance - URL of a host - AWS instance - load balancer - can create alerting policy and budget alert
+
+Budgets & alerts
+
+- Select a billing account to go to the budgets & alerts page,
+  where you can create budgets to monitor all of your Google Cloud charges in one place.
+
+Qwiklabs: Monitoring and Dashboarding Multiple Projects from a Single Workspace - Google Cloud Monitoring empowers users with the ability to monitor multiple projects from a single metrics scope.
+In this exercise, you start with three Google Cloud projects, two with monitorable resources, and the third you use to host a metrics scope.
+You attach the two resource projects to the metrics scope, build uptime checks, and construct a centralized dashboard.
+
+    - Monitoring and Dashboarding Multiple Projects
+    - https://www.coursera.org/learn/logging-monitoring-observability-google-cloud/gradedLti/yxggp/lab-monitoring-and-dashboarding-multiple-projects-from-a-single-workspace
+
+    Objectives
+      - Configure a Worker project.
+      - Create a metrics scope and link the two worker projects into it.
+      - Create and configure Monitoring Groups.
+      - Create and test an uptime check.
+
+    Task 1: Configure the resource projects
+      Install Nginx
+        sudo apt-get update
+
+        sudo apt-get install -y nginx
+
+        ps auwx | grep nginx
+
+
+    Task 2: Create a metrics scope and link the two worker projects into it
+      ADD GCP PROJECTS.
+
+Click Select Project and select the Worker 1 and Worker 2 projects.
+
+    Task 3: Create and configure Monitoring groups
+
+    Task 4: Create and test an uptime check
+
+    Task 5: Create a custom dashboard
+      sudo apt-get update
+      sudo apt-get install apache2-utils
+
+      curl 100,000
+        ab -s 120 -n 100000 -c 100 $URL/
+
+      curl 500,000
+        ab -s 120 -n 500000 -c 500 $URL/
+
+Summary 1. use cloud monitoring to view metrics for multiple cloud projects
+
+    2. explain the different types of dashboards and charts that can be built
+
+    3. create an uptime check
+
+    4. explain the purpose of using MQL for monitoring
+
+Quiz 1. You want to analyze the error rate in your load balancing environment. Which interface helps you view a chart with a ratio of 500 responses to all responses - MQL
+
+      - Metrics Explorer
+
+    2. You want to be notified if your application is down. What Google Cloud tool makes this easy?
+      - Uptime check
+
+    3. What is the name of the project that hosts a metrics scope?
+      - Scoping project
+
+      - Hosting project
+
+Module 3: Alerting policies
+
+- Alerting gives timely awareness to problems in your cloud applications so you can resolve the problems quickly.
+  In this module, you will learn how to develop alerting strategies, define alerting policies, add notification channels, identify types of...
+
+Learning Objectives - Explain alerting strategies. - Explain alerting policies. - Explain error budget. - Explain why server-level indicators (SLIs), service-level objectives (SLOs), and service-level agreements (SLAs) are important. - Identify types of alerts and common uses for each. - Use Cloud Monitoring to manage services.
+
+SLI, SLO and SLAs
+SLIs - must be a number or a delta, something we can measure and place in a mathematical equation - Error rate
+
+    SLOs
+      - 99.5 or 99.9%
+
+      Criteria
+        - S: specific
+        - M: measurable
+        - A: achievable
+        - R: relevant
+        - T: time-bound
+
+    SLAs
+      - commitments made to your customers
+        - that sys and app will have only a certain amt of downtime
+
+    Deciding SLA, SLO and SLI
+      Indicators
+        http get / latency
+
+      Objectives
+        200ms
+
+      Agreement
+        300ms
+
+Developing an alerting strategy
+
+Creating alerts
+
+Qwiklab: Alerting in Google Cloud - In this lab, you deploy an application to App Engine
+and then create alerting policies to notify you
+if the application is not accessible or is generating errors.
+
+    - https://googlecoursera.qwiklabs.com/focuses/35934121?parent=lti_session
+
+    Objectives
+      In this lab, you learn how to perform the following tasks:
+
+      - Download a sample app from GitHub.
+      - Deploy an application to App Engine.
+      - Create uptime checks and alerts.
+      - Optionally, create an alerting policy with the CLI.
+
+    Task 1 Download and test a sample app from GitHub
+      //create app engine region
+      gcloud app create --region=us-east4
+
+      // deploy in app engine
+      gcloud app deploy --version=one --quiet
+
+    Task 2: Deplpy an app to app engine
+
+    Task 3. Examine the App Engine logs
+
+    Task 4. Create an App Engine latency alert
+      //redeploy new version GAE
+      gcloud app deploy --version=two --quiet
+
+      //generate some consistent load, in Cloud Shell, enter the following command:
+      while true; do curl -s https://$DEVSHELL_PROJECT_ID.appspot.com/ | grep -e "<title>" -e "error";sleep .$[( $RANDOM % 10 )]s;done
+
+      - This command makes requests to the App Engine app continuously in a loop. The grep command will display the title of the page when the request works. It also displays the error, if it doesn’t work. Every iteration, the thread sleeps a random amount of time less than a second, but with the 10s response time delay it will seem much longer.
+
+    Task 5. (Optional) Creating an Alerting Policy with the CLI
+      //app-engine-error-percent-policy.json.
+        https://googlecoursera.qwiklabs.com/focuses/35934121?parent=lti_session
+
+      //Deploy alerting policy w/ gcloud
+        gcloud alpha monitoring policies create --policy-from-file="app-engine-error-percent-policy.json"
+
+Service Monitoring - a sing pane summary of the health of your various services.
+
+    Service Monitoring answers the following:
+      What are the commitments regarding the availability of those services?
+
+      Are your service meeting them?
+
+      For microservices-based apps,what are the inter-service dependencies?
+
+      How to double check new code rollouts and triage problems if a service degradation occurences
+
+      Can you look at all the monitoring signals for a service holistically to reduce the MTTR(meant time to repair)?
+
+    SLO compliance Calculation approaches
+      1. Windows-based
+          - each window represents a data point, instead of all the data points that comprise the windo
+      2. Request-based
+
+    Windows-based Vs Request-based SLOs
+      Windows-based
+        = total number of good reuqest : total number of bad requests
+
+        Example
+          1. 95 percentile SLO = latency lesss than 100ms for 99% of 10 min Windows
+          2. 99.9% request-based SLO can allow 1,000 bad requests every 30 days
+          3. 99.9% windows-based SLO based on a 1-minute window can allow a total of 43 bad windows.
+            - 43,200 total windows * 99.9% = 43,157 good windows
+          4. Windows-based SLOs can be tricky, because they can hide burst-related failures
+
+      Request-based
+        = good request : total requests
+
+        Example
+          request based SLO = latency below 100ms for 95% of requests
+
+    availability
+      - ratio of number of successful responses to the number of all responses
+
+    Latency
+      - ratio of number of calls that are below the specified latency threshold to the number of all calls
+
+Qwiklab: Service Monitoring - Google Cloud's Service Monitoring streamlines the creation of microservice Service Level Objectives (SLOs)
+based on availability, latency, or custom Service Level Indicators (SLIs).
+In this lab, you use Service Monitoring to create a 99.5% availability SLO
+and corresponding alert.
+
+    Objectives
+      - In this lab, you learn how to perform the following tasks:
+
+      - Deploy a test application.
+      - Use Service Monitoring to create an SLO.
+      - Tie an alert to the SLO.
+
+    Task 1. Deploy a test application
+
+    Task 2. Use Service Monitoring to create an availability SLO
+      In this task, you:
+        - Use Service Monitoring to create an availability SLO.
+        - Create an alert tied to your SLO.
+        - Trigger the alert.
+
+Quiz 1. In evaluating your alerting policies, which below best describes precision? - The proportion of events detected that were significant.
+
+    2. Explain error budget.
+      - The proportion of alerts detected that were relevant to the sum of relevant alerts and missed alerts.
+
+      - How long alerts fire after an issue is resolved.
+
+    3. In the statement “Maintain an error rate of less than 0.3% for the billing system”, what is an SLI?
+      - Error rate
+
+      - 0.3%
+
+      - Less than 0.3%
+
+Module 4: Advanced logging and analysis
+
+- In this module, we will examine some of Google Cloud's advanced logging and analysis capabilities.
+  Specifically, in this module you will learn to identify and choose among resource tagging approaches, define log sinks, create monitoring metrics...
+
+Learning Objectives - Use Log Explorer features. - Explain the features and benefits of logs-based metrics. - Define log sinks (inclusion filters) and exclusion filters. - Explain how BigQuery can be used to analyze logs. - Export logs to BigQuery for analysis. - Use log analytics on Google Cloud.
+
+Cloud Logging overview and architecture - allows you to sore, search, analyze, monitor and alert on log data and envents from Google CLoud - a fully managed service that performs at scale and can ingest app and sys log data from thousands of VMs
+
+    Logs
+      - pulse of your workloads and app
+
+    - helps you with the following:
+      1. Gather data from various workloads
+        - gathers the info req to troubleshoot and understand the workload and app needs
+      2. Analyze large volumes of data
+        - tools like:
+          - error reporting
+          - log Explorer
+          - log analytics
+        - let you drive insights from large sets of data
+      3. Route and store logs
+        - route your logs to the region or service of your choice for add compliance or business benefits
+      4. Get compliance insights
+        - leverage audit and app logs for compliance patterns
+
+      Cloud logging architecture
+        1. Log collection
+           - log data originates
+            - GCE
+              - ops agent
+            - App engine
+            - GKE logs
+              - fluentbit-based collector
+            - GC services
+        2. Log Route
+          - determines which log data is routed to each destination
+
+          Logging API
+
+          Cloud Logging Router
+
+          Log sinks
+            - destinations where log data is stored
+
+          Pub/sub topics
+            - used to route log data to other sercices such as bq
+
+          bq
+            - fully managed petabyte scale analytics data warehouse that can be used
+            to store and analyze log data
+
+        3. Log store
+            - GCS buckets
+              - provides storage of log data in GCS
+
+            - cloud logging log buckets
+              - sotrage buckets designed for storing log data
+
+            Log entries
+              - stored as JSON filters
+
+        4. Log Visualize and Analyze
+          Log Explorer
+            - optimized for troubleshooting uses cases w/ features like:
+              - log streaming
+              - log resource Explorer
+              - histogram for visualization
+
+          Error Reporting
+            - help users react to critical app errors through automated error grouping and notifications
+
+          Log-based metrics
+            - dashboards and alerting provide other ways to understand and make logs actionable
+
+          Log Analytics
+            - Expands the toolset to include ad hoc log analysis capabilities
+
+          Dashboards
+
+          Notifications
+
+Log types and collection
+Log types: 1. platform logs - logs written by GC services - help you debug and troubleshoot issues - help you better understand GC services
+
+        VPC flow logs
+          - record sample of network flows sent from and received by VM instances
+
+      2. component logs
+        - same as platform but generated by google-privided softtware components runniung on your sys
+
+      3. security logs
+        - can answer "who did what, where and when"
+
+        Cloud Audit logs
+          - provide infor about admin act and acesses w/in google cloud services
+
+        Acct transparency
+          - provides you w/ logs of actions taken by google staff when accessing your google cloud content
+
+      4. user-written logs
+        - logs written by custom app and services
+          - Ops Agent
+          - Cloud Logging API
+          - CLoud logging client libraries
+
+        Cloud run/functionalities
+          - simple runtime logging by diffault
+
+      5. multi/hybrid cloud logs
+        GKE
+          - agents auto collect logs from stdout and stderr
+
+          logs written to stdout or stderr
+            - appear automatically in the google cloud console
+
+        GCE
+          - agents collect logs from known locations or logging services like
+            - windows event log
+            - journald
+            - syslogd
+
+Storing, routing and exporting the logs
+Process steps: 1. Centralized logging apis - cloud logging receives log entries through here
+
+      2. Log sinks
+        - det log destination with config like retention
+
+        types
+          - _required
+            - routes admin activity, sys event and access transparency logs automatically
+            - no charges
+            - retention period: 400 days non configuratable
+            - can't be deleted or modified
+
+          - _default
+            - logs not ingested by _required bucket are routed here
+            - no cost charges
+            - configurable retention period
+            - cannot be deleted but can be disabled
+
+          - _user-defined
+
+      3. Storage
+          - GCS
+            - diff thatn cloud logging buckets
+          - bq
+          - pub/sub
+            - to third party app
+
+    Log storage page
+      - summary of statistics fo the ffg:
+        - current toal volume
+          - amt of logs your project has received since the first date of the current month
+        - prev month volume
+          - amt of logs your project received in the last calendar month
+        - projected volume by EOM
+          - estimated amt of logs your project will receive by the end of the current month based on current usage
+        - metrics Explorer
+          - build charts for any metric collected by your project
+
+      Cloud logging bucket
+        - works well to help pre-separate log entries into a distinct log storage bucket
+
+      BQ dataset
+        - allows the SQL query power of BQ to be brought to bear on large and complex log entries
+
+      Cloud Sotage bucket
+        - for long term storage processing w/ other sys
+
+      Pub/sub topics
+        - can export log entries to msg handling third party app/sys like  dataflow/cloud function
+
+      Splunk
+        - used to integrate logs into existing splunk based sys
+        - is a tool for collecting, monitoring, visualizing and analyzing machine data from any source. You may receive faster responses at answers.splunk.com which is actively monitored by Splunk employees
+
+      Other project
+        - useful to help control access to a subset of log entries
+
+      Log sink creation lifecycle
+        - sink destination
+        - logs filter
+
+    Log Explorer
+      - use to build aquery that selects the logs you want to exclude unwatend entries out of the sink
+
+    Example Pipeline
+      Real-time Log archiving and analysis
+        1. events
+        2. logging
+        3. pub/sub
+        4. dataflow
+          - real time log processing at scale
+          - react to realtime issues while streaming it to bigquery for longer-term analysis
+        5. bigquery
+
+      archive logs for long-term storage
+        1. events
+        2. logging
+        3. cloud storage
+
+      Exporting back to splunk
+        1. events
+        2. logging
+        3. pub/sub
+        4. splunk
+
+    Notes
+      - Centralized Log aggregation for:
+        - auditing
+        - retention
+        - non repudiation
+
+      - Aggregation levels
+        - Project
+          - exports all logs for specified project
+          - log filter for choosing log types
+        - folder
+          - inclludes logs from folders, subfolders/projects
+        - organization
+          - inclludes logs from folders, subfolders/projects
+
+    Security log analytics workflow recommends aggregated sinks
+      1. Collect
+        - cloud logging
+      2. Route
+        - aggregated sink
+          - pub/sub
+          - cloud storage
+      3. Analyze
+        - log analytics
+        - bigquery
+        - third party SIEM
+        - Chronicle SIEM
+
+Query and view log
+Log Explorer - lets you retrieve logs, parse and analyze log data - refine your query parameters
+
+      1. Action toolbar
+        - refine logs to projects or storage views
+        - share a link and learn about logs explorer
+
+      2. Query pane
+        - you can build queries
+        - view recently viewed and saved queries
+
+      3. Results toolbar
+        - used to quickly show or hide logs and histogram pane
+        - create a log based metric or alert
+        - now options
+          - helps query and view the current time results
+
+      4. query results
+        - used to quickly show or hide logs and histogram pane and create a log based metric or alert
+
+      5. log fields
+        - used to filter your options based on various factors such as resource type, log name, project ID, etc.
+        - refine query
+        - shows the count of log entries
+
+      6. histogram
+        - where the query result is visualized as histogram bars
+        - each bar is a time range and is color coded based on severity
+        - lets you visualize the distribution of logs over time
+          - makes it easier to see trends in your logs data and torubleshoot problems
+
+      Log query language(LQL)
+        - used to create queries
+
+      Log comparison operators
+        =
+          equals
+        !=
+          does not equal
+        ><>=<=
+          numeric ordering
+        :
+          has
+        :*
+          presence
+
+        =~
+          search for a pattern
+        !~
+          search not for pattern
+
+      The recipe for finding entries
+        1. What do you know about the log entry?
+          - log filename
+          - resource
+          - some text
+        2. full text searches are slow but may be effective:
+          - /score called
+        3. use indexed SEARCH function fro complete text matches, because they perform a case-insensitive match
+          - SEARCH(textPayload, "hellow world")
+        4. if possible, restrict text searches to a log field
+          - jsonPayload:"/score called"
+          - jsonPayload.message="/score called"
+
+      Finding entries quickly
+        1. Search on an indexed field
+          - httpRequest.status
+          - logName
+          - operation.id
+          - resource.type
+          - timestamp
+          - severity
+
+        2. Apply constrains on resource.type and resource.labels field
+          - resource.type = "gke_cluster"
+          - resource.labels.namespace = "my-cool-namespace"
+
+        3. Be specific on which logs you're searching
+          - logName = "projects/benkelly-test/logs/apache-access"
+
+        4. limit the time range that you're searching
+          - timestamp >= "2018-08-08T10:00:00Z" AND timestmap <= "2018-08-08T10:10:00Z"
+
+Using log-based metrics - derive metric data from the content of log entries
+
+    Life cycle
+      1. log entries
+      2. cloud logging
+      3. filter
+      4.1 count
+      4.2 extract
+      5. log based metric
+      6. cloud monitoring
+
+    Use cases:
+      1. Count the occurrences
+        - count the occurrences of a message like:
+          - warning or error
+          - logs
+          - receive a notification when number of occurences crosses a threshold
+
+      2. Observe trends in your data
+        - observe trends in your data like:
+          - latency values in your logs
+          - receive notification if the values change in an unacceptable way
+
+      3. Visualize extracted data
+        - create charts to display the numeric data extracted from your logs
+
+    Key access control roles
+      1. logs configuration writer
+        - list
+        - create
+        - get
+        - update
+        - delete log-based metrics
+
+      2. logs viewer
+        - view existing logs
+
+      3. monitoing viewer
+        - read the time series in log based metrics
+
+      4. logging admin, editor and owner
+        - broad-level roels that can create log-based metrics
+
+    Log based metrics types
+      1. counter metrics
+        - count the number of matched log entries
+
+      2. distribution metrics
+        - record the statistical distinution of the extracted log values
+
+      3. boolean metrics
+        - record where a log entry matches a specified filter
+
+    Scope of log-based metrics
+      - sys-defined log-based metrics apply at the project level
+      - user-defined log based metrics apply either at project or bucket level
+
+    basic lifecycle flow of log based metrics
+      1. find the log w/ requisite data
+      2. filter tot he required entries
+      3. actions | create metric
+      4. pick a metric type(counter or distribution)
+      5. if distribution, set configuration
+      6. you can also add labels
+        - labels cannot be deleted once created
+        - upto 10 user defined labels - ametric cannot be removed
+        - 30,000 active time series
+        - each level upto 2000 per metrics
+
+    Note
+      field name
+        - enter the name of the log entry field that contains value of the label
+
+Log analytics - gives you the analytical power of BQ w/in cloud logging console
+
+    Use cases
+      1. Troubleshooting
+        - get to the root cause w/ search filtering, histogram and suggested searches
+
+      2. Log analysis
+        - analyze app performance, data access and anetwork access patterns
+
+      3. Reporting
+        - use the logs data in Log analytics directly from BQ to report on aggregated app
+
+    analytics-enabled bucket log data VS log routed to bigquery
+      - log data in bq is managed by cloud logging
+      - bq ingestion and storage costs are included in your logging costs.
+      - data residency and lifecycle are managed by cloud logging
+
+    Notes:
+      - you can't downgrade the log bucket to remove the use of log analytics
+
+    Usecases by role
+      1. DevOps
+        - reduce MTTR by using advanced analtyical capabilities to diagnose issues
+        - help me quickly troubleshoot an issue by looking at the top count of requests grouped by response type and severity
+
+      2. Security
+        - investigate security-related attacks w/ queries over large volumes of security logs
+        - help me find all the audit logs associated w/ specific user over the past month
+
+      3. IT or Network Operations
+        - provide better network insight and management through advanced log aggregation capabilities
+        - help me identify network issues for GKE instances using VPC and firewall rules
+
+Qwiklab: Log analytics on Google Cloud - In this lab you will learn about the features and tools provided by Cloud Logging to gain insight of your applications. - https://googlecoursera.qwiklabs.com/focuses/35957393?parent=lti_session
+
+    What you'll learn
+      - How to use Cloud Logging effectively and get insight about applications running on GKE
+      - How to effectively build and run queries using log analytics
+
+    Microservices demonstrate
+      https://github.com/GoogleCloudPlatform/microservices-demo
+
+    Task 1: Infra setup
+      // set default region
+        gcloud config set compute/zone us-east4-c
+
+      //see cluster's status:
+        gcloud container clusters list
+
+      //get cluster credentials
+        gcloud container clusters get-credentials day2-ops --region us-east4
+
+      //verify if nodes have been created
+        kubectl get nodes
+
+    Task 2: Deploy App
+      git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+
+      cd microservices-demo
+
+      //install app
+        kubectl apply -f release/kubernetes-manifests.yaml
+
+      //confirm pods is running
+        kubectl get pods
+
+      /// get external ip of app
+        export EXTERNAL_IP=$(kubectl get service frontend-external -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
+
+echo $EXTERNAL_IP
+
+      // configrm app is running
+        curl -o /dev/null -s -w "%{http_code}\n"  http://${EXTERNAL_IP}
+
+    Task 3: Manage log buckets
+
+    Task 4: Log analysis
+
+      // find the most recent errors in log analytics
+        SELECT
+          TIMESTAMP,
+          JSON_VALUE(resource.labels.container_name) AS container,
+          json_payload
+        FROM
+          `qwiklabs-gcp-01-cb39db4e6168.global.day2ops-log._AllLogs`
+        WHERE
+          severity="ERROR"
+          AND json_payload IS NOT NULL
+        ORDER BY
+          1 DESC
+        LIMIT
+          50
+
+        // To find the min, max, and average latency:
+        SELECT
+        hour,
+        MIN(took_ms) AS min,
+        MAX(took_ms) AS max,
+        AVG(took_ms) AS avg
+        FROM (
+        SELECT
+          FORMAT_TIMESTAMP("%H", timestamp) AS hour,
+          CAST( JSON_VALUE(json_payload,
+              '$."http.resp.took_ms"') AS INT64 ) AS took_ms
+        FROM
+          `qwiklabs-gcp-01-cb39db4e6168.global.day2ops-log._AllLogs`
+        WHERE
+          timestamp > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 24 HOUR)
+          AND json_payload IS NOT NULL
+          AND SEARCH(labels,
+            "frontend")
+          AND JSON_VALUE(json_payload.message) = "request complete"
+        ORDER BY
+          took_ms DESC,
+          timestamp ASC )
+        GROUP BY
+        1
+        ORDER BY
+        1
+
+    // Product page visit number
+    SELECT
+    count(*)
+    FROM
+    `qwiklabs-gcp-01-cb39db4e6168.global.day2ops-log._AllLogs`
+    WHERE
+    text_payload like "GET %/product/L9ECAV7KIM %"
+    AND
+    timestamp > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+
+    // Sessions with shopping cart checkout
+    SELECT
+      JSON_VALUE(json_payload.session),
+      COUNT(*)
+    FROM
+      `qwiklabs-gcp-01-cb39db4e6168.global.day2ops-log._AllLogs`
+    WHERE
+      JSON_VALUE(json_payload['http.req.method']) = "POST"
+      AND JSON_VALUE(json_payload['http.req.path']) = "/cart/checkout"
+      AND timestamp > TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 HOUR)
+    GROUP BY
+      JSON_VALUE(json_payload.session)
+
+Quiz 1. You want to compare resource utilization for VMs used for production, development, and testing. What should you do? - Add a label called “state” to your VMs with the values “dev”, “test”, and “prod” and group by that label in your monitoring chart.
+
+    2. Your manager wants a daily report of resource utilization by application. Where would the best export sink be?
+      - GCS
+
+      - pub/sub
+      - bq
+
+Module 5: Working with Audit Logs
+
+- In this module, we will examine how to use Cloud Audit Logs.
+  You will learn how to use Cloud Audit Logs to answer the question,
+  “Who, did what, and when?” We will also cover best practices for Audit Logging.
+
+Learning Objectives - Explain Cloud Audit Logs. - List and explain different audit logs. - Explain the features and functionalities of the different audit logs. - List the best practices to implement audit logs.
+
+Cloud Audit Logs - answer "Who did what, where and when?"
+
+    Types:
+      1. Admin activity audit logs
+        - record modifications to config or metadata
+      2. Sys Event AL
+        - record google cloud non-human admin actions that modify config
+      3. Data access AL
+        - record calls that read metadata, config, or that create, modify, or read user-provided data
+      4. Policy Denied audit logs
+        - record a security policy violation
+
+    Access Transparency logs
+      - show how and why customer data is accessed after it is stored in Google Cloud
+
+      - log access actions
+      - track actions by Google personnel
+      - support approval and events are surfaced through security command center and apps APIs and Using
+
+Data Access audit logs 1. Data Access audit logs can be enabled at diff levels: - org - folder - project - resource - billing Acct 2. You can even exempt principals from recording data access logs 3. Final scope is the union of the configurations
+
+    Access Approval log type
+      - admin read
+        - records operations that read metadata or configuration information
+        - records operations that read metadata or configuration information
+      - data read
+        - records operations that read user-provided data.
+        - listed files and download from cloud storage
+      - data write
+        - records operations that write user-provided data.
+        - you created a new Cloud Storage file
+
+Audit logs entry format 1. Identify log type - end of log name field value
+
+    2. Identify resource generating log
+      - end of operation->producer field value
+
+    3. Identify audit log entry
+      - end of protoPayload -> type field value
+
+    4. Identify principal/email generating log
+      - protoPayload -> authenticationInfo field value
+
+    5. serviceData
+      - what the query was
+
+Best practices 1. Create a plan for Data Access autid logs - folder then project level
+
+    2. Create a test project and plan
+
+    3. Roll out the plan
+      - use IaC or automation tools
+
+    4. Det and set org level data access
+      - Advantage
+        - detailed infor on who accessed, edited or deleted what and when
+        - free tier
+        - some free logs
+
+      - Disadvantage
+        - logs can be large and the queries per second can be high based on the number of data access requests
+
+    5. Use IaC
+      - run open source or pay for enterprise version
+      - state can be stored locally or remote in GCS or terraform cloud
+      - you can use terraform to enable audit logs
+      - audit logs keep you informed of the resources provisioned using an IaC tool
+
+    6. Aggregate and store your organization's logs
+      - centralize or subdivide log storage by creating user-defined buckets
+      - configure a default storage location at the org level to auto apply a region
+      - protect your audit logs storage by configuring CMEK
+
+    7. Plan and configure exports
+      - decide on logs
+      - decide on level
+      - decide on filters
+      - consider the exclusions
+
+    8. Principle of least privilege
+      - side-channel leakage of data through logs is a common issue
+      - plan the project to monitoring project relationships
+      - use appropriate IAM controls on both Google Cloud-based and exported logs
+      - data access audit logs contain personally identifiable information (PII)
+
+    9. Configure log views
+      - help control access to logs in a log bucket
+      - help control access specific to a project or a set of users
+      - help protect sensitive log data
+
+    10. Scenario: Operational monitoring
+      - CTO: resourcemanager.organizationAdmin
+        - Assigns permissions to security team and service account
+      - Security team: logging.viewer
+        - ability to view Admin activity
+      - Security team: loggin.privateLogViewer
+        - ability to view Data Access audit logs
+      - Assign all permissions at org level
+      - control exported data access through GCS and bigquery IAM roles
+      - use sensitive data protection to redact PII
+
+    11. Scenario: Development teams montiroing Audit Logs
+      - Security team remains the same:
+        - logging.viewer
+        - logging.privateLogViewer
+      - dev team: logging.viewer at folder level
+        - see admin activity audit logs by dev projects in folder
+      - dev team: logging.privateLogViwer at folder level
+        - see data access audit logs
+      - use cloud storage or bigquery IAM to control access to exported logs
+        - providing a dashboard might be helpful
+
+    12. Scenario: External auditors
+      - provide pre-created dashboards for auditor usage
+      - provide logs viewer at org level
+      - provide bigquery data viewer at exported dataset
+        - backend for dashboards
+      - use IAM and/or temporary access URLs for cloud storage
+
+
+Qwiklab: Cloud Audit Logs - In this lab, you investigate Google Cloud Audit Logs. - Cloud Audit Logging maintains multiple audit logs for each project, folder, and organization, - all of which help answer the question, "Who did what, when, and where?"
+
+    Objectives
+      In this lab, you learn how to:
+
+      - Enable data access logs on Cloud Storage.
+      - Generate admin and data access activity.
+      - View Audit logs.
+
+    Task 1: Enable data access logs on Cloud storage
+
+    Task 2: Generate some admin and data access activity
+
+      //create a Cloud Storage bucket with the same name as your project:
+        gsutil mb gs://$DEVSHELL_PROJECT_ID
+
+      // verify
+        gsutil ls
+
+      // create sample txt file contains "hello world"
+        echo "Hello World!" > sample.txt
+        gsutil cp sample.txt gs://$DEVSHELL_PROJECT_ID
+
+      //verify file is in bcket
+        gsutil ls gs://$DEVSHELL_PROJECT_ID
+
+      //Create a new auto mode network named mynetwor
+        gcloud compute networks create mynetwork --subnet-mode=auto
+
+      // create new instance
+        gcloud compute instances create default-us-vm \
+
+--zone=europe-west4-b --network=mynetwork \
+--machine-type=e2-medium
+
+      // delete storage bucket
+        gsutil rm -r gs://$DEVSHELL_PROJECT_ID
+
+    Task 3: Viewing audit logs
+      Expand the delete entry, then drill into protoPayload > authenticationInfo field and notice you can see the email address of the user that performed this action.
+
+      // use Log Name to view the data_access logs
+        I can say logging.google.apis.com and all data access log
+
+Quiz 1. Why are the Data Access audit logs off by default? Select three. - They can be expensive to store - They can be large - May contain sensitive information
+
+    2. If you want to provide an external auditor access to your logs, what IAM role would be best?
+      - Logging viewer
+
+      - Project Viewer
+
+Getting Started with Google Kubernetes Engine.txt
+Module 1: Introdution to Google Cloud
+
+- The first section of this course introduces cloud computing concepts.
+  Learners explore fundamental terminology, the Google Cloud network,
+  how Google Cloud resources are organized in an hierarchy for management,
+  and the tools available to connect to Google Cloud for allocating, changing, and releasing resources.
+
+Learning Objectives - Identify Google Cloud services and their function. - Choose the right Google Cloud services to create your own cloud solution. - Define the purpose of and use cases for Identity and Access Management (IAM). - Identify how costs can be managed in the resource hierarchy. - Use the Google Cloud console and Cloud Shell to create VMs, service accounts, and buckets.
+
+Introduction
+GKE - managed service for kb8s
+
+    kb8s
+      - orchestration framework for running containerized app in production at scale
+
+    containers
+      - way to package and run code that's more efficient than VM
+
+Cloud computing and Google Cloud
+Cloud computing - a way of using IT that has these 5 equally improtant traits:
+
+      1. On-demand Self-service
+        - no human intervention needed to get resources
+        - You can quickly get more resources when you need them.
+      2. Broad network access
+        - access from anywhere
+        - Resources can be allocated automatically.
+      3. Resource Pooling
+        - provider shares resources to customers
+        -  You share resources from a large pool that enables economies of scale.
+      4. Rapid elasticity
+        - get more resources quickly as needed
+        - When customers need more resources, they can get more. When they need less, they can scale back.
+      5. Measured service
+        - pay only for what you consume
+
+Google cloud compute offerings
+Compute services 1. Compute Engine - a managed environment for deploying VM instance - infra as a service solution
+6- provides max flex for people who prefer to manage server instance themselves - IaaS offerings - predefined and customized VMs - persistent disks and local SSDs - managed instance groups - per second billing
+
+      2. Google kubernetes Engine(GKE)
+        - a managed environment for deploying containerized applications
+        - built ontop of compute engine
+        - way to orchestrate code in containers.
+        - lets you run containerized app on cloud envi that google manages for you under your admin control
+
+      3. App Engine
+        - a fully managed serverless platform for deploying applications
+        - platform as a service framework(PaaS)
+        - a managed compute platform that enables you to deploy and scale stateless containers on google cloud scalable infra.
+        - bind code to libraries
+        - focused on app logic/code
+        - deploys required infrastructure
+          - JAVA
+          - Node.json
+          - python
+          - php
+          - c#
+          - .net
+          - ruby
+          - go
+        - version control + traffic splitting
+        - Usecases:
+          - want to focus on writing code
+          - want to focus on building app instead of deploying and managing the env
+          - don't need to build a highly reliable and scalable infra
+
+          1. website
+          2. mobile and gaming backends
+          3. restful API
+
+      5. Cloud Functions
+        - a fully managed serverless platform for deploying event-driven functions
+        - function as a service
+        - event-based, asynch compute solution
+        - exec code in response to events
+        - deploys the computing capacity to run code
+        - can connect and extend cloud services
+        - bills to nearest 100 ms
+
+        Common Usecases
+          1. part of microservices app architecture
+          2. used to build simple, serverless mobile or IoT backends or Integrate w/ third-party services and apis
+          3. can be part of intelligent app such as VA, video or image analysis, and sentiment analysis
+
+      6. Cloud Run
+        - a managed compute platform
+        - runs statless containers
+        - serverless
+        - built on knative
+        - it's fast
+        - charges only for resources used
+        - bills to nearest 100 ms
+
+The google network - 40% world internet market share
+
+    Notes
+      - highest possible throughput
+      - lowest possible latencies
+      - 100+ CDN nodes worldwide
+      - high demand content is cached for quicker access
+
+    Five Major Geographic Locations
+      1. North America
+      2. South America
+      3. Asia
+      5. Australia
+
+    App location affects:
+      1. availability
+      2. durability
+      3. latency
+
+Resource management
+Latency under 1ms
+Regiona, Zone, Network Edge Locations
+
+    1. Zonal resources operate exclusively in a single zone
+      - compute engine
+      - persistent disk
+      - gke node
+
+    2. Regional resources span multiple zones
+      - regional GKE cluster
+      - firestore
+
+    3. Global resources can be managed across multiple regions
+      - http(s) load balancer
+      - VPC
+
+    4. Project
+      - base-level organizing entity for creating and using resources, services, managing billing, APIs and permissions.
+        - any resources must reside/belong to a project
+      - project logically organize resources while zones and regions physically organize them
+      - can be recovered from accidental deletions
+      - identified by unique project ID, name and number
+        - project ID
+          - globally unique
+          - immutable
+          - assigned by GC byt mutable during creation
+
+        - project name
+          - need not be unique
+          - chosen by you
+          - mutable
+
+        - project number
+          - globally unique
+          - assigned by google cloud
+          - immutable
+
+      - billing is at project level and managed separately
+      - projects can have diff owners and users
+      - projects hold resources, each of which belongs to just one project
+      - projects are separate entities under the org node
+
+    5. Use folders to reflect hierarchy like dept -> team and apply policies
+      - can nest folders
+
+    6. Organization
+      - root node of google cloud resource hierarchy
+      - fix org ID
+      - changeable display name
+
+    7. IAM
+      - fine-tune access control to all the Google Cloud Resources
+      - Admin can applu policies that define who can do whatt on which resources
+        - who(google acount, service acount, google group, cloud identity domain)
+          - principal
+        - can do what
+          - IAM role to IAM group
+        - on which resources
+
+      - Shared Resoponsibility
+        - "If you can configure or store it, you're responsible for securing it."
+
+        1. cloud provider
+          - hardware
+          - networks
+          - physical security
+
+        2. customer
+          - configurations
+          - access policies
+          - user data
+
+    8. Policies inhireted from root to downward level
+
+    9. Resource hierarchy matters because Google Cloud shared security model
+      - google is responsible for manging its infra security
+      - your are responsible for securing your Data
+      - google helps with best practices, templates, products and solutions
+
+      Resoponsibility Components
+        Content
+        Usage
+        deployment
+        Web application security
+        Identity
+        Operations
+        Access and authentication
+        network security
+        OS, data and Content
+        audit logging
+        network
+        storage and encryption
+        hardware
+
+    Note
+
+Billing - project level
+
+    How billing works?
+      - billing account pays for project resources
+      - billing account is linked to zero or more projects
+      - billing acct can be charged automatically
+      or invoiced every month or at threshold limit
+      - subaccounts can be used for separate billing for projects
+
+    How to keep your billing under control
+      1. budgets
+        - billing account or project level
+      2. alerts
+        - notify when costs approach your budget limit
+
+      3. reports
+        - visual tool to monitor expenditure based on project or services
+
+        billing export
+        - BigQuery
+        - cloud looker studio
+          - visualize data
+
+      4. quotas
+        -  designed to prevent the over-consumption of resources because of an error or a malicious attack
+
+      Cloud implements quotas
+        - limits unforeseen extra billing charges
+        - prevent overconsumption of resources because of an error/malicious attack
+        - project level
+
+        Types
+          1. Rate quotas
+            - resets after specif time
+            - not limit rate of calls to app running in GKE but calls to admin config of GKE clusters
+
+            sample:
+              GKE API: 3000 req per min
+
+          2. Allocation quotas
+            - govern number of resources you can have in your projects
+            - doesn't reset at intervals
+
+            sample:
+              - 15 networks per project
+
+      Note:
+        - quouta may increase automatically based on Usage
+        - can lower quotas
+        - some quyoutas are fixed fo all customers
+
+Interacting with Google Cloud
+Ways to interact w/ google cloud 1. Google cloud console - web user interface to manage all google cloud resources
+
+      2. Cloud SDK and Cloud Shell
+        - CLI access to your cloud resources directly from your browser
+          - gcloud
+            - main cli for google cloud products and services
+          - kubectl
+          - gsutil
+            - provides access to GCS from command line
+          - bq
+            - cli for bq
+
+        Cloud shell
+          - ephmeral GCE VM instance
+          - built-in authorization fro access to cloud console projects and resources
+          - debian VM
+          - persistent 5 gb home dir
+
+          Cloud shell code Editor
+            - a tool for editing files inside of your cloud shell env in real-time w/in web browser
+
+      3. Cloud Console mobile app
+        - for iOS and Android
+        - start, stop and use ssh to connect to GCE instances
+        - get up-to-date billing infor and alerts
+        - set up customizable grapsh that show key metrics
+        - no additional charge
+
+      4. Rest-based API
+        - for customer app so that code you write can control them(google api explorer)
+
+Qwiklab: accessing the cloud console and cloud Shell
+In this lab, you become familiar with Google Cloud's web-based interface. Two integrated environments are available: - A GUI environment called the Google Cloud console - A command-line interface called Cloud Shell, which has the commands from the Cloud SDK pre-installed
+
+    Objectives
+      In this lab, you learn how to perform the following tasks:
+
+        1. Learn how to access the Google Cloud console and Cloud Shell
+        2. Become familiar with the Google Cloud console
+        3. Become familiar with Cloud Shell features, including the Cloud Shell Editor
+        4. Use the Google Cloud console and Cloud Shell to create buckets and VMs and service accounts
+        5. Perform other commands in Cloud Shell
+
+    Cloud Shell provides the following features and capabilities:
+      - Temporary Compute Engine VM
+      - Command-line access to the instance through a browser
+      - 5 GB of persistent disk storage ($HOME dir)
+      - Preinstalled Cloud SDK and other tools
+      - gcloud: for working with Compute Engine, Google Kubernetes Engine (GKE), and many Google Cloud services
+      - gcloud storage and gsutil: for working with Cloud Storage
+      - kubectl: for working with GKE and Kubernetes
+      - bq: for working with BigQuery
+      - Language support for Java, Go, Python, Node.js, PHP, and Ruby
+      - Web preview functionality
+      - Built-in authorization for access to resources and instances
+
+      Note:
+        - After one hour of inactivity, the Cloud Shell instance is recycled. Only the /home directory persists. Any changes made to the system configuration, including environment variables, are lost between sessions.
+        - When you are working in the Cloud Shell or writing scripts, creating environment variables is a good practice. You can easily and consistently reuse these environment variables, which makes your work less error-prone.
+
+      //create a bucket
+        gcloud storage buckets create gs://$MY_BUCKET_NAME_2 --location=us-central1
+
+      //set gcloud zone configuration
+        gcloud config set compute/zone $MY_ZONE
+
+      // verify config
+        gcloud config list
+
+      //create second VM
+        gcloud compute instances create $MY_VMNAME \
+        --machine-type "e2-standard-2" \
+        --image-project "debian-cloud" \
+        --image-family "debian-11" \
+        --subnet "default"
+
+      //verify list all VMs
+        gcloud compute instances list
+
+      //create second service accounts
+        gcloud iam service-accounts create test-service-account2 --display-name "test-service-account2"
+
+      //grant the second service account the viewer role
+        gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT --member serviceAccount:test-service-account2@${GOOGLE_CLOUD_PROJECT}.iam.gserviceaccount.com --role roles/viewer
+
+      //Copy a picture of a cat from a Google-provided Cloud Storage bucket to your Cloud Shell:
+        gcloud storage cp gs://cloud-training/ak8s/cat.jpg cat.jpg
+
+      //upload image to bucket 1
+        gcloud storage cp cat.jpg gs://$MY_BUCKET_NAME_1
+
+      // upload image from bucket 1 to bucket 2
+        gcloud storage cp gs://$MY_BUCKET_NAME_1/cat.jpg gs://$MY_BUCKET_NAME_2/cat.jpg
+
+      //Set the access control list for a Cloud Storage object
+        // view acl current
+          gsutil acl get gs://$MY_BUCKET_NAME_1/cat.jpg  > acl.txt cat acl.txt
+
+        // set to private
+          gsutil acl set private gs://$MY_BUCKET_NAME_1/cat.jpg
+
+        //verify
+          gsutil acl get gs://$MY_BUCKET_NAME_1/cat.jpg  > acl-2.txt cat acl-2.txt
+
+      // Authenticate as a service account in Cloud Shell
+        gcloud auth activate-service-account --key-file credentials.json
+
+        //verify
+          gcloud config list
+
+        //list auth list
+          gcloud auth list
+
+        // verify test-service-account cannot access the cat.jpg file i
+
+      //switch back
+        gcloud config set account $USERNAME
+
+        //verify
+          gcloud storage cp gs://$MY_BUCKET_NAME_1/cat.jpg ./copy2-of-cat.jpg
+
+      //Make the first Cloud Storage bucket readable by everyone, including unauthenticated users:
+        gsutil iam ch allUsers:objectViewer gs://$MY_BUCKET_NAME_1
+
+      // install nginx
+        sudo apt-get remove -y --purge man-db
+        sudo touch /var/lib/man-db/auto-update
+        sudo apt-get update
+        sudo apt-get install nginx
+
+      //copy the HTML file you created using the Cloud Shell Editor to your virtual machine
+        gcloud compute scp index.html first-vm:index.nginx-debian.html --zone=us-central1-b
+
+      //copy the HTML file from your home directory to the document root of the nginx web server:
+        sudo cp index.nginx-debian.html /var/www/html
+
+Notes: - You can't convert a non-preemptible instance into a preemptible one. This choice must be made at VM creation.
+
+Quiz 1. You are considering deploying a solution by using containers on Google Cloud. What Google Cloud solution provides a managed compute platform with native support for containers? - Google Kubernetes Engine clusters
+
+    2. You are developing a new product for a customer and need to be mindful of cost and resources. What Google Cloud tools can be used to ensure costs stay manageable before consumption gets too high?
+      - Create a new folder inside your organization node, then create projects inside that folder for the resources.
+
+    3. You are developing a new product for a customer and need to be mindful of cost and resources. What Google Cloud tools can be used to ensure costs stay manageable before consumption gets too high?
+      - Set up budgets and alerts at the project level.
+
+      - Configure quotas and limits for each product folder.
+
+    4. One of the main characteristics of cloud computing is that resources are elastic. What does that mean?
+      - When customers need more resources, they can get more. When they need less, they can scale back.
+
+Module 2: Introduction to Containers and Kubernetes
+
+- The second section of this course examines software containers and the benefit they bring to application deployment.
+- Learners explore containers and container images, Cloud Build, Kubernetes, and Google Kubernetes Engine.
+
+Learning Objectives - Define the concept of a container and identify uses for containers. - Identify the purpose of and use cases for Kubernetes. - Outline the concept of Google Kubernetes Engine. - Create a container using Cloud Build.
+
+Containers - simply a running instance of an image. - isolate workloads is derived from the composition of several technologies - containers use a varied set of linux tech: - processes - containes own virtual memory address space - linux namespaces - control what an app can see: process ID num, direcotry trees, IP addr and more - cgroups - control what an app can use: max cpu time consumption, memory, I/O BW and etc. - union file sys - efficiently encapsulate applications and their dependencies into a set of clean, minimal layers
+
+    Indiv servers build apps
+      Dedicated server:
+        App code
+        dependencies
+        kernel
+        hardware
+
+      Cons:
+        - deploment is in months
+        - low utilization
+        - not portable
+
+    Hypervisors create and manage VM
+      VM:
+        App code
+        dependencies
+        kernel
+        hardware + hypervisors
+
+      Cons:
+        deployment in mins
+        hypervisor/ specification
+        not isolated tied to OS
+
+      Fix:
+        1. Software engineering policies
+          - need to be updated occasionally
+
+        2. Integration tests
+          - can cause novel failure modes that are hard to troubleshoot
+          - slows down development
+
+    VM-centric way:
+      VM:     VM:
+      App code  App code
+      dep       dep
+      kernel    kernel
+        Hardware + hypervisor
+
+      Cons:
+        - kernel update is slow
+        - redundant OS
+
+    User space abstraction and containers
+      VM
+        App         App
+        User space  User space
+        dep         dep
+
+        container runtime
+          - a software that knows how to launch a container from a container Images
+
+          container layer
+            - adds a new writable layer on top of the underlying layers
+            - all changes made to running container are written to this thin writable layer
+
+
+        kernel
+
+        hardware + hypervisor
+
+    Containers
+      - lightweight sys. in user space.
+        - don't carry full OS
+      - can be sched or integrated tightly w/ underlying sys
+      - can be created and shut down quickly
+      - don't boot an entrie VM
+      - initialize an OS for each app
+      - delivery vehicles for app code
+      - stand-alone/resource eff/portable exec packages
+      - app centric way to deliver high performance and scalable app
+        - container the same and run the same anywhere
+
+
+    Advantage
+      1. They're code-centric way to deliver high-performing, scalable app
+      2. They provide access to reliable underlying hardware and software
+      3. code will run successfully regardless if it is on a local machine or in production
+      4. they make it easier to build app that use the microservices design pattern
+
+    Quiz: Introduction to containers
+      1. Which of these problems are containers intended to solve? Mark all that are correct (3 correct answers),
+        - Packaging applications in virtual machines can be wasteful.
+        - It's difficult to troubleshoot applications when they work on a developer's laptop but fail in production.
+        - Applications need a way to isolate their dependencies from one another.
+
+Container Images - ephemeral
+
+    docker
+      - an open-source technology that allows you to create and run applications in containers, but it doesn’t offer a way to orchestrate those containers at scale as Kubernetes does
+      - no way to orchestrate app at scale
+
+    image
+      - An application and its dependencies
+      - dev can package and ship an app w/o worrying about the sys it will run on
+
+Qwiklab: Working with Cloud build
+
+- In this lab you will build a Docker container image from provided code and a Dockerfile using Cloud Build.
+- You will then upload the container to the Artifact Registry.
+
+Objectives
+In this lab, you learn how to perform the following tasks:
+
+    1. Use Cloud Build to build and push containers
+    2. Use Artifact Registry to store and deploy containers
+
+Task 1. Confirm that needed APIs are enabled
+
+    Task 2. Building containers with DockerFile and Cloud Build
+      //In the Google Cloud Console, click the Details tab for the nginx-1 workload. The Details tab shows more details about the workload including the Pod specification, number and status of Pod replicas and details about the horizontal Pod autoscaler.
+          gcloud artifacts repositories create quickstart-docker-repo --repository-format=docker \
+    --location=us-east4 --description="Docker repository"
+      - Click the Revision History tab. This displays a list of the revisions that have been made to this workload.
+
+      // build the Docker container image in Cloud Build:
+        gcloud builds submit --tag us-east4-docker.pkg.dev/${DEVSHELL_PROJECT_ID}/quickstart-docker-repo/quickstart-image:tag1
+
+    Task 3. Building containers with a build configuration file and Cloud Build
+      //start a Cloud Build using cloudbuild.yaml as the build configuration file:
+        gcloud builds submit --config cloudbuild.yaml
+
+    Task 4. Building and testing containers with a build configuration file and Cloud Build
+      //Insert our region value into the yaml file.
+        sed -i "s/YourRegionHere/$REGION/g" cloudbuild2.yaml
+
+      //Confirm that your command shell knows that the build failed:
+        echo $?
+
+        note:
+          The command will reply with a non-zero value. If you had embedded this build in a script, your script would be able to act up on the build's failure.
+
+Kubernetes - an open source platform that helps you orchestrate and manage your cotnainer infra on-premise or in the cloud - concetainer-centric management environment - automate deployment,scaling, lb, logging, monitoring and other mngmt feautures of containerized app - supports declarative configuration - deploy desired state when administer infrastructure in spite of success/failures - sys desired state is always documented - ability to automatically keep sys in a state that you declare - allows imperative configuration - issue command to change the sys state. - use only for quick temp fixes
+
+        Features:
+        1. Supports both
+          - stateful(user and session data can be stored persistently)
+          - and stateless(nginx/apache web server) applications
+        2. Supports batched jobs and daemon tasks
+        3. autoscaling containerized apps
+        4. Allows resource limits
+          - secify resource request levels and resourve limits for workloads
+            - improve overall performance w/in cluster
+        5. Extensibility
+          - plugins and add-ons
+        6. is open source and portable
+
+      Note:
+        - allows moving kubernetes workloads freely w/o vendor lock-in
+
+Google Kubernetes Engine - solve "kubernetes is powerful but managing the infra is a full time job" - a managed kubernetes service on google infra. - helps you deploy, manage and scale kubernetes environments for your containerized app on Google Cloud - make it easy to bring kubernetes workload to google cloud
+
+    Features
+      1. fully managed
+      2. container optimized OS
+      3. autopilot
+        - node
+          -  M that host gke clusters
+        - mode of operation in GKE which google manages your
+          - cluster config
+          - nodes
+          - scaling
+          - security
+          - other preconfig settings
+      4. auto repair
+        - periodic health check
+        - reparirs unhealthy nodes
+      5. auto upgrade
+        - ensures clusters have the latest stable version of kb8s
+        - cluster
+          - instatatiate kb8 sys
+        - clusters automatically upgraded w/ latest stable ver of kb8s
+      6. cluster scaling
+        - scale by demand
+      7. identity and access mngmt
+      8. integrated logging and monitoring
+        - how an application is performing
+      9. integrated networking(VPC)
+        -  load balancers and ingress access for your cluster.
+      10. seamless build integration
+        - Cloud Build and Artifact Registry
+      qq.  google cloud console
+        - provides insights into GKE clusters
+          - view
+          - inspect
+          - delete resource
+        - dashboard for gke cluster and workloads that you don't have to manage
+
+Quiz: 1. What is significant about the topmost layer in a container? Choose two options. - An application running in a container can only modify the topmost layer. - The topmost layer's contents are ephemeral. When the container is deleted, the contents are lost.
+
+      - Reading from or writing to the topmost layer requires special software libraries.
+      - Reading from or writing to the topmost layer requires special privileges.
+
+    2. When using Kubernetes, you must describe the desired state you want, and Kubernetes's job is to make the deployed system conform to that desired state and keep it there despite failures. What is the name of this management approach?
+      - Declarative configuration
+
+    3. What is the name for the computers in a Google Kubernetes Engine cluster that run workloads?
+      - Nodes
+
+Module 3: Kubernetes architecture
+
+- In this module you’ll learn the components of a Kubernetes cluster and how they work together.
+- Learners deploy a Kubernetes cluster by using Google Kubernetes Engine, deploy Pods to a GKE cluster, and view and manage different Kubernetes objects.
+
+Introduction
+Learning Objectives  
+ - Conceptualize the Kubernetes architecture. - Identify how to view and manage Kubernetes objects. - Distinguish between Google Kubernetes Engines modes of operation. - Deploy a Kubernetes cluster by using GKE.
+
+Kubernetes concepts
+Two Fundamental components of kb8s operating philosophy: 1. Kubernetes Object model - Object - persistent entities of representing the state of the cluster - Desired state/Object spec - described by you - Current state/Object status - described by kb8s control plane - represents every thing kubernetes manage - can view and change attributes and state
+
+    2. Principle Declarament Management
+      - dictates state of the object and bring that state even if it's failure/success
+
+      Watch loop
+        - keeping the state you declared
+
+    Two elements to kubernetes objects
+      1. Object spec
+        - desired state described by us
+      2. Object status
+        - current state described by kb8s control plane
+
+        kb8s control plane
+          - various sys processes that collaborate to make kb8s cluster work
+
+    Kinds of kb8s objects
+      1. Pods(Containers in a Pod share resources)
+        - basic building block of the standard kubernetes module and they are the
+        - smallest deployable kb8s object
+        - every running container in a kb8s sys is a Pod
+        - contains one or more containers
+          - tightly coupled and share resources including networking and storage
+          - shares network namespace including IP addr and network products
+          - can communicate throug local host IP(127.0.0.1)
+        - group of VM instance that share resources contains group containers
+        - each pod has a unique IP address
+        - pods are not self healing
+
+    Note:
+      - kb8s control plane continuouosly monitor state of the cluster, endlessly comparing real stat to what has benn decrlared and remedying state as needed
+
+    Quiz
+      1. What is the difference between a pod and a container?
+        - A pod contains one or more containers.
+          - The containers within a pod are tightly coupled with one another and can communicate using the localhost IP address.
+
+Kubernetes Control Plane/Components - a term to refer to the various system processes that collaborate to make a Kubernetes cluster work. - is the fleet of cooperating processes that make a Kubernetes cluster work
+
+    Cooperating processes make a kubernetes cluster work
+      1. Control Plane/VM instances
+        - coordinate the entire cluster
+      2. Nodes/VM instances
+        - run pods
+
+    Control Plane Components
+      1. kube-apiserver
+        - single component that you/client interact w/ directly
+        - accept commands that view/change the state of the cluster
+          - including launching pods
+        - authenticates incoming req, det whether they are authorized and valid and manages admission control
+
+      2. kubectl
+        - commands to view/change state that
+          - connect to kube-apiserve
+          - communicate w/ it using the kubernetes API
+          - authenticates incoming requests
+          - manages admission control
+
+      3. etcd
+        - cluster's db
+        - reliably store the state of the cluster
+          - includes
+            - all of the cluster config data and more dynamic info
+            - what nodes are part of the cluster
+            - what pods should be running
+            -  where they should be running
+        - you'll never directly interact w/ etcd
+
+      4. kube-scheduler
+        - responsible for scheduling pods onto nodes
+          - evaluates req of each indiv pod and selecting which node is most suitab;e2
+          - when pod object doesn't have an ass to a node
+            - it chooses a node and writes the name of that node into the pod objkect
+        - features
+          - can specify certain pod is only allowed to run on nodes w/ certain memory
+          - define affinity specifies
+          - define anti0affinity spec
+      5. kube-controller-manager
+        - continuously monitors the state of the cluster through kube-apo-server
+        - it will attempt make the current state equal to the desired state
+        - responsible for launching to the pods
+
+        Note:
+          - loops of code/controllers
+            - manges kb8s objects
+            - handle the process of remdiation
+
+        Sample:
+          How to keep 3 nginx pods always running
+            - gather them into a controller object called deployment
+
+          - Node Controllers
+            - montior and respond when a node is offline
+
+        6. kube cloud-manager
+          - manages controllers that interact w/ underlying cloud providers
+          - responsible for bringing in Google cloud features like LB and storage volumens when you needed them
+
+      Nodes Components
+        - runs small family of control plane components
+
+        1. kubelet
+          - kubernetes agent on each node
+          - use by kube-apiserver when it wants to start a pod on a node
+          - uses the container runtime to start the pod and monitors its lifecycle, readiness liveliness proves and reports back to kube-api server
+
+          containerd
+            - runtime component of Docker
+
+        2. kubeproxy
+          - maintain the network connectivity amont he pods in a cluster
+            - uses FW of iptables built into linux kernel
+      Quiz
+      1. Which control plane component is the only one with which clients interact directly?
+        - kube-apiserver
+
+      2. Which control plane component is the cluster's database?
+        - etcd
+
+      3. What is the role of the kubelet?
+        - serve as Kubernetes’s agent on each node
+
+        kube-proxy
+          - maintain network connectivity among the Pods in a cluster
+
+         kube cloud-manager
+          - interact with underlying cloud providers
+
+Kubernetes Engine concepts
+Comparison of tw modes of GKE 1. Autopilot mode - manages the entire cluster's infra - control plane - node-pools - nodes - node configuration - auto-upgrades - baseline security config - baseline networking config - fully managed kb8s cluster bringing tohether the nest pf GKE advances in scaling, securiry and day 2 operations into a google SRE managed and optimized kb8s cluster - optimized managed kubernetes w/ hands-off experience - less mngmt overhead, but less configuration abilities - only pay for what you use(Pod pricing)
+
+      2. Standard mode
+        - has all same functionality as Autopilot but your responsible for:
+          - configuration of indiv nodes
+          - management
+          - optimization of the cluster to your requirements
+        - managed kb8s w/ configuration flexibility
+        - more management overhead but fine grained configuration
+        - pay for all provisioned infra regardless of utilization
+
+    Notes
+      - In kb8s environment
+        - nodes are created externally by cluster admin not by kb8s itself
+
+      - In gke
+        - it launch GCE VM instances and register them as nodes automatically
+        - pay per hour of life of your nodes(not counting the control plane)
+        - By default node machine type
+          - e2-medium
+            - 2vCPU and 4 GB memory
+        - you choose machine type when creating cluster in standard mode
+        - max CPU: 416 vCPU cores
+
+        "GKE will never use platform that is older than CPU you specify, and if it picks a newer platform, cost will be the same"
+
+      - By default:
+        Single zone
+          - a cluster launches in a single zone w/ 3 identical nodes all in one node pool
+
+        Regional clusters
+          - single API endpoint for the cluster
+          - control planes and nodes are spread across multiple zones/all zones
+            - each zone containes control plane and 3 nodes
+            - increase one, automatically the same changes w/ other Zone
+
+      - can't convert zonal to regional cluster and vice versa
+      - private cluster
+        - control plane and nodes are hidden from public internet
+      - changes
+        - number of nodes can be changed during or after creation of cluster
+
+    GKE feautres:
+      1. Node pool
+        - is a subset of nodes w/in cluster that share config(amt memory, CPU generation)
+        - ensure that workloads run on the right hardware w/in your cluster
+        - GKE features
+      2. Automatic node upgrades
+      3. automatic node repairs
+      4. cluster autoscaling
+
+
+    Quiz
+      1. In GKE clusters, how are nodes provisioned?
+        - As Compute Engine virtual machines
+
+      2. In GKE, how are control planes provisioned?
+        - As abstract parts of the GKE service that are not exposed to Google Cloud customers
+
+      3. What is the purpose of configuring a regional cluster in GKE?
+        - To allow applications running in the cluster to withstand the loss of a zone
+
+Kubernetes Object Management
+Kubernetes Object management
+All objects are identified by: - unique name - unique identifier
+
+      Manifest files
+        - yaml/json format
+        - where objects are defined
+
+        Required fields:
+          1. apiVersion
+            - kb8s api version
+              - create the obkect
+              - maintain backewards compatibility
+          2. kind
+            - defines the object you want
+              - pod
+          3. metadata
+            - identify object name, unique id, optional namespace like label
+              - name is qunique
+              - label help you identify and organize objects and subsets of objects
+          4. spec
+
+        Best practices:
+          - one file to define several drelated objects
+          - save Yamls file sin version-controlled repositories
+            - easier to track and manage changes when necessary
+
+      Deployment object
+        - labeled w/ 3 different key values
+          - app, enviroment and stack
+
+      admin command
+        - kubectl get pods --selector=app=nginx
+
+      Pods
+        - are disgned to be ephemeral
+        - don't repair themselves and not meant to run forever
+
+      How to to tell kb8s to deploy 3 nginx containerized?
+        - declare controller object to mange state of te pods
+          - deployments
+          - statefulsets
+          - dameonsets
+          - jobs
+        - deployment controller
+          - monitor and maitain 3 nginx pods
+
+      Resource management for Pods and Containers
+        - important that containers have enough resources to run
+        - app could use more resources than they should
+        - CPU and memory(RAM) resources are the most common resources specified
+
+      Namespace
+        - allows you to abstract a single physical cluster into multiple clusters
+          - test
+          - stage
+          - prod
+        - lets you implemet resource quotas across the cluster
+
+        - 2 initial namespace in a cluster
+          1. default
+            - pods
+            - deployments
+          2. kube-system
+            - objects created by kb8s sys itself
+            - configMap
+            - secrets
+            - controllers
+            - deployments
+          3. kube-public
+            - objects that are publicly readabale to all users
+            - tool for disseminating info to everyhtin running in a cluster
+
+          Best practice:
+            1. apply namespace at CLI for most flexible
+              - kubectl -n demo apply -f mypod.yaml
+
+    A note about deployments and ReplicaSets
+      ReplicaSet Object
+        - created during rolling upgrade of deployment object
+          - increase number of pods in second replicaset while decreases number in first replicaset
+
+    Quiz: Kubernetes Object management
+      1. What is the purpose of a Service? Choose all that are true (2 correct answers)
+        - To provide a load-balancing network endpoint for Pods
+        - To allow you to choose how Pods are exposed
+
+      2. If you are deploying applications in your Pods that need persistent storage, which controller type should you use?
+        - StatefulSet
+
+    A note about services
+      services
+        - provide load balanced access to specified pods
+
+        1. clusterIP
+          - exposes the service on an IP address that is only accessible from w/in this cluster.
+          - default type.
+
+        2. NodePort
+          - exposes the service on the IP addr of each node in the cluster, at a specific port number.
+
+        3. LoadBalancer
+          - exposes the service externally, using load balancing service provided by a cloud provider
+          - give access to regional network load balancing config by default
+          - Ingress object
+            - get access to global HTTP(s) load balancing config
+
+    Controller objects to know about
+      1. ReplicaSets
+        - ensures that population of pods all identical to one another and running the smae time.
+
+      2. Deployments
+        - lets you create, update, rollback and scal pods using replicasets as needed to do so
+
+      3. Replication Controllers
+        - similar to combination of RS and deployments
+        - no longer recommended because deployment provide helful frontend to replica
+
+      4. StatefulSets
+        - deploy app that maintain local state
+        - similar to deployment in that pod use the same container spec.
+          - deployment controller are not given persistent identites
+          - in statefulsets
+            - have unique persistent identities w/ stable network identity and persistent disk storage
+
+      5. DaemonSets
+        - if needed certain pods on all nodes
+        - ensure that specific pod is always running on all or some subset of the nodes
+        - ensure logging agent like fluentd is running on all nodes in the cluster
+
+        daemon
+          - non interactive process means running on background
+      6. Jobs
+        - creates one or more pods required to run a tasks
+        - when task is complete, job wil terminate all those pods
+        - cronjob
+          - runs pods on time based schedule
+
+
+    Quiz: kubernetes controller objects
+      1. In a manifest file for a Pod, in which field do you define a container image for the Pod?
+        - spec
+
+      2. What are Kubernetes namespaces useful for? Choose all that are correct (2 correct answers).
+        - Namespaces let you implement resource quotas across your cluster.
+        - Namespaces allow you to use object names that would otherwise be duplicates of one another.
+
+      3. What is the purpose of the Deployment object?
+        - To ensure that a defined set of Pods is running at any given time.
+
+    Qwiklab: Deploying GKE Autopilot Clusters
+      Overview
+        In this lab, you use the Google Cloud Console to build GKE clusters and deploy a sample Pod.
+
+      Objectives
+        In this lab, you learn how to perform the following tasks:
+
+          1. Use the Google Cloud Console to build and manipulate GKE Autopilot clusters
+          2. Use the Google Cloud Console to deploy a Pod
+          3. Use the Google Cloud Console to examine the cluster and Pods
+
+      Task 1. Deploy GKE clusters
+        - Clusters can be created across a region or in a single zone. A single zone is the default.
+        -  When you deploy across a region the nodes are deployed to three separate zones and the total number of nodes deployed will be three times higher.
+
+      Task 2. Deploy a sample workload
+
+      Task 3.. View details about workloads in the Google Cloud Console
+
+Migrate for Anthos - used for migrating not contianerized existing app
+
+    Anthos
+      - tool for getting workloads into containerized deployment son google cloud
+    Migrate for Anthos Introduction
+      - move existing app into kb8s environment
+      - move and convert workloads into containers
+      - workloads can start as physical servers or VMs
+      - moves workload compute to container  immediately(<10 min)
+      - data can be mirgrated all at once or streamed to the cloud until the app is live in the cloud
+
+    Migrate for Anthos Architecture
+      Link to github:
+
+      Step 0: On-premises/cloud
+        - uncotainerized app
+
+      Step 1: Migrate for Compute Engine
+        - a tool that allows you to bring existing app into VMs on Google Cloud
+        - create piplen for streaming or migrating data from on premis or another cloud provider into Google Cloud
+
+        Components
+          1. Migrate manager(GCE)
+          2. Edge Nodes(GCE)
+          3. Cache(GCS)
+
+      Step 2: Migrate for Anthos
+        - installed on a GKE processing cluster
+
+        Components
+          1. Processing Cluster(GKE)
+            - namespaces
+            - service accounts
+            - roles/clustroles
+            - rolebingds/clusterrolebindings
+            - configmaps
+            - services
+            - statefulsets
+            - dameonsets
+            - job
+            - storageclass
+            - CRD
+
+          2. Artifacts(GCS)
+
+          3. Images(Container Registry)
+
+      Step 3: Production Project
+        Components
+          1. prod cluster(GKE)
+            - app
+
+    Migration Path/steps
+      Step 1 - Configure processing cluster
+        - install migrate for anthos components inside it
+
+      Step 2 - add migration source
+        sources:
+          - VMware
+          - AWS
+          - Azure
+          - Google Cloud
+
+      Step 3 - generate and review plan
+        - create migration object w/ details of the migration that is performed
+          - generate template in a yaml file
+            - cusotmize to your desire state
+
+      Step 4 - generate artifacts
+        - generate image from yaml then container
+
+      Step 5 - test
+
+      Step 6 - deploy
+
+    Migrate for Anthos Installation
+      1. Procesing cluster
+        gcloud contianet --project $PROJECT_ID clusters create $CLUSTER_NAME --zone $CLUSTER_ZONE --username "admin: --cluster-version 1.14 -- machine-type "n1-standard-4 --image-type "UBUNTU" --num-nodes 1 --enable-stackdriver-kubernetes --copes "cloud-platform" --enable-ip-aias --tags="http-server"
+          - gke admin to set up the cluster
+          - FW rule in place to allow comm between migrate for anthos and migrate for compute engine
+
+      1.2. Installing Migrate for Anthos uses migctl
+        - CLI
+          - migctl setup install
+
+      2. Adding source from compute engine to migrate for anthos
+        - migctl source create ce my-ce-src --project my-project --zone zone
+
+      3. Creating migration generates a migration plan
+        - migctl migration create test-migration --source my-ce-src --vm-id my-id --intent Image
+
+      4. Executing a migration generates resources and artifacts
+        - migctl migration generate-artifacts my-migration
+          - processing cluster(GKE) -> docker(GCS) -> yaml files(GCS) -> Container Images(Container Registry)
+            - create 2 image one for runnable image for deployment and non-runnable image forupdate contianer image in the future
+
+      4.1 Deployment files typically need modification
+        - migctl migration get-artifacts test-migration
+
+      4.2 Apply the configuration to deploy the workload
+        - kubectl apply -f deployment_spec.yaml
+
+Summary: - object - represent every item under kb8s control
+
+    - kubernetes controllers keep the cluster state matching the desired state
+    - kubernetes consists of family of control plane components, running on the conrol plane and the nodes
+    - GKE abstracts away the control plane
+    - declare the state you want using manifest files
+
+Quiz: Kubernetes Architecture 1. You are designing an application, and you want to ensure that the containers are located as close to each other as possible, in order to minimize latency. Which design decision helps meet this requirement? - Place the containers in the same Pod.
+
+    2. Google Kubernetes Engine offers two modes of operation: Autopilot and Standard mode. Which one of the options below is a use case for using Standard mode.
+      - You require SSH access to nodes.
+
+    3. You want to deploy multiple copies of your application, so that you can load balance traffic across them. How should you deploy this application's Pods to the production Namespace in your cluster?
+      - Create a Deployment manifest that specifies the number of replicas that you want to run.
+
+Module 4: Kubernetes Operations
+
+- The final section of this course introduces the kubectl command, which is the command line utility used to interact with and manage the resources inside Kubernetes clusters
+- Learners are introduced to the concept of introspection, then get practice deploying Google Kubernetes Engine clusters from Cloud Shell.
+
+Learning Objectives - Work with the kubectl command. - Inspect the cluster and Pods. - View a Pod’s console output. - Sign in interactively to a Pod.
+
+The kubectl command - utiility command by admin to control kb8s clusters - used to comm w. kube API server on control plane - it allows them to make req to cluster - det which part of control plane to comm
+
+    First steps
+      - kubectl must be configured w/:
+        - location
+        - credentials
+
+    $HOME/.kube/config
+      - config file of kubectl
+      - contains
+        - list of clusters
+        - credentials
+          - provided by gcloud command
+            //create a Kubernetes cluster
+              gcloud container clusters create-auto $my_cluster --region $my_region
+
+            // authenticate shell to allow communicating with that cluster through the kubectl command-line tool
+            // connect to kubectl GKE cluster
+              gcloud container clusters get-credentials $my_cluster --region $my_region
+                - after this command, kubectl auto ref and connect to the said clusters
+    Notes
+      - kubectl
+        - can't create new clusters
+          - gcloud can
+        - can't change the shape of existing clusters
+          - GKE control plane do
+
+        - Use case
+          - creating
+          - viewing
+          - deleting kb8s objects
+          - viewing or exporting config files
+
+        - remember to:
+          - config kubectkl to right clusters first
+          - use --kubeconfig orr --context parameters
+
+    Common commands
+      //see list of pods in a cluster
+        kubetctl get pods
+
+      //get state of the pod in yaml format
+        kubectl get pod my-app -o=yaml
+
+      //display list of pods in wide format( displays which node each pod is running on)
+        kubectl get pods -o=wide
+
+      //format
+        kubectl [command] [Type] [Name] [Flags]
+
+        command
+          - what do you want to do
+            - get
+            - describe
+            - logs
+            - exec
+
+        Type
+          - which type of object
+            - pods
+            - deployments
+            - nodes
+
+        Name
+          - what is the object's name
+        Flags
+          - any special req
+
+Introspection - act of gathering information about the - containers, - pods - services, - and other engines that run within the cluster.
+
+    Common debug commands
+     1. kubectl get pods
+      - tells you whether your pod is running
+      - shows pod's phase status
+        - Pending
+          - accepted a pod but in process/scheduled
+            - container is still creating from defined container image
+              - container runtime job
+        - running
+          - successfully attached to anode
+          - containers are created
+            - can be
+              - starting
+              - restarting
+              - running
+
+        - succeded
+          - all containers finished running successfully
+          - terminated successfully so they won't be restarting
+
+        - failed
+          - container terminated w/ failure and won't be restarting
+
+        - unknown
+          - state of the Pod cannot be retrieved
+            - comm error bet control plane and kubelet
+
+        - CrashLoopBackOff
+          - one of the contianers in the POd exited unexpectedly after restarted at least once
+          - pods not config correctly
+
+    2. kubectl describe pod [POD_NAME]
+      - investigate pod in detail
+      - provides info about a Pod and its containers such as
+        - labels
+        - resource requirements
+        - volumes
+        - staus info about pod and container
+
+      - Pod
+        - name
+        - namespace
+        - node name
+        - labels
+        - status
+        - IP addr
+
+      - Container
+        - State
+          - Waiting
+          - running
+          - terminated
+
+        - images
+        - ports
+        - commands
+        - restart counts
+
+    3. kubectl exec [POD_NAME] -- [command]
+      - run a single command inside a container and view results in your own command shell
+      - useful when you want to exec bash command inside your pod
+
+
+    4. kubectl logs [POD_Name]
+      - a way to see what is happening inside a Pod
+      - use for troubleshooting
+        - reveal errors or debugging messages written by app that run side Pods
+      - logs includes
+        - stdout
+          - standard output on the ocnsole
+        - stderr
+          - error messages
+      - Use cases
+        - find containers not running successfully
+          -c
+            -option for having multiple containers inside a pod
+        //Install package to connect to your container command shell
+          kubectl exec -it [POD_NAME] -- [command]
+          kubectl exec -it my-pod -- /bin/bash
+            -i
+              - tells kubectl to pass terminal's std input to the container
+            -t
+              - tells kubectl that input is a TTY
+
+    Best practices
+      1. not install software directly into a container
+        - changes made by containers to their fs are ephemeral/Temporary
+
+      2. Consider building container images that have exactly the software you need
+
+      3. The interactive shell will allow you to figure out what needs to be changed
+
+      4. integrate those chnges into container images and redeploy them
+
+Qwiklab: Deploying GKE Autopilot Clusters from Cloud Shell - In this lab, you use the command line to build GKE clusters. - You inspect the kubeconfig file, and you use kubectl to manipulate the cluster.
+
+    Objectives
+      In this lab, you learn how to perform the following tasks:
+
+      - Use kubectl to build and manipulate GKE clusters
+      - Use kubectl and configuration files to deploy Pods
+      - Use Container Registry to store and deploy containers
+
+    Task 1: Deploy GKE Clusters
+      // set the environment variable for the zone and cluster name:
+        export my_region=us-central1
+        export my_cluster=autopilot-cluster-1
+
+      //create a Kubernetes cluster
+        gcloud container clusters create-auto $my_cluster --region $my_region
+
+    Task 2: Connect to a GKE cluster
+      In Kubernetes, authentication can take several forms.
+      For GKE, authentication is typically handled with
+        - OAuth2 tokens and can be managed through Cloud Identity
+        - Access Management across the project as a whole and, optionally, through role-based access control which can be defined and configured within each cluster.
+
+      // authenticate shell to allow communicating with that cluster through the kubectl command-line tool
+        gcloud container clusters get-credentials $my_cluster --region $my_region
+
+      .kube directory
+        - creates a file named config
+          - store the authentication and configuration information.
+          - config file is typically called the kubeconfig file.
+
+      // open config file
+        vi  ~/.kube/config
+
+        - examine all of the authentication
+        - endpoint configuration data stored in the file.
+        - Information for the cluster should appear.
+        - The information was populated during cluster creation.
+
+      Note
+        - You don't have to run the gcloud container clusters get-credentials command to populate the kubeconfig file for clusters that you created in the same context (the same user in the same environment), because those clusters already have their details populated when the cluster is created.
+        - you do have to run the command to connect to a cluster created by another user or in another environment. The command is also an easy way to switch the active context to a different cluster.
+        - active context
+          - (the cluster that kubectl commands manipulate)
+
+    Task 3: Use kubectl to inspect a GKE cluster
+      // print content of kubeconfig file
+        kubectl config view
+
+      // print out active context cluster
+         kubectl cluster-info
+
+      //print out active context
+        kubectl config current-context
+
+      //details of cluster contexts
+        kubectl config get-contexts
+
+      // change active context
+        kubectl config use-context gke_${DEVSHELL_PROJECT_ID}_us-central1_autopilot-cluster-1
+
+      // enable bash autocompletion for kubectl
+        source <(kubectl completion bash)
+
+      // all possible command of kubectl
+        type kubectl followed by a space and press the Tab key twice
+
+      // outputs all commands starting with "co" or any other text you type
+        type kubectl co and press the Tab key twice.
+
+    Task 4: Deploy Pods to GKE clusters
+      // deploy nginx as a Pod named nginx-1:
+        kubectl create deployment --image nginx nginx-1
+
+      // view all the deployed Pods in the active context cluster:
+        kubectl get pods
+
+      // view the resource usage across the nodes of the cluster:
+        kubectl top nodes
+
+      // shows similar information across all the deployed Pods in the cluster.
+        kubectl top pods
+
+      // set env for pod name
+        export my_nginx_pod=nginx-1-695d6d476c-gs97k
+
+        echo $my_nginx_pod
+
+      // view the complete details of the Pod you just created
+        kubectl describe pod $my_nginx_pod
+
+      // Push a file into a container
+        nano ~/test.html
+           This is title
+           Hello world
+
+      // place the file into the appropriate location within the nginx container in the nginx Pod to be served statically:
+        kubectl cp ~/test.html $my_nginx_pod:/usr/share/nginx/html/test.html
+
+        - this command copies the test.html file from the local home directory to the /usr/share/nginx/html directory of the first container in the nginx Pod. You can specify other containers in a multi-container Pod by using the -c option, followed by the name of the container.
+
+      // Expose the Pod for testing
+
+    Task 5: Introspect GKE Pods
+
+Quiz 1. You want to use kubectl to configure your cluster, but first you must configure it. Where does the kubectl command store its configuration file? - The configuration information is stored in the $HOME/.kube/config file.
+
+    2.You attempt to update a container image to a new version by using the “kubectl describe pod command,” but are not successful. The output of the command shows that the Pod status has changed to “Pending,”the state is shown as “Waiting,” and the reason shown is “ImagePullBackOff.” What is the most probable cause of this error?
+      - The container image failed to download.
+
+    3.Which command can be used to display error messages from containers in a Pod that are failing to run successfully?
+      - kubectl logs
+
+    4. What command can be used to identify which containers in a Pod are successfully running, and which are failing or having issues?
+      - kubectl describe pod
+
+      - kubectl get pod
