@@ -123,29 +123,40 @@ of availability, latency, performance and capacity
     Note
       - need cultural and org support for long term to be successful
 
-Blameless Postmortems/Retrospective - only focuses on the root causes of an incident. - incident is looked at objectively w/o designing a person or team as the root cause
-Exprerienced SREs - are comfortable w/ failure - eliminate ambiguity w/ monitoring - establish and document processes.
+Blameless Postmortems/Retrospective
 
-    Components of a postmortem
-      - details of the incident and its timeline
-      - the actions taken to mitifate or resolve the incident
-      - the incident's impact
-      - Its trigger and root cause or causes
-      - the follow-up actions to prevent its recurrence
+- only focuses on the root causes of an incident.
+- incident is looked at objectively w/o designing a person or team as the root cause
 
-    Goals
-      - ensure that all the root casues are properly understood by the team
-      - define or take effective actions to prevent the issue from occuring again
-      - reduce the likelihood of stressful outages
-      - avoid multiplying complexity
-      - learn from your mistakes and thos of others
-      - writing RCA provides additional vlue to your org
-      - blamessness increase effectiveness of teams so
-      they can 100% focused on preventing from occuring instead of worrying about being blamed if something goes wrong
+Exprerienced SREs
 
-    RCA
-      - root cause analysis
-      - 5 whys minimum to find the culprit
+- are comfortable w/ failure
+- eliminate ambiguity w/ monitoring
+- establish and document processes.
+
+  Components of a postmortem
+
+  - details of the incident and its timeline
+  - the actions taken to mitifate or resolve the incident
+  - the incident's impact
+  - Its trigger and root cause or causes
+  - the follow-up actions to prevent its recurrence
+
+  Goals
+
+  - ensure that all the root casues are properly understood by the team
+  - define or take effective actions to prevent the issue from occuring again
+  - reduce the likelihood of stressful outages
+  - avoid multiplying complexity
+  - learn from your mistakes and thos of others
+  - writing RCA provides additional vlue to your org
+  - blamessness increase effectiveness of teams so
+    they can 100% focused on preventing from occuring instead of worrying about being blamed if something goes wrong
+
+  RCA
+
+  - root cause analysis
+  - 5 whys minimum to find the culprit
 
 Blamelessness and Psych Safety
 Psychological safety - the belief that a person will not be punished or humiliated for speaking up
@@ -231,7 +242,6 @@ SLOs and error budgets - reduces org silos w/ SLOs and error budgets
             - map to user expecations
               - latency
               - throughput
-
 
 Share vision and knowledge  
  How to create SRE culture? 1. Create a unified vision - team vision statement - support the company's vision - give sense of direction - drives' its work and includes - values - refers to how you can achieve your vision - guides your behaviors - response to others - commitment to Goals - way you spend your time - way you operate as a team
@@ -720,8 +730,9 @@ Glossary
       automatable, tactical, or without enduring value, or that scales
       linearly as the service grows.
 
-Key Points - change is best when small and frequent - design thinking methodology 5 phases: - Emphatize - define - Ideate - prototype - test - prototyping culture - encourages teams to try more ideas - leading to increase faster failures - more successes - excessive toil is toxic to the SRE role - eliminating Toil  
- - SRE can focus on work that either: - reduce future toil - add service feautures - resistance to change is usually a fear of loss - present change as an oppportunity, not a threat - people react to change in many ways - IT leaders need to understand how to communicate w/ and support each group
+Key Points - change is best when small and frequent - design thinking methodology 5 phases: - Emphatize - define - Ideate - prototype - test - prototyping culture - encourages teams to try more ideas - leading to increase faster failures - more successes - excessive toil is toxic to the SRE role - eliminating Toil
+
+- SRE can focus on work that either: - reduce future toil - add service feautures - resistance to change is usually a fear of loss - present change as an oppportunity, not a threat - people react to change in many ways - IT leaders need to understand how to communicate w/ and support each group
 
 Regulate Workload
 
@@ -803,8 +814,7 @@ DevOps Last pillar - Measure Everything
           Notes:
             - escalate if risk dropping below SLO for the month
 
-2. Goal setting
-
+2.  Goal setting
 
     - look for KPIs
       - who
@@ -812,69 +822,73 @@ DevOps Last pillar - Measure Everything
       - how to measure
 
     Sample
-      - Google uses OKRs as KPIs graded from 0.0 to 1.0
 
-      OKR grading considerations
-        - 60-70% is a good score.
-        - OKRs are not synonymous with performance
-        - Organizational OKRs are graded publicly
-        - Frequent check-ins throuput the quarter help maintain progress
+    - Google uses OKRs as KPIs graded from 0.0 to 1.0
 
-3. Transparency
+    OKR grading considerations - 60-70% is a good score. - OKRs are not synonymous with performance - Organizational OKRs are graded publicly - Frequent check-ins throuput the quarter help maintain progress
 
+3.  Transparency
 
     - only way to demonstrate to your employees that you beleive they are trustworthy adults
-    and have good judgement
-    and giving them more context about what is happening(and how, and why)
-    will enable them to do their jovs more effectively.
+      and have good judgement
+      and giving them more context about what is happening(and how, and why)
+      will enable them to do their jovs more effectively.
     - demonstrate trustworthy good judgement about what is happening effectively.
 
     How>
-      1. Sharing Monitoring tools
-          - Buganizer
-      2. Sharing Communications
-      3. Feedback loop
+
+    1. Sharing Monitoring tools
+       - Buganizer
+    2. Sharing Communications
+    3. Feedback loop
+
+
         - measure
         - improve
         - produce
 
-4. Data-Driven Decision Making
+4.  Data-Driven Decision Making
 
 - Remove unconscious bias
 - refer to glossary for four bias meanings
 
 How? - Question your first impressions. - Justify decisions. - Make decisions collectively.
 
-Quiz  
- 1. SLIs need to provide a clear definition of what? - Good and bad events - SLIs need to provide a clear definition of good and bad events that will correlate with your users’ experience with the service.
+Quiz
 
-      - Total user interactions
-        - factor when quantifying SLOs.
+1.  SLIs need to provide a clear definition of what? - Good and bad events - SLIs need to provide a clear definition of good and bad events that will correlate with your users’ experience with the service.
+
+    - Total user interactions
+      - factor when quantifying SLOs.
 
     2. What does monitoring allow for?
-      - Visibility into a system
+
+    - Visibility into a system
 
     3. What does Google use OKRs as?
-      - KPIs
+
+    - KPIs
 
     4. Which bias is the tendency to find information, input, or data that supports your preconceived notions?
-      - Confirmation bias
 
-Glossary  
- 1. Affinity bias - Tendency to gravitate toward those who are similar to you,
-such as with race, gender, socioeconomic background, or education level.
+    - Confirmation bias
 
-    2. Confirmation bias
-      - Tendency to find information, input, or data that supports
-      your preconceived notions.
+Glossary
 
-    3. Selective attention bias
-      - Tendency to pay attention to things, ideas, and
-      input from people whom you tend to gravitate toward.
+1.  Affinity bias - Tendency to gravitate toward those who are similar to you,
+    such as with race, gender, socioeconomic background, or education level.
 
-    4. Labeling bias
-      - Tendency to form opinions based on how people look,
-      dress, or appear externally
+        2. Confirmation bias
+          - Tendency to find information, input, or data that supports
+          your preconceived notions.
+
+        3. Selective attention bias
+          - Tendency to pay attention to things, ideas, and
+          input from people whom you tend to gravitate toward.
+
+        4. Labeling bias
+          - Tendency to form opinions based on how people look,
+          dress, or appear externally
 
 Key Points 1. measure reliability w/ good service level indicators(SLIs)
 
@@ -1491,48 +1505,53 @@ Module 2: Monitoring Critical systems
 Learning Objectives 1. Use Cloud Monitoring to view metrics for multiple cloud projects. 2. Explain the different types of dashboards and charts that can be built. 3. Create an uptime check. 4. Explain the cloud operations architecture. 5. Explain and demonstrate the purpose of using Monitoring Query Language (MQL) for monitoring.
 
 Cloud Monitoring architecture patterns
-Three layers 1. Data collection layers - collects  
- - metrics - logs - traces
+Three layers 1. Data collection layers - collects
 
-      2. Data storage layer
-        - stores the collected data
-        - routes to the configured visualization and analysis layer
-        - includes the cloud monitoring API
-          - helps triage the metrics collected to be stored for future analysis
+- metrics - logs - traces
 
-      3. data analysis and visualization layer
-        - analyzes the collected data to identify
-          - problems
-          - trends
-          - presents the analyzed data in a way that is easy to understand
-          - dashboards
-            - visualize data
-          - uptime checks
-            - monitor app
-          - alerting policies
-            - config alerts
-            - notify events or email
+  2. Data storage layer
 
-        Notes
-          Platform monitoring/Cloud Monitoring
-            - no copst for all system metrics
 
-          Application monitoring - GKE
-            - integrates w/:
-              - cloud logging
-              - cloud monitoring
-              - google cloud managed service for prometheus
-                - collects data
+       - stores the collected data
+       - routes to the configured visualization and analysis layer
+       - includes the cloud monitoring API
+         - helps triage the metrics collected to be stored for future analysis
 
-              Google Managed Prometheus(GMP)
-                - part of cloud monitoring as aprometheus data
-                - promql compatible query language
+  3. data analysis and visualization layer
 
-          Application monitoring - GCE
-            - ops agents to collect data
-            - partner with
-              - Datadog/NewRelic
-              - BindPlane by Blue Medora for logs collection
+
+       - analyzes the collected data to identify
+         - problems
+         - trends
+         - presents the analyzed data in a way that is easy to understand
+         - dashboards
+           - visualize data
+         - uptime checks
+           - monitor app
+         - alerting policies
+           - config alerts
+           - notify events or email
+
+       Notes
+         Platform monitoring/Cloud Monitoring
+           - no copst for all system metrics
+
+         Application monitoring - GKE
+           - integrates w/:
+             - cloud logging
+             - cloud monitoring
+             - google cloud managed service for prometheus
+               - collects data
+
+             Google Managed Prometheus(GMP)
+               - part of cloud monitoring as aprometheus data
+               - promql compatible query language
+
+         Application monitoring - GCE
+           - ops agents to collect data
+           - partner with
+             - Datadog/NewRelic
+             - BindPlane by Blue Medora for logs collection
 
 Monitoring multiple projects - only one single project in metric scope by default
 
@@ -2464,7 +2483,6 @@ Best practices 1. Create a plan for Data Access autid logs - folder then project
         - backend for dashboards
       - use IAM and/or temporary access URLs for cloud storage
 
-
 Qwiklab: Cloud Audit Logs - In this lab, you investigate Google Cloud Audit Logs. - Cloud Audit Logging maintains multiple audit logs for each project, folder, and organization, - all of which help answer the question, "Who did what, when, and where?"
 
     Objectives
@@ -3144,8 +3162,9 @@ Module 3: Kubernetes architecture
 - Learners deploy a Kubernetes cluster by using Google Kubernetes Engine, deploy Pods to a GKE cluster, and view and manage different Kubernetes objects.
 
 Introduction
-Learning Objectives  
- - Conceptualize the Kubernetes architecture. - Identify how to view and manage Kubernetes objects. - Distinguish between Google Kubernetes Engines modes of operation. - Deploy a Kubernetes cluster by using GKE.
+Learning Objectives
+
+- Conceptualize the Kubernetes architecture. - Identify how to view and manage Kubernetes objects. - Distinguish between Google Kubernetes Engines modes of operation. - Deploy a Kubernetes cluster by using GKE.
 
 Kubernetes concepts
 Two Fundamental components of kb8s operating philosophy: 1. Kubernetes Object model - Object - persistent entities of representing the state of the cluster - Desired state/Object spec - described by you - Current state/Object status - described by kb8s control plane - represents every thing kubernetes manage - can view and change attributes and state
