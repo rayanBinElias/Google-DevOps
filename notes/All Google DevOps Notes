@@ -842,10 +842,9 @@ DevOps Last pillar - Measure Everything
     2. Sharing Communications
     3. Feedback loop
 
-
-        - measure
-        - improve
-        - produce
+       - measure
+       - improve
+       - produce
 
 4.  Data-Driven Decision Making
 
@@ -858,20 +857,21 @@ Quiz
 
 1.  SLIs need to provide a clear definition of what? - Good and bad events - SLIs need to provide a clear definition of good and bad events that will correlate with your users’ experience with the service.
 
+
     - Total user interactions
       - factor when quantifying SLOs.
 
-    2. What does monitoring allow for?
+2. What does monitoring allow for?
 
-    - Visibility into a system
+- Visibility into a system
 
-    3. What does Google use OKRs as?
+3. What does Google use OKRs as?
 
-    - KPIs
+- KPIs
 
-    4. Which bias is the tendency to find information, input, or data that supports your preconceived notions?
+4. Which bias is the tendency to find information, input, or data that supports your preconceived notions?
 
-    - Confirmation bias
+- Confirmation bias
 
 Glossary
 
@@ -1509,49 +1509,37 @@ Three layers 1. Data collection layers - collects
 
 - metrics - logs - traces
 
-  2. Data storage layer
+  2.  Data storage layer
 
+      - stores the collected data
+      - routes to the configured visualization and analysis layer
+      - includes the cloud monitoring API
+        - helps triage the metrics collected to be stored for future analysis
 
-       - stores the collected data
-       - routes to the configured visualization and analysis layer
-       - includes the cloud monitoring API
-         - helps triage the metrics collected to be stored for future analysis
+  3.  data analysis and visualization layer
 
-  3. data analysis and visualization layer
+      - analyzes the collected data to identify
+        - problems
+        - trends
+        - presents the analyzed data in a way that is easy to understand
+        - dashboards
+          - visualize data
+        - uptime checks
+          - monitor app
+        - alerting policies
+          - config alerts
+          - notify events or email
 
+      Notes
+      Platform monitoring/Cloud Monitoring - no copst for all system metrics
 
-       - analyzes the collected data to identify
-         - problems
-         - trends
-         - presents the analyzed data in a way that is easy to understand
-         - dashboards
-           - visualize data
-         - uptime checks
-           - monitor app
-         - alerting policies
-           - config alerts
-           - notify events or email
-
-       Notes
-         Platform monitoring/Cloud Monitoring
-           - no copst for all system metrics
-
-         Application monitoring - GKE
-           - integrates w/:
-             - cloud logging
-             - cloud monitoring
-             - google cloud managed service for prometheus
-               - collects data
+      Application monitoring - GKE - integrates w/: - cloud logging - cloud monitoring - google cloud managed service for prometheus - collects data
 
              Google Managed Prometheus(GMP)
                - part of cloud monitoring as aprometheus data
                - promql compatible query language
 
-         Application monitoring - GCE
-           - ops agents to collect data
-           - partner with
-             - Datadog/NewRelic
-             - BindPlane by Blue Medora for logs collection
+      Application monitoring - GCE - ops agents to collect data - partner with - Datadog/NewRelic - BindPlane by Blue Medora for logs collection
 
 Monitoring multiple projects - only one single project in metric scope by default
 
